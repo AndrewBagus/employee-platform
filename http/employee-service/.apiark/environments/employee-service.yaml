@@ -1,0 +1,4 @@
+name: employee-service
+variables:
+  baseUrl: http://localhost:3000
+scope: shared
