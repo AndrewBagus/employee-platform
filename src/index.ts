@@ -1,5 +1,8 @@
 import { Hono } from "hono";
 import { DateTime } from "luxon";
+import { drizzle } from "drizzle-orm/node-postgres";
+
+// const db = drizzle(process.env.DATABASE_URL!);
 
 const app = new Hono();
 
