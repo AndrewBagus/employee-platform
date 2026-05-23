@@ -23,7 +23,7 @@ See [.commandcode/memory.md](./.commandcode/memory.md) for documented workflows 
 
 ## Agent System
 
-This project uses a dual-agent setup where different AI models handle planning vs. implementation phases. Configuration is in `.commandcode/settings.local.json`.
+This project uses a multi-agent setup where different AI models handle planning, implementation, and review. Configuration is in `.commandcode/settings.local.json`.
 
 ### Senior Engineer (`senior-engineer`)
 
@@ -40,6 +40,13 @@ This project uses a dual-agent setup where different AI models handle planning v
 - **Handles**: Writing code, creating schema files, generating migrations, adding routes, testing
 - **Config**: `.commandcode/agents/junior-engineer/AGENT.md`
 - Follows the plan exactly as designed by the senior engineer — no deviation
+
+### Code Reviewer (`code-reviewer`)
+- **Model**: DeepSeek V4 Flash
+- **Activates**: When reviewing implemented code against the plan (`/review` or manual)
+- **Handles**: Code review against plan, pattern enforcement, migration verification, style checks
+- **Config**: `.commandcode/agents/code-reviewer/AGENT.md`
+- Flags deviations, bugs, style violations, and pattern breaks with location/problem/fix format
 
 ### Workflow
 
