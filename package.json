@@ -1,6 +1,8 @@
 {
   "name": "employee-service",
   "scripts": {
+    "generate": "bunx --bun drizzle-kit generate",
+    "migrate": "bunx --bun drizzle-kit migrate",
     "dev": "bun run --hot src/index.ts"
   },
   "dependencies": {
@@ -18,3 +20,4 @@
     "tsx": "^4.22.1"
   }
 }
+
