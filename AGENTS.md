@@ -1,6 +1,7 @@
 # Memory
 
 > **Read [.commandcode/memory.md](./.commandcode/memory.md) first** — it contains the full architecture, schema details, patterns, and workflows for this project.
+> **Update [.commandcode/memory.md](./.commandcode/memory.md)** as the codebase grows or whenever you discover something worth documenting.
 
 ## Project Overview
 See @README.md for project overview and @package.json for available bun/bunx commands for this project.
@@ -45,6 +46,17 @@ Both agents share the same project context from `.commandcode/memory.md`.
 - `Alt+P` for quick model switch
 - `/agents` to browse and select agents
 - `/model` to switch models directly
+
+**How to tell which agent is active:** There's no direct agent indicator — the current mode tells you: plan mode means `senior-engineer`, auto-accept/default mode means `junior-engineer`. Check the mode label displayed in the UI.
+
+## Plan Mode
+
+- If something goes sideways, STOP and re-plan immediately. Don't keep pushing.
+- Use plan mode for verification steps, not just building.
+- Always ask questions to get more clarity.
+- Write detailed specs upfront to reduce ambiguity.
+- Always break down tasks with their dependencies.
+- Always create plan task files in `./<worktree-directory>/.commandcode/tasks/<context>/<running-number>.<task-title>.md`
 
 ## Working Guidelines
 - Always use plan mode when the prompt includes "create plan" or involves multiple steps.
