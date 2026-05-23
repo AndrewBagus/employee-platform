@@ -1,20 +1,24 @@
 # Memory
 
 > **Read [.commandcode/memory.md](./.commandcode/memory.md) first** — it contains the full architecture, schema details, patterns, and workflows for this project.
-> **Update [.commandcode/memory.md](./.commandcode/memory.md)** as the codebase grows or whenever you discover something worth documenting.
+> **Update [.commandcode/memory.md](./.commandcode/memory.md)** as the codebase grows or whenever discover something worth documenting.
 
 ## Project Overview
+
 See @README.md for project overview and @package.json for available bun/bunx commands for this project.
 
 ## Code Style Guidelines
+
 - Use descriptive variable names
 - Follow existing patterns in the codebase
 - Extract complex conditions into meaningful boolean variables
 
 ## Architecture Notes
+
 See [.commandcode/memory.md](./.commandcode/memory.md) for all architectural decisions and patterns.
 
 ## Common Workflows
+
 See [.commandcode/memory.md](./.commandcode/memory.md) for documented workflows and commands.
 
 ## Agent System
@@ -22,6 +26,7 @@ See [.commandcode/memory.md](./.commandcode/memory.md) for documented workflows 
 This project uses a dual-agent setup where different AI models handle planning vs. implementation phases. Configuration is in `.commandcode/settings.local.json`.
 
 ### Senior Engineer (`senior-engineer`)
+
 - **Model**: DeepSeek V4 Pro
 - **Activates**: Automatically in plan mode (`Shift+Tab` or `/plan`)
 - **Handles**: Architecture reviews, schema design, route planning, database decisions, migration planning
@@ -29,6 +34,7 @@ This project uses a dual-agent setup where different AI models handle planning v
 - Has full knowledge of the project schema, patterns (UUIDv7, soft-delete, audit columns), and tech stack
 
 ### Junior Engineer (`junior-engineer`)
+
 - **Model**: Kimi K2.6
 - **Activates**: Automatically during implementation (after plan approval)
 - **Handles**: Writing code, creating schema files, generating migrations, adding routes, testing
@@ -36,16 +42,18 @@ This project uses a dual-agent setup where different AI models handle planning v
 - Follows the plan exactly as designed by the senior engineer — no deviation
 
 ### Workflow
+
 1. Developer enters plan mode → senior engineer creates plan
 2. Plan gets reviewed and approved
 3. Junior engineer implements the plan
 
 Both agents share the same project context from `.commandcode/memory.md`.
 
-### Manual Model Switching
-- `Alt+P` for quick model switch
-- `/agents` to browse and select agents
-- `/model` to switch models directly
+<!-- ### Manual Model Switching -->
+
+<!-- - `Alt+P` for quick model switch -->
+<!-- - `/agents` to browse and select agents -->
+<!-- - `/model` to switch models directly -->
 
 **How to tell which agent is active:** There's no direct agent indicator — the current mode tells you: plan mode means `senior-engineer`, auto-accept/default mode means `junior-engineer`. Check the mode label displayed in the UI.
 
@@ -58,5 +66,13 @@ Both agents share the same project context from `.commandcode/memory.md`.
 - Always break down tasks with their dependencies.
 - Always create plan task files in `./<worktree-directory>/.commandcode/tasks/<context>/<running-number>.<task-title>.md`
 
+## Git Workflow
+
+- When creating a git worktree, always branch from `develop` (or `dev`)
+- Always create git worktrees inside `./.commandcode/worktree/<worktree-name>`
+- When a git worktree is created, always create a new branch with the same name as `<worktree-name>`
+- Don't commit anything before being instructed to
+
 ## Working Guidelines
+
 - Always use plan mode when the prompt includes "create plan" or involves multiple steps.
