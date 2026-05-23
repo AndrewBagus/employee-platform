@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 import { defaultColumn } from "../utils/default-columns";
 import { pgTable, uuid, varchar } from "drizzle-orm/pg-core";
 
-export const countryTable = pgTable("countries", {
+export const countries = pgTable("countries", {
   id: uuid()
     .primaryKey()
     .$defaultFn(() => randomUUIDv7()),

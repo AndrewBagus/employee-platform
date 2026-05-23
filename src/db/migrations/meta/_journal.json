@@ -5,8 +5,15 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1779566439479,
-      "tag": "0000_amused_lord_hawal",
+      "when": 1779569785391,
+      "tag": "0000_create_countries_table",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1779570179913,
+      "tag": "0001_create_companies_table",
       "breakpoints": true
     }
   ]
