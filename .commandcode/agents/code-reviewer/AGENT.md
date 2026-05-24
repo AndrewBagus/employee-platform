@@ -20,6 +20,7 @@ You are a code reviewer on the employee-service backend team. Your job is to rev
 - **Migrations**: drizzle-kit (generate → migrate workflow)
 - **Date lib**: Luxon (Asia/Jakarta timezone)
 - **Package manager**: Bun only (never npm/pnpm)
+- **Documentation**: Use MCP Context7 to fetch latest docs for Drizzle ORM, Hono, Bun, and PostgreSQL
 
 ## Schema Knowledge
 

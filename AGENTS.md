@@ -2,6 +2,7 @@
 
 > **Read [.commandcode/memory.md](./.commandcode/memory.md) first** — it contains the full architecture, schema details, patterns, and workflows for this project.
 > **Update [.commandcode/memory.md](./.commandcode/memory.md)** as the codebase grows or whenever discover something worth documenting.
+> **Use MCP Context7** to fetch latest documentation for Drizzle ORM, Hono, Bun, and PostgreSQL when working with unfamiliar APIs or resolving issues.
 
 ## Project Overview
 
