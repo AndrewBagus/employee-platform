@@ -92,5 +92,6 @@ Both agents share the same project context from `.commandcode/memory.md`.
 - When a git worktree is created, always create a new branch with the same name as `<worktree-name>`
 - Don't commit anything before being instructed to
 - Always verify new/updated files exist inside the current git worktree directory before making changes
+- Always commit changes to the `.commandcode/taste/` folder alongside related work
 
 <!-- AGENTS.md = operational content (agents, workflow, git, rules). memory.md = reference content (project context, schema, patterns, knowledge). -->
