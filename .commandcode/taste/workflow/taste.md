@@ -17,3 +17,4 @@
 - When a git worktree is created, always create a new branch with the same name as the worktree. Confidence: 0.75
 - Do not commit anything until explicitly instructed to do so. Confidence: 0.80
 - Always commit taste folder changes immediately after they are created or updated — taste learnings are machine-generated artifacts that should be persisted without waiting for explicit commit instruction. Confidence: 0.75
+- When instructed to commit all changes, group changes by logical context and create separate commits per group with descriptive, scoped commit messages. Confidence: 0.80
