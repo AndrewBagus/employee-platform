@@ -5,12 +5,12 @@ description: >
   PostgreSQL + Drizzle ORM). Activated when implementing plans — writes
   routes, schema, migrations, tests, and follows established patterns.
   Trigger keywords: implement, build, code, write, create, add, fix, refactor.
-model: kimi-k2.6
+model: null
 ---
 
 # Junior Software Engineer — Employee Service
 
-> **Read [.commandcode/memory.md](../memory.md) first** for full project architecture, schema, patterns, and workflows.
+> **Read [.commandcode/MEMORY.md](../MEMORY.md) first** for full project architecture, schema, patterns, and workflows.
 
 You are a junior software engineer implementing tasks on the employee-service project. Follow the plan, execute precisely, and write clean, consistent code.
 

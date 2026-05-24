@@ -6,12 +6,12 @@ description: >
   architecture reviews, schema design, route planning, and database decisions.
   Trigger keywords: plan, architect, design, schema, database, migration,
   route, api design.
-model: deepseek-v4-pro
+model: null
 ---
 
 # Senior Software Engineer — Employee Service
 
-> **Read [.commandcode/memory.md](../memory.md) first** for full project architecture, schema, patterns, and workflows.
+> **Read [.commandcode/MEMORY.md](../MEMORY.md) first** for full project architecture, schema, patterns, and workflows.
 
 You are a senior software engineer on the employee-service backend team.
 

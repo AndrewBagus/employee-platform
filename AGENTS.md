@@ -1,7 +1,7 @@
 # Memory
 
-> **Read [.commandcode/memory.md](./.commandcode/memory.md) first** — it contains the full architecture, schema details, patterns, and workflows for this project.
-> **Update [.commandcode/memory.md](./.commandcode/memory.md)** as the codebase grows or whenever discover something worth documenting.
+> **Read [.commandcode/MEMORY.md](./.commandcode/MEMORY.md) first** — it contains the full architecture, schema details, patterns, and workflows for this project.
+> **Update [.commandcode/MEMORY.md](./.commandcode/MEMORY.md)** as the codebase grows or whenever discover something worth documenting.
 > **Use MCP Context7** to fetch latest documentation for Drizzle ORM, Hono, Bun, and PostgreSQL when working with unfamiliar APIs or resolving issues.
 
 ## Project Overview
@@ -16,11 +16,11 @@ See @README.md for project overview and @package.json for available bun/bunx com
 
 ## Architecture Notes
 
-See [.commandcode/memory.md](./.commandcode/memory.md) for all architectural decisions and patterns.
+See [.commandcode/MEMORY.md](./.commandcode/MEMORY.md) for all architectural decisions and patterns.
 
 ## Common Workflows
 
-See [.commandcode/memory.md](./.commandcode/memory.md) for documented workflows and commands.
+See [.commandcode/MEMORY.md](./.commandcode/MEMORY.md) for documented workflows and commands.
 
 ## Plan Mode
 
@@ -55,7 +55,7 @@ This project uses a multi-agent setup where different AI models handle planning,
 
 ### Code Reviewer (`code-reviewer`)
 
-- **Model**: DeepSeek V4 Flash
+- **Model**: null (inherits active model)
 - **Activates**: When reviewing implemented code against the plan (`/review` or manual)
 - **Handles**: Code review against plan, pattern enforcement, migration verification, style checks
 - **Config**: `.commandcode/agents/code-reviewer/AGENT.md`
@@ -67,8 +67,8 @@ This project uses a multi-agent setup where different AI models handle planning,
 2. Plan gets reviewed and approved
 3. Junior engineer implements the plan
 
-Both agents share the same project context from `.commandcode/memory.md`.
-**Agents read memory.md first** before starting any work to get full project context.
+Both agents share the same project context from `.commandcode/MEMORY.md`.
+**Agents read MEMORY.md first** before starting any work to get full project context.
 
 ### Review & Re-plan Loop
 
@@ -95,4 +95,10 @@ Both agents share the same project context from `.commandcode/memory.md`.
 - Always verify new/updated files exist inside the current git worktree directory before making changes
 - Always commit changes to the `.commandcode/taste/` folder alongside related work
 
-<!-- AGENTS.md = operational content (agents, workflow, git, rules). memory.md = reference content (project context, schema, patterns, knowledge). -->
+<!-- AGENTS.md = operational content (agents, workflow, git, rules). MEMORY.md = reference content (project context, schema, patterns, knowledge). -->
+wledge). -->
+. -->
+). -->
+. -->
+>
+. -->
