@@ -29,6 +29,27 @@
       "when": 1779585226549,
       "tag": "0003_positions",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1779593617233,
+      "tag": "0004_all-master-transaction",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1779593998677,
+      "tag": "0005_all-master-transaction",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1779594057152,
+      "tag": "0006_fix-remark-nullable",
+      "breakpoints": true
     }
   ]
 }

@@ -1,0 +1,21 @@
+ALTER TABLE "employee_projects" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "employee_trainings" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "warnings" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "employee_warnings" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "working_zones" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "cost_centers" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "training_schedules" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "religion" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "employee_leave_advisors" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "employee_addresses" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "employee_contracts" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "allowances" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "trainings" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "warning_grades" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "training_types" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "employee_mcus" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "grades" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "employee_work_zones" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "employee_contract_advisors" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "employees" ALTER COLUMN "remark" DROP NOT NULL;--> statement-breakpoint
+ALTER TABLE "projects" ALTER COLUMN "remark" DROP NOT NULL;
