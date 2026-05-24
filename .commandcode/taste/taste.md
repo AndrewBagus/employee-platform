@@ -17,6 +17,7 @@ See [workflow/taste.md](workflow/taste.md)
 
 # database
 - When running `bun run generate` for Drizzle migrations, always include `--name <context>` flag. Confidence: 0.75
+- In Drizzle schema files, add `.notNull()` on columns unless the plan explicitly says "allow null" — except for enum and `remark` columns which should never have `.notNull()`. Confidence: 0.70
 
 # Taste (Continuously Learned by [CommandCode][cmd])
 
