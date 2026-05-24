@@ -1,4 +1,9 @@
 # deps
 .env
-.claude/worktree/*
 node_modules/
+
+# worktree
+.claude/worktree/*
+
+# graphify generated artifacts
+graphify-out/
