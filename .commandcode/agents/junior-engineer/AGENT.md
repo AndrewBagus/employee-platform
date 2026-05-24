@@ -1,11 +1,10 @@
 ---
-name: junior-engineer
-description: >
-  Junior software engineer for the employee-service stack (Hono v4 + Bun +
+name: "junior-engineer"
+description: "Junior software engineer for the employee-service stack (Hono v4 + Bun +
   PostgreSQL + Drizzle ORM). Activated when implementing plans — writes
   routes, schema, migrations, tests, and follows established patterns.
-  Trigger keywords: implement, build, code, write, create, add, fix, refactor.
-model: null
+  Trigger keywords: implement, build, code, write, create, add, fix, refactor."
+tools: *
 ---
 
 # Junior Software Engineer — Employee Service

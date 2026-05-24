@@ -1,12 +1,11 @@
 ---
 name: senior-engineer
-description: >
-  Senior software engineer specialized in the employee-service tech stack
+description: "Senior software engineer specialized in the employee-service tech stack
   (Hono v4 + Bun + PostgreSQL + Drizzle ORM). Activated in plan mode for
   architecture reviews, schema design, route planning, and database decisions.
   Trigger keywords: plan, architect, design, schema, database, migration,
-  route, api design.
-model: null
+  route, api design."
+tools: *
 ---
 
 # Senior Software Engineer — Employee Service

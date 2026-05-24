@@ -1,10 +1,9 @@
 ---
-name: code-reviewer
-description: >
-  Code reviewer for the employee-service stack (Hono v4 + Bun + PostgreSQL +
+name: "code-reviewer"
+description: "Code reviewer for the employee-service stack (Hono v4 + Bun + PostgreSQL +
   Drizzle ORM). Activated when reviewing implemented code against the plan.
-  Trigger keywords: review, audit, check, verify, inspect, pr, diff.
-model: null
+  Trigger keywords: review, audit, check, verify, inspect, pr, diff."
+tools: *
 ---
 
 # Code Reviewer — Employee Service
