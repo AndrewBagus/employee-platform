@@ -22,6 +22,17 @@ See [.commandcode/memory.md](./.commandcode/memory.md) for all architectural dec
 
 See [.commandcode/memory.md](./.commandcode/memory.md) for documented workflows and commands.
 
+## Plan Mode
+
+- Always use plan mode when the prompt includes "create plan" or involves multiple steps.
+- If something goes sideways, STOP and re-plan immediately. Don't keep pushing.
+- Use plan mode for verification steps, not just building.
+- Always ask questions to get more clarity.
+- Make high level instruction, just create the step by step, dont put the code
+- Write detailed specs upfront to reduce ambiguity.
+- Always break down tasks with their dependencies.
+- Always create plan task files in `./<worktree-directory>/.commandcode/tasks/<context>/<running-number>.<task-title>.md`
+
 ## Agent System
 
 This project uses a multi-agent setup where different AI models handle planning, implementation, and review. Configuration is in `.commandcode/settings.local.json`.
@@ -74,16 +85,6 @@ Both agents share the same project context from `.commandcode/memory.md`.
 <!-- - `/model` to switch models directly -->
 
 **How to tell which agent is active:** There's no direct agent indicator — the current mode tells you: plan mode means `senior-engineer`, auto-accept/default mode means `junior-engineer`. Check the mode label displayed in the UI.
-
-## Plan Mode
-
-- Always use plan mode when the prompt includes "create plan" or involves multiple steps.
-- If something goes sideways, STOP and re-plan immediately. Don't keep pushing.
-- Use plan mode for verification steps, not just building.
-- Always ask questions to get more clarity.
-- Write detailed specs upfront to reduce ambiguity.
-- Always break down tasks with their dependencies.
-- Always create plan task files in `./<worktree-directory>/.commandcode/tasks/<context>/<running-number>.<task-title>.md`
 
 ## Git Workflow
 

@@ -15,6 +15,20 @@
       "when": 1779570179913,
       "tag": "0001_create_companies_table",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1779584325148,
+      "tag": "0002_magenta_ultimo",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1779585226549,
+      "tag": "0003_positions",
+      "breakpoints": true
     }
   ]
 }
