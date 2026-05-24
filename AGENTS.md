@@ -77,6 +77,7 @@ Both agents share the same project context from `.commandcode/memory.md`.
 
 ## Plan Mode
 
+- Always use plan mode when the prompt includes "create plan" or involves multiple steps.
 - If something goes sideways, STOP and re-plan immediately. Don't keep pushing.
 - Use plan mode for verification steps, not just building.
 - Always ask questions to get more clarity.
@@ -92,6 +93,4 @@ Both agents share the same project context from `.commandcode/memory.md`.
 - Don't commit anything before being instructed to
 - Always verify new/updated files exist inside the current git worktree directory before making changes
 
-## Working Guidelines
-
-- Always use plan mode when the prompt includes "create plan" or involves multiple steps.
+<!-- AGENTS.md = operational content (agents, workflow, git, rules). memory.md = reference content (project context, schema, patterns, knowledge). -->

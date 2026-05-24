@@ -137,3 +137,5 @@ Context7 provides up-to-date code snippets and API references directly in the se
 - **Tables**: 2 (countries, companies) — no employee table yet
 - **Routes**: 2 (health, root)
 - **Tests**: None yet
+
+<!-- AGENTS.md = operational content (agents, workflow, git, rules). memory.md = reference content (project context, schema, patterns, knowledge). -->
