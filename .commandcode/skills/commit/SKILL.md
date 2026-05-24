@@ -1,14 +1,14 @@
 ---
-name: contextual-commit
+name: commit
 description: >
   Stage and commit all tracked changes grouped by logical context (agent configs, docs,
   schema, routes, infra, deps, etc.). Reads git status, groups files by directory prefix
   and intent, then creates separate commits per group with Conventional Commits messages.
   Handles staged, unstaged, and untracked files.
-trigger: /commit-context
+trigger: /commit
 ---
 
-# /commit-context — Commit All Changes Grouped by Context
+# /commit — Commit All Changes Grouped by Context
 
 Stage and commit every dirty file in the working tree, but separate by logical grouping instead of one giant commit.
 
@@ -23,31 +23,31 @@ Stage and commit every dirty file in the working tree, but separate by logical g
 
 Files are assigned to groups by matching directory prefix (first match wins, ordered below):
 
-| Prefix pattern | Group label | Commit type |
-|---|---|---|
-| `.commandcode/agents/` | agents | `fix` (config cleanup) or `chore` |
-| `.commandcode/taste/` | taste | `chore` |
-| `.commandcode/skills/` | skills | `feat` (new skill) or `refactor` |
-| `.commandcode/tasks/` | tasks | `docs` |
-| `.commandcode/review-code/` | review | `docs` |
-| `src/schema/` | schema | `feat` or `refactor` |
-| `src/routes/` | routes | `feat` or `fix` |
-| `src/services/` | services | `feat` or `refactor` |
-| `src/controllers/` | controllers | `feat` or `refactor` |
-| `src/repositories/` | repositories | `feat` or `refactor` |
-| `src/middleware/` | middleware | `feat` or `fix` |
-| `src/` (catch-all) | core | `feat` |
-| `drizzle/` | migrations | `feat` or `refactor` |
-| `.opencode/` | plugins | `chore` |
-| `http/` | http | `docs` |
-| `package.json` or `bun.lock` | deps | `build` |
-| `tsconfig*.json` or `.gitignore` | config | `chore` |
-| `Dockerfile` or `docker-compose*` | docker | `build` |
-| `*.md` at root | docs | `docs` |
-| `docker/` | docker | `build` |
-| `scripts/` | scripts | `chore` |
-| `tests/` or `__tests__/` or `*.test.*` | tests | `test` |
-| Generated dirs (`graphify-out/`, `dist/`, `build/`, `node_modules/`) | skip | — |
+| Prefix pattern                                                       | Group label  | Commit type                       |
+| -------------------------------------------------------------------- | ------------ | --------------------------------- |
+| `.commandcode/agents/`                                               | agents       | `fix` (config cleanup) or `chore` |
+| `.commandcode/taste/`                                                | taste        | `chore`                           |
+| `.commandcode/skills/`                                               | skills       | `feat` (new skill) or `refactor`  |
+| `.commandcode/tasks/`                                                | tasks        | `docs`                            |
+| `.commandcode/review-code/`                                          | review       | `docs`                            |
+| `src/schema/`                                                        | schema       | `feat` or `refactor`              |
+| `src/routes/`                                                        | routes       | `feat` or `fix`                   |
+| `src/services/`                                                      | services     | `feat` or `refactor`              |
+| `src/controllers/`                                                   | controllers  | `feat` or `refactor`              |
+| `src/repositories/`                                                  | repositories | `feat` or `refactor`              |
+| `src/middleware/`                                                    | middleware   | `feat` or `fix`                   |
+| `src/` (catch-all)                                                   | core         | `feat`                            |
+| `drizzle/`                                                           | migrations   | `feat` or `refactor`              |
+| `.opencode/`                                                         | plugins      | `chore`                           |
+| `http/`                                                              | http         | `docs`                            |
+| `package.json` or `bun.lock`                                         | deps         | `build`                           |
+| `tsconfig*.json` or `.gitignore`                                     | config       | `chore`                           |
+| `Dockerfile` or `docker-compose*`                                    | docker       | `build`                           |
+| `*.md` at root                                                       | docs         | `docs`                            |
+| `docker/`                                                            | docker       | `build`                           |
+| `scripts/`                                                           | scripts      | `chore`                           |
+| `tests/` or `__tests__/` or `*.test.*`                               | tests        | `test`                            |
+| Generated dirs (`graphify-out/`, `dist/`, `build/`, `node_modules/`) | skip         | —                                 |
 
 Files that don't match any prefix get their own `misc` group.
 
@@ -64,7 +64,7 @@ Co-authored-by: CommandCodeBot <noreply@commandcode.ai>
 - `<type>` from the table above, overridable
 - `<scope>` is the group label (short, lowercase)
 - Imperative mood: "add", "fix", "remove", "refactor", "extract" — not "added", "adds"
-- Body only for non-obvious *why*, breaking changes, migration notes
+- Body only for non-obvious _why_, breaking changes, migration notes
 - Always append the `Co-authored-by` trailer
 - Use heredoc: `git commit -F - <<'EOF'`
 
@@ -121,6 +121,7 @@ EOF
 ```
 
 **Type heuristics per operation:**
+
 - All additions → `feat`
 - All deletions → `chore` (remove) or `refactor` (delete + other changes)
 - Mix of changes → `fix`, `refactor`, or `chore` based on what dominates
@@ -128,6 +129,7 @@ EOF
 - Documentation → `docs`
 
 **Body heuristics:**
+
 - One file, obvious change → no body
 - Multiple files → list what changed as bullet points
 - Breaking change → include `BREAKING CHANGE:` footer
@@ -163,6 +165,7 @@ Working tree clean.
 ```
 
 Plan output:
+
 ```
 Contextual Commit Plan
 ══════════════════════
