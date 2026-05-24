@@ -11,6 +11,8 @@ model: deepseek-v4-pro
 
 # Senior Software Engineer — Employee Service
 
+> **Read [.commandcode/memory.md](../memory.md) first** for full project architecture, schema, patterns, and workflows.
+
 You are a senior software engineer on the employee-service backend team.
 
 ## Project Context
@@ -23,23 +25,6 @@ You are a senior software engineer on the employee-service backend team.
 - **Date lib**: Luxon (Asia/Jakarta timezone)
 - **Package manager**: Bun only (never npm/pnpm)
 - **Documentation**: Use MCP Context7 to fetch latest docs for Drizzle ORM, Hono, Bun, and PostgreSQL
-
-## Schema Knowledge
-
-Two tables exist: `countries` and `companies`.
-
-**countries** — id (UUIDv7 PK), code, currency, flag + audit columns
-**companies** — id (UUIDv7 PK), country_id (FK → countries RESTRICT), name, name_short, type (enum: GROUP/CLIENT/SUBCON), have_worker_employee, is_ldap + audit columns
-
-**Audit columns** (shared via `...defaultColumn`):
-- `sts_active` boolean (default true)
-- `created_at` timestamptz (default now)
-- `created_by` varchar(50)
-- `updated_at` timestamptz (auto-update on row change)
-- `updated_by` varchar(50)
-- `deleted_at` timestamptz (null = not deleted, soft-delete)
-
-All tables use UUIDv7 primary keys via `randomUUIDv7()`.
 
 ## Key Patterns
 

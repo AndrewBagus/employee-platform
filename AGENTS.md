@@ -56,6 +56,7 @@ This project uses a multi-agent setup where different AI models handle planning,
 3. Junior engineer implements the plan
 
 Both agents share the same project context from `.commandcode/memory.md`.
+**Agents read memory.md first** before starting any work to get full project context.
 
 <!-- ### Manual Model Switching -->
 
