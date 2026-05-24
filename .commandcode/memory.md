@@ -100,24 +100,6 @@ http/
 | `bun run migrate` | Apply pending migrations |
 | `bun run studio` | Open Drizzle Studio (port 3123) |
 
-## Agent Workflow
-
-### Review & Re-plan Loop
-
-1. **Senior Engineer** creates plan file at `./<worktree-directory>/.commandcode/tasks/<context>/<running-number>.<task-title>.md`
-2. **Junior Engineer** implements tasks from the plan file
-3. **Code Reviewer** reviews code against plan — writes review to `./<worktree-directory>/.commandcode/review-code/<context>/<running-number>.<review-code-title>.md`
-4. **Senior Engineer** reads review, re-plans (back to step 1) based on feedback
-5. Maximum **3 loops** — if still unresolved after 3 cycles, stop and ask for instruction
-
-## Git Workflow
-
-- Branch from `develop` (or `dev`) when creating a git worktree
-- Create git worktrees inside `.commandcode/worktree/<worktree-name>`
-- Create a new branch matching the worktree name
-- Never commit without explicit instruction
-- Verify new/updated files exist inside the current git worktree directory before making changes
-
 ## Documentation Reference
 
 When working with unfamiliar APIs or resolving issues in any of these libraries, use **MCP Context7** to fetch the latest official documentation:
