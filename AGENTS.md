@@ -80,6 +80,7 @@ Both agents share the same project context from `.commandcode/memory.md`.
 - Always create git worktrees inside `./.commandcode/worktree/<worktree-name>`
 - When a git worktree is created, always create a new branch with the same name as `<worktree-name>`
 - Don't commit anything before being instructed to
+- Always verify new/updated files exist inside the current git worktree directory before making changes
 
 ## Working Guidelines
 

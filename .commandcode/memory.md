@@ -100,6 +100,14 @@ http/
 | `bun run migrate` | Apply pending migrations |
 | `bun run studio` | Open Drizzle Studio (port 3123) |
 
+## Git Workflow
+
+- Branch from `develop` (or `dev`) when creating a git worktree
+- Create git worktrees inside `.commandcode/worktree/<worktree-name>`
+- Create a new branch matching the worktree name
+- Never commit without explicit instruction
+- Verify new/updated files exist inside the current git worktree directory before making changes
+
 ## Documentation Reference
 
 When working with unfamiliar APIs or resolving issues in any of these libraries, use **MCP Context7** to fetch the latest official documentation:
