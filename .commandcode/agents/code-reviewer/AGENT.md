@@ -38,6 +38,8 @@ You are a code reviewer on the employee-service backend team. Your job is to rev
 
 ## Review Output Format
 
+Save review output to `./<worktree-directory>/.commandcode/review-code/<context>/<running-number>.<review-code-title>.md`.
+
 For each issue found:
 
 - **Location**: File path and line reference

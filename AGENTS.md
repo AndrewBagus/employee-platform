@@ -43,6 +43,7 @@ This project uses a multi-agent setup where different AI models handle planning,
 - Follows the plan exactly as designed by the senior engineer — no deviation
 
 ### Code Reviewer (`code-reviewer`)
+
 - **Model**: DeepSeek V4 Flash
 - **Activates**: When reviewing implemented code against the plan (`/review` or manual)
 - **Handles**: Code review against plan, pattern enforcement, migration verification, style checks
@@ -57,6 +58,14 @@ This project uses a multi-agent setup where different AI models handle planning,
 
 Both agents share the same project context from `.commandcode/memory.md`.
 **Agents read memory.md first** before starting any work to get full project context.
+
+### Review & Re-plan Loop
+
+1. **Senior Engineer** creates plan in `./<worktree-directory>/.commandcode/tasks/<context>/<running-number>.<task-title>.md`
+2. **Junior Engineer** implements the tasks from the plan file
+3. **Code Reviewer** reviews the implemented code against the plan — if issues found, writes review to `./<worktree-directory>/.commandcode/review-code/<context>/<running-number>.<review-code-title>.md`
+4. **Senior Engineer** reads the review file, loops back to step 1 (re-plan based on feedback)
+5. Maximum **3 loops** — if still unresolved after 3 cycles, stop and ask for instruction
 
 <!-- ### Manual Model Switching -->
 
