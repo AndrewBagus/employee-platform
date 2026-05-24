@@ -7,6 +7,9 @@
 - Write detailed specifications upfront to reduce ambiguity before coding. Confidence: 0.70
 - Always break down tasks with their dependency ordering. Confidence: 0.70
 - Always create task planning documents in .commandcode/tasks/<context>/<running-number>.<task-title>.md relative to the worktree directory. Confidence: 0.70
+- Follow the agent workflow loop: senior engineer plans → junior engineer implements → code reviewer reviews. Confidence: 0.85
+- Code reviewer must write review findings to .commandcode/review-code/<context>/<running-number>.<title>.md relative to the worktree directory. Confidence: 0.85
+- After code review, senior engineer reads review-code files and re-plans — iterate up to 3 loops max, then ask for instruction if still unresolved. Confidence: 0.85
 
 # git
 - When creating a git worktree, always branch from develop (or dev if develop doesn't exist). Confidence: 0.75

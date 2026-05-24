@@ -13,7 +13,7 @@ See [workflow/taste.md](workflow/taste.md)
 See [workflow/taste.md](workflow/taste.md)
 
 # documentation
-- AGENTS.md contains operational content: agent workflow, git workflow, and rules/how-to. memory.md contains reference content: project context, project structure, and project knowledge. Confidence: 0.70
+- AGENTS.md contains only operational content: agent workflow, git workflow, and rules/how-to. memory.md contains only reference content: project context, project structure, and project knowledge. No operational sections (Agent Workflow, Git Workflow) should appear in memory.md. Confidence: 0.75
 
 # Taste (Continuously Learned by [CommandCode][cmd])
 
