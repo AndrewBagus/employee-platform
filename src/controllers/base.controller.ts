@@ -55,11 +55,13 @@ export function createController(
         data: item,
         message: `${capitalize(entityLabel)} retrieved successfully`,
       });
-    } catch (error) {
+    } catch (error: unknown) {
       if (error instanceof AppError) {
         return c.json(
           { success: false, data: null, message: error.message },
-          error.statusCode,
+          // Hono overload expects a specific status code literal,
+          // but AppError.statusCode is typed as number
+          error.statusCode as 400 | 404 | 500,
         );
       }
       throw error;
@@ -74,11 +76,11 @@ export function createController(
         { success: true, data: item, message: `${capitalize(entityLabel)} created successfully` },
         201,
       );
-    } catch (error) {
+    } catch (error: unknown) {
       if (error instanceof AppError) {
         return c.json(
           { success: false, data: null, message: error.message },
-          error.statusCode,
+          error.statusCode as 400 | 404 | 500,
         );
       }
       throw error;
@@ -96,11 +98,11 @@ export function createController(
         data: item,
         message: `${capitalize(entityLabel)} updated successfully`,
       });
-    } catch (error) {
+    } catch (error: unknown) {
       if (error instanceof AppError) {
         return c.json(
           { success: false, data: null, message: error.message },
-          error.statusCode,
+          error.statusCode as 400 | 404 | 500,
         );
       }
       throw error;
@@ -117,11 +119,11 @@ export function createController(
         data: null,
         message: `${capitalize(entityLabel)} deleted successfully`,
       });
-    } catch (error) {
+    } catch (error: unknown) {
       if (error instanceof AppError) {
         return c.json(
           { success: false, data: null, message: error.message },
-          error.statusCode,
+          error.statusCode as 400 | 404 | 500,
         );
       }
       throw error;
