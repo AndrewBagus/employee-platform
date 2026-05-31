@@ -7,9 +7,9 @@ import { TYPES } from "@cores/types";
 @injectable()
 export abstract class BaseRepository<
   TTable extends PgTableWithColumns<any>,
-  TResponse extends Record<string, unknown>,
-  TCreate extends Record<string, unknown>,
-  TUpdate extends Record<string, unknown>,
+  TResponse extends object,
+  TCreate extends object,
+  TUpdate extends object,
 > {
   constructor(
     @inject(TYPES.Database) protected readonly db: NodePgDatabase,

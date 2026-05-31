@@ -15,6 +15,6 @@ describe("trainingSchedules Repository Schema", () => {
   });
 
   test("table name is training_schedules", () => {
-    expect(trainingSchedules[Symbol.for("drizzle:Name")]).toBe("training_schedules");
+    expect((trainingSchedules as any)[Symbol.for("drizzle:Name")]).toBe("training_schedules");
   });
 });

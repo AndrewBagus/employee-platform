@@ -15,6 +15,6 @@ describe("warnings Repository Schema", () => {
   });
 
   test("table name is warnings", () => {
-    expect(warnings[Symbol.for("drizzle:Name")]).toBe("warnings");
+    expect((warnings as any)[Symbol.for("drizzle:Name")]).toBe("warnings");
   });
 });

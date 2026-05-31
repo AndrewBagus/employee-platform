@@ -4,9 +4,9 @@ import { ValidationError, NotFoundError } from "@cores/errors";
 
 @injectable()
 export abstract class BaseService<
-  TResponse extends Record<string, unknown>,
-  TCreate extends Record<string, unknown>,
-  TUpdate extends Record<string, unknown>,
+  TResponse extends object,
+  TCreate extends object,
+  TUpdate extends object,
   TRepo extends {
     findAll(): Promise<TResponse[]>;
     findById(id: string): Promise<TResponse | null>;

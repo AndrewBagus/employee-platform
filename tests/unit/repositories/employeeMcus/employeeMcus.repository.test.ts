@@ -15,6 +15,6 @@ describe("employeeMcus Repository Schema", () => {
   });
 
   test("table name is employee_mcus", () => {
-    expect(employeeMcus[Symbol.for("drizzle:Name")]).toBe("employee_mcus");
+    expect((employeeMcus as any)[Symbol.for("drizzle:Name")]).toBe("employee_mcus");
   });
 });

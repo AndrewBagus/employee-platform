@@ -1,12 +1,10 @@
 import { describe, test, expect, mock } from "bun:test";
 import { CompanyService } from "@services/company/company.service";
-import type { CompanyServiceInterface } from "@services/company/company.service.interface";
-import type { CompanyRepositoryInterface } from "@repositories/company/company.repository.interface";
 import type { CompanyResponseDto, CreateCompanyDto, UpdateCompanyDto } from "@dtos/company.dto";
 import { ValidationError, NotFoundError } from "@cores/errors";
 
 describe("CompanyService", () => {
-  const makeMockRepo = (): CompanyRepositoryInterface => ({
+  const makeMockRepo = () => ({
     findAll: mock(() => Promise.resolve<CompanyResponseDto[]>([])),
     findById: mock(() => Promise.resolve<CompanyResponseDto | null>(null)),
     create: mock((_data: CreateCompanyDto) =>
@@ -48,7 +46,7 @@ describe("CompanyService", () => {
 
   test("findAll delegates to repository and returns result", async () => {
     const mockRepository = makeMockRepo();
-    const service = new CompanyService(mockRepository);
+    const service = new CompanyService(mockRepository as any);
     const result = await service.findAll();
 
     expect(result).toEqual([]);
@@ -57,7 +55,7 @@ describe("CompanyService", () => {
 
   test("findById delegates to repository", async () => {
     const mockRepository = makeMockRepo();
-    const service = new CompanyService(mockRepository);
+    const service = new CompanyService(mockRepository as any);
     const result = await service.findById("org-1");
 
     expect(result).toBeNull();
@@ -66,23 +64,23 @@ describe("CompanyService", () => {
 
   test("create validates required fields", async () => {
     const mockRepository = makeMockRepo();
-    const service = new CompanyService(mockRepository);
+    const service = new CompanyService(mockRepository as any);
 
     await expect(service.create({} as CreateCompanyDto)).rejects.toThrow(ValidationError);
   });
 
   test("create validates type enum", async () => {
     const mockRepository = makeMockRepo();
-    const service = new CompanyService(mockRepository);
+    const service = new CompanyService(mockRepository as any);
 
     await expect(
-      service.create({ name: "X", type: "INVALID", countryId: "c" } as CreateCompanyDto),
+      service.create({ name: "X", type: "INVALID", countryId: "c" } as any),
     ).rejects.toThrow(ValidationError);
   });
 
   test("create delegates on valid input", async () => {
     const mockRepository = makeMockRepo();
-    const service = new CompanyService(mockRepository);
+    const service = new CompanyService(mockRepository as any);
 
     const input: CreateCompanyDto = { name: "Valid Corp", type: "CLIENT", countryId: "00000000-0000-4000-8000-000000000005" };
     await service.create(input);
@@ -92,7 +90,7 @@ describe("CompanyService", () => {
 
   test("update validates id", async () => {
     const mockRepository = makeMockRepo();
-    const service = new CompanyService(mockRepository);
+    const service = new CompanyService(mockRepository as any);
 
     await expect(service.update("", {})).rejects.toThrow(ValidationError);
   });
@@ -100,7 +98,7 @@ describe("CompanyService", () => {
   test("update checks existence", async () => {
     const mockRepository = makeMockRepo();
     (mockRepository.findById as ReturnType<typeof mock>).mockResolvedValue(null);
-    const service = new CompanyService(mockRepository);
+    const service = new CompanyService(mockRepository as any);
 
     await expect(service.update("nonexistent", { name: "X" })).rejects.toThrow(NotFoundError);
   });
@@ -123,7 +121,7 @@ describe("CompanyService", () => {
       deletedAt: null,
     };
     (mockRepository.findById as ReturnType<typeof mock>).mockResolvedValue(existing);
-    const service = new CompanyService(mockRepository);
+    const service = new CompanyService(mockRepository as any);
 
     const data: UpdateCompanyDto = { name: "New Name" };
     await service.update("existing-id", data);
@@ -135,7 +133,7 @@ describe("CompanyService", () => {
   test("delete checks existence", async () => {
     const mockRepository = makeMockRepo();
     (mockRepository.findById as ReturnType<typeof mock>).mockResolvedValue(null);
-    const service = new CompanyService(mockRepository);
+    const service = new CompanyService(mockRepository as any);
 
     await expect(service.delete("nonexistent")).rejects.toThrow(NotFoundError);
   });
@@ -158,7 +156,7 @@ describe("CompanyService", () => {
       deletedAt: null,
     };
     (mockRepository.findById as ReturnType<typeof mock>).mockResolvedValue(existing);
-    const service = new CompanyService(mockRepository);
+    const service = new CompanyService(mockRepository as any);
 
     await service.delete("existing-id");
 

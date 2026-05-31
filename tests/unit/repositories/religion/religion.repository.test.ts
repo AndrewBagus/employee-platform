@@ -15,6 +15,6 @@ describe("religion Repository Schema", () => {
   });
 
   test("table name is religion", () => {
-    expect(religion[Symbol.for("drizzle:Name")]).toBe("religion");
+    expect((religion as any)[Symbol.for("drizzle:Name")]).toBe("religion");
   });
 });

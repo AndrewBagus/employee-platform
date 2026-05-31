@@ -15,6 +15,6 @@ describe("employeeLeaveAdvisors Repository Schema", () => {
   });
 
   test("table name is employee_leave_advisors", () => {
-    expect(employeeLeaveAdvisors[Symbol.for("drizzle:Name")]).toBe("employee_leave_advisors");
+    expect((employeeLeaveAdvisors as any)[Symbol.for("drizzle:Name")]).toBe("employee_leave_advisors");
   });
 });

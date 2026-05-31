@@ -12,17 +12,7 @@ describe("EmployeeAddressService", () => {
         id: "1",
         employeeId: "00000000-0000-4000-8000-000000000002",
         address: "Jl. Merdeka",
-        rtRw: null,
-        village: null,
-        subDistrict: null,
-        city: null,
-        province: null,
-        postalCode: null,
-        createdAt: new Date(),
-        createdBy: null,
-        updatedAt: null,
-        updatedBy: null,
-        deletedAt: null,
+        remark: null,
       }),
     ),
     update: mock((_id: string, _data: UpdateEMployeeAddressDto) =>
@@ -30,17 +20,7 @@ describe("EmployeeAddressService", () => {
         id: "1",
         employeeId: "00000000-0000-4000-8000-000000000002",
         address: "Jl. Merdeka",
-        rtRw: null,
-        village: null,
-        subDistrict: null,
-        city: null,
-        province: null,
-        postalCode: null,
-        createdAt: new Date(),
-        createdBy: null,
-        updatedAt: null,
-        updatedBy: null,
-        deletedAt: null,
+        remark: null,
       }),
     ),
     softDelete: mock(() => Promise.resolve()),
@@ -48,14 +28,14 @@ describe("EmployeeAddressService", () => {
 
   test("findAll delegates to repository", async () => {
     const repo = makeMockRepo();
-    const svc = new EmployeeAddressService(repo);
+    const svc = new EmployeeAddressService(repo as any);
     await svc.findAll();
     expect(repo.findAll).toHaveBeenCalled();
   });
 
   test("findById returns null when not found", async () => {
     const repo = makeMockRepo();
-    const svc = new EmployeeAddressService(repo);
+    const svc = new EmployeeAddressService(repo as any);
     const result = await svc.findById("nonexistent");
     expect(result).toBeNull();
     expect(repo.findById).toHaveBeenCalledWith("nonexistent");
@@ -63,7 +43,7 @@ describe("EmployeeAddressService", () => {
 
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
-    const svc = new EmployeeAddressService(repo);
+    const svc = new EmployeeAddressService(repo as any);
     const input: CreateEMployeeAddressDto = { employeeId: "00000000-0000-4000-8000-000000000002", address: "Jl. Merdeka" };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
@@ -71,7 +51,7 @@ describe("EmployeeAddressService", () => {
 
   test("delete throws NotFoundError for non-existent id", async () => {
     const repo = makeMockRepo();
-    const svc = new EmployeeAddressService(repo);
+    const svc = new EmployeeAddressService(repo as any);
     await expect(svc.delete("nonexistent")).rejects.toThrow(NotFoundError);
   });
 });

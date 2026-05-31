@@ -2,12 +2,11 @@ import { describe, test, expect, mock } from "bun:test";
 import { Hono } from "hono";
 import { container } from "@cores/container";
 import { TYPES } from "@cores/types";
-import type { CompanyServiceInterface } from "@services/company/company.service.interface";
 import type { CompanyResponseDto, CreateCompanyDto, UpdateCompanyDto } from "@dtos/company.dto";
 import { AppError, ValidationError, NotFoundError } from "@cores/errors";
 
 describe("CompanyController", () => {
-  const makeMockService = (overrides?: Partial<CompanyServiceInterface>): CompanyServiceInterface => ({
+  const makeMockService = (overrides?: any): any => ({
     findAll: mock(() => Promise.resolve<CompanyResponseDto[]>([])),
     findById: mock((_id: string) => Promise.resolve<CompanyResponseDto | null>(null)),
     create: mock((_data: CreateCompanyDto) =>
@@ -49,8 +48,8 @@ describe("CompanyController", () => {
   });
 
   // Helper to rebind mock service, re-evaluate controller module, and return [app, mockService]
-  const setup = async (mockService: CompanyServiceInterface) => {
-    container.rebind<CompanyServiceInterface>(TYPES.CompanyServiceInterface).toConstantValue(mockService);
+  const setup = async (mockService: any) => {
+    container.rebind<any>(TYPES.CompanyServiceInterface).toConstantValue(mockService);
     const { default: companyController } = await import("../../../src/controllers/company.controller");
     const app = new Hono().route("/", companyController);
     return { app };

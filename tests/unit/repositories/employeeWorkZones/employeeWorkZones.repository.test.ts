@@ -15,6 +15,6 @@ describe("employeeWorkZones Repository Schema", () => {
   });
 
   test("table name is employee_work_zones", () => {
-    expect(employeeWorkZones[Symbol.for("drizzle:Name")]).toBe("employee_work_zones");
+    expect((employeeWorkZones as any)[Symbol.for("drizzle:Name")]).toBe("employee_work_zones");
   });
 });

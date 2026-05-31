@@ -15,6 +15,6 @@ describe("grade Repository Schema", () => {
   });
 
   test("table name is grades", () => {
-    expect(grades[Symbol.for("drizzle:Name")]).toBe("grades");
+    expect((grades as any)[Symbol.for("drizzle:Name")]).toBe("grades");
   });
 });

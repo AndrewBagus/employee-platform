@@ -2,7 +2,6 @@ import { describe, test, expect } from "bun:test";
 import { and, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { CompanyRepository } from "@repositories/company/company.repository";
-import type { CompanyRepositoryInterface } from "@repositories/company/company.repository.interface";
 import { companies } from "@db/schema/companies";
 
 const testDb = drizzle({
@@ -18,7 +17,7 @@ describe("CompanyRepository", () => {
 
   test("interface implementation", () => {
     const repo = new CompanyRepository(testDb);
-    expect(typeof (repo as CompanyRepositoryInterface).findAll).toBe("function");
+    expect(typeof (repo as any).findAll).toBe("function");
   });
 
   test("SQL shape", () => {
