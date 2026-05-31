@@ -2,6 +2,7 @@ import { initDatabase } from "@db/index";
 import { truncateAll } from "./truncate";
 import { seedRootMaster } from "./00-root-master";
 import { seedCompanies } from "./01-companies";
+import { log } from "@cores/logger";
 import { seedCompanyChildren } from "./02-company-children";
 import { seedAllowancesWarnings } from "./03-allowances-warnings";
 import { seedPositions } from "./04-positions";
@@ -11,31 +12,31 @@ import { seedEmployeeDetails } from "./06-employee-details";
 async function main() {
   const db = initDatabase;
 
-  console.log("[seed] Truncating existing data...");
+  log.info("[seed] Truncating existing data...");
   await truncateAll(db);
 
-  console.log("[seed] Root master data (countries, religion, grades, cost centers, projects)...");
+  log.info("[seed] Root master data (countries, religion, grades, cost centers, projects)...");
   await seedRootMaster(db);
 
-  console.log("[seed] Companies...");
+  log.info("[seed] Companies...");
   await seedCompanies(db);
 
-  console.log("[seed] Company children (departments, working zones, training types, trainings, schedules, warning grades)...");
+  log.info("[seed] Company children (departments, working zones, training types, trainings, schedules, warning grades)...");
   await seedCompanyChildren(db);
 
-  console.log("[seed] Allowances and warnings...");
+  log.info("[seed] Allowances and warnings...");
   await seedAllowancesWarnings(db);
 
-  console.log("[seed] Positions...");
+  log.info("[seed] Positions...");
   await seedPositions(db);
 
-  console.log("[seed] Employees...");
+  log.info("[seed] Employees...");
   await seedEmployees(db);
 
-  console.log("[seed] Employee details (addresses, contracts, advisors, MCUs, projects, trainings, warnings, work zones)...");
+  log.info("[seed] Employee details (addresses, contracts, advisors, MCUs, projects, trainings, warnings, work zones)...");
   await seedEmployeeDetails(db);
 
-  console.log("[seed] Done.");
+  log.info("[seed] Done.");
   process.exit(0);
 }
 
