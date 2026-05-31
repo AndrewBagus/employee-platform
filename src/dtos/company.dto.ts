@@ -13,3 +13,23 @@ export interface CompanyResponseDto {
   updatedBy: string | null;
   deletedAt: Date | null;
 }
+
+// ── Input DTOs ──
+
+export interface CreateCompanyDto {
+  name: string;
+  type: "GROUP" | "CLIENT" | "SUBCON";
+  countryId: string;
+  nameShort?: string;
+  haveWorkerEmployee?: boolean;
+  isLdap?: boolean;
+}
+
+export interface UpdateCompanyDto {
+  name?: string;
+  nameShort?: string;
+  type?: "GROUP" | "CLIENT" | "SUBCON";
+  countryId?: string;
+  haveWorkerEmployee?: boolean;
+  isLdap?: boolean;
+}
