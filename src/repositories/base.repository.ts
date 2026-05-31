@@ -34,11 +34,13 @@ export abstract class BaseRepository<
   }
 
   async create(data: TCreate): Promise<TResponse> {
-    const rows = await this.db
-      .insert(this.table as PgTable)
-      .values(data as unknown as Record<string, unknown>)
-      .returning();
-    return rows[0] as TResponse;
+    return this.db.transaction(async (tx) => {
+      const rows = await tx
+        .insert(this.table as PgTable)
+        .values(data as unknown as Record<string, unknown>)
+        .returning();
+      return rows[0] as TResponse;
+    });
   }
 
   async update(id: string, data: TUpdate): Promise<TResponse | null> {
@@ -47,19 +49,23 @@ export abstract class BaseRepository<
     for (const [key, value] of entries) {
       if (value !== undefined) updateData[key] = value;
     }
-    const rows = await this.db
-      .update(this.table as PgTable)
-      .set(updateData)
-      .where(eq(this.tableColumn("id"), id))
-      .returning();
-    return (rows[0] as TResponse) ?? null;
+    return this.db.transaction(async (tx) => {
+      const rows = await tx
+        .update(this.table as PgTable)
+        .set(updateData)
+        .where(eq(this.tableColumn("id"), id))
+        .returning();
+      return (rows[0] as TResponse) ?? null;
+    });
   }
 
   async softDelete(id: string): Promise<void> {
-    await this.db
-      .update(this.table as PgTable)
-      .set({ stsActive: false, deletedAt: sql`now()` })
-      .where(eq(this.tableColumn("id"), id));
+    await this.db.transaction(async (tx) => {
+      await tx
+        .update(this.table as PgTable)
+        .set({ stsActive: false, deletedAt: sql`now()` })
+        .where(eq(this.tableColumn("id"), id));
+    });
   }
 
   private tableColumn(name: string): PgColumn {
