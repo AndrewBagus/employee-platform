@@ -8,17 +8,16 @@ import {
   type CreateWArningDto,
   type UpdateWArningDto,
 } from "@dtos/warning.dto";
-import type { WarningRepository } from "@repositories/warnings/warnings.repository";
+import type { WarningRepositoryInterface } from "@repositories/warnings/warnings.repository.interface";
+import type { WarningServiceInterface } from "./warnings.service.interface";
 
 @injectable()
-export class WarningService extends BaseService<
-  WArningResponseDto,
-  CreateWArningDto,
-  UpdateWArningDto,
-  WarningRepository
-> {
+export class WarningService
+  extends BaseService<WArningResponseDto, CreateWArningDto, UpdateWArningDto, WarningRepositoryInterface>
+  implements WarningServiceInterface
+{
   constructor(
-    @inject(TYPES.WarningRepositoryInterface) repository: WarningRepository,
+    @inject(TYPES.WarningRepositoryInterface) repository: WarningRepositoryInterface,
   ) {
     super(repository, CreateWArningSchema, UpdateWArningSchema, "Warning");
   }

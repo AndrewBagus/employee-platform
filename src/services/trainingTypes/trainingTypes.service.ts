@@ -8,17 +8,16 @@ import {
   type CreateTRainingTypeDto,
   type UpdateTRainingTypeDto,
 } from "@dtos/trainingType.dto";
-import type { TrainingTypeRepository } from "@repositories/trainingTypes/trainingTypes.repository";
+import type { TrainingTypeRepositoryInterface } from "@repositories/trainingTypes/trainingTypes.repository.interface";
+import type { TrainingTypeServiceInterface } from "./trainingTypes.service.interface";
 
 @injectable()
-export class TrainingTypeService extends BaseService<
-  TRainingTypeResponseDto,
-  CreateTRainingTypeDto,
-  UpdateTRainingTypeDto,
-  TrainingTypeRepository
-> {
+export class TrainingTypeService
+  extends BaseService<TRainingTypeResponseDto, CreateTRainingTypeDto, UpdateTRainingTypeDto, TrainingTypeRepositoryInterface>
+  implements TrainingTypeServiceInterface
+{
   constructor(
-    @inject(TYPES.TrainingTypeRepositoryInterface) repository: TrainingTypeRepository,
+    @inject(TYPES.TrainingTypeRepositoryInterface) repository: TrainingTypeRepositoryInterface,
   ) {
     super(repository, CreateTRainingTypeSchema, UpdateTRainingTypeSchema, "TrainingType");
   }

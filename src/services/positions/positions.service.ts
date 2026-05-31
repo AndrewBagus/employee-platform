@@ -8,17 +8,16 @@ import {
   type CreatePOsitionDto,
   type UpdatePOsitionDto,
 } from "@dtos/position.dto";
-import type { PositionRepository } from "@repositories/positions/positions.repository";
+import type { PositionRepositoryInterface } from "@repositories/positions/positions.repository.interface";
+import type { PositionServiceInterface } from "./positions.service.interface";
 
 @injectable()
-export class PositionService extends BaseService<
-  POsitionResponseDto,
-  CreatePOsitionDto,
-  UpdatePOsitionDto,
-  PositionRepository
-> {
+export class PositionService
+  extends BaseService<POsitionResponseDto, CreatePOsitionDto, UpdatePOsitionDto, PositionRepositoryInterface>
+  implements PositionServiceInterface
+{
   constructor(
-    @inject(TYPES.PositionRepositoryInterface) repository: PositionRepository,
+    @inject(TYPES.PositionRepositoryInterface) repository: PositionRepositoryInterface,
   ) {
     super(repository, CreatePOsitionSchema, UpdatePOsitionSchema, "Position");
   }

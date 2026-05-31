@@ -8,17 +8,16 @@ import {
   UpdateEMployeeAddressSchema,
   UpdateEMployeeAddressDto,
 } from "@dtos/employeeAddress.dto";
-import type { EmployeeAddressRepository } from "@repositories/employeeAddresses/employeeAddresses.repository";
+import type { EmployeeAddressRepositoryInterface } from "@repositories/employeeAddresses/employeeAddresses.repository.interface";
+import type { EmployeeAddressServiceInterface } from "./employeeAddresses.service.interface";
 
 @injectable()
-export class EmployeeAddressService extends BaseService<
-  EMployeeAddressResponseDto,
-  CreateEMployeeAddressDto,
-  UpdateEMployeeAddressDto,
-  EmployeeAddressRepository
-> {
+export class EmployeeAddressService
+  extends BaseService<EMployeeAddressResponseDto, CreateEMployeeAddressDto, UpdateEMployeeAddressDto, EmployeeAddressRepositoryInterface>
+  implements EmployeeAddressServiceInterface
+{
   constructor(
-    @inject(TYPES.EmployeeAddressRepositoryInterface) repository: EmployeeAddressRepository,
+    @inject(TYPES.EmployeeAddressRepositoryInterface) repository: EmployeeAddressRepositoryInterface,
   ) {
     super(repository, CreateEMployeeAddressSchema, UpdateEMployeeAddressSchema, "EmployeeAddress");
   }

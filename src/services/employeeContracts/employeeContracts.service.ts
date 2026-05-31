@@ -8,17 +8,16 @@ import {
   UpdateEMployeeContractSchema,
   UpdateEMployeeContractDto,
 } from "@dtos/employeeContract.dto";
-import type { EmployeeContractRepository } from "@repositories/employeeContracts/employeeContracts.repository";
+import type { EmployeeContractRepositoryInterface } from "@repositories/employeeContracts/employeeContracts.repository.interface";
+import type { EmployeeContractServiceInterface } from "./employeeContracts.service.interface";
 
 @injectable()
-export class EmployeeContractService extends BaseService<
-  EMployeeContractResponseDto,
-  CreateEMployeeContractDto,
-  UpdateEMployeeContractDto,
-  EmployeeContractRepository
-> {
+export class EmployeeContractService
+  extends BaseService<EMployeeContractResponseDto, CreateEMployeeContractDto, UpdateEMployeeContractDto, EmployeeContractRepositoryInterface>
+  implements EmployeeContractServiceInterface
+{
   constructor(
-    @inject(TYPES.EmployeeContractRepositoryInterface) repository: EmployeeContractRepository,
+    @inject(TYPES.EmployeeContractRepositoryInterface) repository: EmployeeContractRepositoryInterface,
   ) {
     super(repository, CreateEMployeeContractSchema, UpdateEMployeeContractSchema, "EmployeeContract");
   }

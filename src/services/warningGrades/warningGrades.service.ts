@@ -8,17 +8,16 @@ import {
   type CreateWArningGradeDto,
   type UpdateWArningGradeDto,
 } from "@dtos/warningGrade.dto";
-import type { WarningGradeRepository } from "@repositories/warningGrades/warningGrades.repository";
+import type { WarningGradeRepositoryInterface } from "@repositories/warningGrades/warningGrades.repository.interface";
+import type { WarningGradeServiceInterface } from "./warningGrades.service.interface";
 
 @injectable()
-export class WarningGradeService extends BaseService<
-  WArningGradeResponseDto,
-  CreateWArningGradeDto,
-  UpdateWArningGradeDto,
-  WarningGradeRepository
-> {
+export class WarningGradeService
+  extends BaseService<WArningGradeResponseDto, CreateWArningGradeDto, UpdateWArningGradeDto, WarningGradeRepositoryInterface>
+  implements WarningGradeServiceInterface
+{
   constructor(
-    @inject(TYPES.WarningGradeRepositoryInterface) repository: WarningGradeRepository,
+    @inject(TYPES.WarningGradeRepositoryInterface) repository: WarningGradeRepositoryInterface,
   ) {
     super(repository, CreateWArningGradeSchema, UpdateWArningGradeSchema, "WarningGrade");
   }

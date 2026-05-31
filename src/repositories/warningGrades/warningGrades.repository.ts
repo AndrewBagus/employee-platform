@@ -4,14 +4,18 @@ import { TYPES } from "@cores/types";
 import { BaseRepository } from "@repositories/base.repository";
 import { warningGrades } from "@db/schema/warningGrades";
 import type { WArningGradeResponseDto, CreateWArningGradeDto, UpdateWArningGradeDto } from "@dtos/warningGrade.dto";
+import type { WarningGradeRepositoryInterface } from "./warningGrades.repository.interface";
 
 @injectable()
-export class WarningGradeRepository extends BaseRepository<
-  typeof warningGrades,
-  WArningGradeResponseDto,
-  CreateWArningGradeDto,
-  UpdateWArningGradeDto
-> {
+export class WarningGradeRepository
+  extends BaseRepository<
+    typeof warningGrades,
+    WArningGradeResponseDto,
+    CreateWArningGradeDto,
+    UpdateWArningGradeDto
+  >
+  implements WarningGradeRepositoryInterface
+{
   constructor(
     @inject(TYPES.Database) db: NodePgDatabase,
   ) {

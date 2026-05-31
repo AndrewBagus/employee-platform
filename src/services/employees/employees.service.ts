@@ -8,17 +8,16 @@ import {
   type CreateEMployeeDto,
   type UpdateEMployeeDto,
 } from "@dtos/employee.dto";
-import type { EmployeeRepository } from "@repositories/employees/employees.repository";
+import type { EmployeeRepositoryInterface } from "@repositories/employees/employees.repository.interface";
+import type { EmployeeServiceInterface } from "./employees.service.interface";
 
 @injectable()
-export class EmployeeService extends BaseService<
-  EMployeeResponseDto,
-  CreateEMployeeDto,
-  UpdateEMployeeDto,
-  EmployeeRepository
-> {
+export class EmployeeService
+  extends BaseService<EMployeeResponseDto, CreateEMployeeDto, UpdateEMployeeDto, EmployeeRepositoryInterface>
+  implements EmployeeServiceInterface
+{
   constructor(
-    @inject(TYPES.EmployeeRepositoryInterface) repository: EmployeeRepository,
+    @inject(TYPES.EmployeeRepositoryInterface) repository: EmployeeRepositoryInterface,
   ) {
     super(repository, CreateEMployeeSchema, UpdateEMployeeSchema, "Employee");
   }

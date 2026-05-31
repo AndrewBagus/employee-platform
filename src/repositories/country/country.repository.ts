@@ -4,14 +4,13 @@ import { TYPES } from "@cores/types";
 import { BaseRepository } from "@repositories/base.repository";
 import { countries } from "@db/schema/countries";
 import type { CountryResponseDto, CreateCountryDto, UpdateCountryDto } from "@dtos/country.dto";
+import type { CountryRepositoryInterface } from "./country.repository.interface";
 
 @injectable()
-export class CountryRepository extends BaseRepository<
-  typeof countries,
-  CountryResponseDto,
-  CreateCountryDto,
-  UpdateCountryDto
-> {
+export class CountryRepository
+  extends BaseRepository<typeof countries, CountryResponseDto, CreateCountryDto, UpdateCountryDto>
+  implements CountryRepositoryInterface
+{
   constructor(
     @inject(TYPES.Database) db: NodePgDatabase,
   ) {

@@ -8,17 +8,16 @@ import {
   type CreateALlowanceDto,
   type UpdateALlowanceDto,
 } from "@dtos/allowance.dto";
-import type { AllowanceRepository } from "@repositories/allowances/allowances.repository";
+import type { AllowanceRepositoryInterface } from "@repositories/allowances/allowances.repository.interface";
+import type { AllowanceServiceInterface } from "./allowances.service.interface";
 
 @injectable()
-export class AllowanceService extends BaseService<
-  ALlowanceResponseDto,
-  CreateALlowanceDto,
-  UpdateALlowanceDto,
-  AllowanceRepository
-> {
+export class AllowanceService
+  extends BaseService<ALlowanceResponseDto, CreateALlowanceDto, UpdateALlowanceDto, AllowanceRepositoryInterface>
+  implements AllowanceServiceInterface
+{
   constructor(
-    @inject(TYPES.AllowanceRepositoryInterface) repository: AllowanceRepository,
+    @inject(TYPES.AllowanceRepositoryInterface) repository: AllowanceRepositoryInterface,
   ) {
     super(repository, CreateALlowanceSchema, UpdateALlowanceSchema, "Allowance");
   }

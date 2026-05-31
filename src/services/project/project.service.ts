@@ -8,17 +8,16 @@ import {
   type CreateProjectDto,
   type UpdateProjectDto,
 } from "@dtos/project.dto";
-import type { ProjectRepository } from "@repositories/project/project.repository";
+import type { ProjectRepositoryInterface } from "@repositories/project/project.repository.interface";
+import type { ProjectServiceInterface } from "./project.service.interface";
 
 @injectable()
-export class ProjectService extends BaseService<
-  ProjectResponseDto,
-  CreateProjectDto,
-  UpdateProjectDto,
-  ProjectRepository
-> {
+export class ProjectService
+  extends BaseService<ProjectResponseDto, CreateProjectDto, UpdateProjectDto, ProjectRepositoryInterface>
+  implements ProjectServiceInterface
+{
   constructor(
-    @inject(TYPES.ProjectRepositoryInterface) repository: ProjectRepository,
+    @inject(TYPES.ProjectRepositoryInterface) repository: ProjectRepositoryInterface,
   ) {
     super(repository, CreateProjectSchema, UpdateProjectSchema, "Project");
   }

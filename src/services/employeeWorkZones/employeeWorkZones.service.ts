@@ -8,17 +8,16 @@ import {
   UpdateEMployeeWorkZoneSchema,
   UpdateEMployeeWorkZoneDto,
 } from "@dtos/employeeWorkZone.dto";
-import type { EmployeeWorkZoneRepository } from "@repositories/employeeWorkZones/employeeWorkZones.repository";
+import type { EmployeeWorkZoneRepositoryInterface } from "@repositories/employeeWorkZones/employeeWorkZones.repository.interface";
+import type { EmployeeWorkZoneServiceInterface } from "./employeeWorkZones.service.interface";
 
 @injectable()
-export class EmployeeWorkZoneService extends BaseService<
-  EMployeeWorkZoneResponseDto,
-  CreateEMployeeWorkZoneDto,
-  UpdateEMployeeWorkZoneDto,
-  EmployeeWorkZoneRepository
-> {
+export class EmployeeWorkZoneService
+  extends BaseService<EMployeeWorkZoneResponseDto, CreateEMployeeWorkZoneDto, UpdateEMployeeWorkZoneDto, EmployeeWorkZoneRepositoryInterface>
+  implements EmployeeWorkZoneServiceInterface
+{
   constructor(
-    @inject(TYPES.EmployeeWorkZoneRepositoryInterface) repository: EmployeeWorkZoneRepository,
+    @inject(TYPES.EmployeeWorkZoneRepositoryInterface) repository: EmployeeWorkZoneRepositoryInterface,
   ) {
     super(repository, CreateEMployeeWorkZoneSchema, UpdateEMployeeWorkZoneSchema, "EmployeeWorkZone");
   }

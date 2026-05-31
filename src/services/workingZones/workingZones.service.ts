@@ -8,17 +8,16 @@ import {
   type CreateWOrkingZoneDto,
   type UpdateWOrkingZoneDto,
 } from "@dtos/workingZone.dto";
-import type { WorkingZoneRepository } from "@repositories/workingZones/workingZones.repository";
+import type { WorkingZoneRepositoryInterface } from "@repositories/workingZones/workingZones.repository.interface";
+import type { WorkingZoneServiceInterface } from "./workingZones.service.interface";
 
 @injectable()
-export class WorkingZoneService extends BaseService<
-  WOrkingZoneResponseDto,
-  CreateWOrkingZoneDto,
-  UpdateWOrkingZoneDto,
-  WorkingZoneRepository
-> {
+export class WorkingZoneService
+  extends BaseService<WOrkingZoneResponseDto, CreateWOrkingZoneDto, UpdateWOrkingZoneDto, WorkingZoneRepositoryInterface>
+  implements WorkingZoneServiceInterface
+{
   constructor(
-    @inject(TYPES.WorkingZoneRepositoryInterface) repository: WorkingZoneRepository,
+    @inject(TYPES.WorkingZoneRepositoryInterface) repository: WorkingZoneRepositoryInterface,
   ) {
     super(repository, CreateWOrkingZoneSchema, UpdateWOrkingZoneSchema, "WorkingZone");
   }

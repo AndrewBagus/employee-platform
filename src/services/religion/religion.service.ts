@@ -8,17 +8,16 @@ import {
   type CreateReligionDto,
   type UpdateReligionDto,
 } from "@dtos/religion.dto";
-import type { ReligionRepository } from "@repositories/religion/religion.repository";
+import type { ReligionRepositoryInterface } from "@repositories/religion/religion.repository.interface";
+import type { ReligionServiceInterface } from "./religion.service.interface";
 
 @injectable()
-export class ReligionService extends BaseService<
-  ReligionResponseDto,
-  CreateReligionDto,
-  UpdateReligionDto,
-  ReligionRepository
-> {
+export class ReligionService
+  extends BaseService<ReligionResponseDto, CreateReligionDto, UpdateReligionDto, ReligionRepositoryInterface>
+  implements ReligionServiceInterface
+{
   constructor(
-    @inject(TYPES.ReligionRepositoryInterface) repository: ReligionRepository,
+    @inject(TYPES.ReligionRepositoryInterface) repository: ReligionRepositoryInterface,
   ) {
     super(repository, CreateReligionSchema, UpdateReligionSchema, "Religion");
   }

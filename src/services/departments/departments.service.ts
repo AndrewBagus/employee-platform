@@ -8,17 +8,16 @@ import {
   type CreateDEpartmentDto,
   type UpdateDEpartmentDto,
 } from "@dtos/department.dto";
-import type { DepartmentRepository } from "@repositories/departments/departments.repository";
+import type { DepartmentRepositoryInterface } from "@repositories/departments/departments.repository.interface";
+import type { DepartmentServiceInterface } from "./departments.service.interface";
 
 @injectable()
-export class DepartmentService extends BaseService<
-  DEpartmentResponseDto,
-  CreateDEpartmentDto,
-  UpdateDEpartmentDto,
-  DepartmentRepository
-> {
+export class DepartmentService
+  extends BaseService<DEpartmentResponseDto, CreateDEpartmentDto, UpdateDEpartmentDto, DepartmentRepositoryInterface>
+  implements DepartmentServiceInterface
+{
   constructor(
-    @inject(TYPES.DepartmentRepositoryInterface) repository: DepartmentRepository,
+    @inject(TYPES.DepartmentRepositoryInterface) repository: DepartmentRepositoryInterface,
   ) {
     super(repository, CreateDEpartmentSchema, UpdateDEpartmentSchema, "Department");
   }

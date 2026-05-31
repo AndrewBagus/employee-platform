@@ -4,14 +4,18 @@ import { TYPES } from "@cores/types";
 import { BaseRepository } from "@repositories/base.repository";
 import { religion } from "@db/schema/religion";
 import type { ReligionResponseDto, CreateReligionDto, UpdateReligionDto } from "@dtos/religion.dto";
+import type { ReligionRepositoryInterface } from "./religion.repository.interface";
 
 @injectable()
-export class ReligionRepository extends BaseRepository<
-  typeof religion,
-  ReligionResponseDto,
-  CreateReligionDto,
-  UpdateReligionDto
-> {
+export class ReligionRepository
+  extends BaseRepository<
+    typeof religion,
+    ReligionResponseDto,
+    CreateReligionDto,
+    UpdateReligionDto
+  >
+  implements ReligionRepositoryInterface
+{
   constructor(
     @inject(TYPES.Database) db: NodePgDatabase,
   ) {

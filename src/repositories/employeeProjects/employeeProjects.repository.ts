@@ -4,14 +4,18 @@ import { TYPES } from "@cores/types";
 import { BaseRepository } from "@repositories/base.repository";
 import { employeeProjects } from "@db/schema/employeeProjects";
 import type { EMployeeProjectResponseDto, CreateEMployeeProjectDto, UpdateEMployeeProjectDto } from "@dtos/employeeProject.dto";
+import type { EmployeeProjectRepositoryInterface } from "./employeeProjects.repository.interface";
 
 @injectable()
-export class EmployeeProjectRepository extends BaseRepository<
-  typeof employeeProjects,
-  EMployeeProjectResponseDto,
-  CreateEMployeeProjectDto,
-  UpdateEMployeeProjectDto
-> {
+export class EmployeeProjectRepository
+  extends BaseRepository<
+    typeof employeeProjects,
+    EMployeeProjectResponseDto,
+    CreateEMployeeProjectDto,
+    UpdateEMployeeProjectDto
+  >
+  implements EmployeeProjectRepositoryInterface
+{
   constructor(
     @inject(TYPES.Database) db: NodePgDatabase,
   ) {

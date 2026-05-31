@@ -8,17 +8,16 @@ import {
   type CreateCostCenterDto,
   type UpdateCostCenterDto,
 } from "@dtos/costCenter.dto";
-import type { CostCenterRepository } from "@repositories/costCenter/costCenter.repository";
+import type { CostCenterRepositoryInterface } from "@repositories/costCenter/costCenter.repository.interface";
+import type { CostCenterServiceInterface } from "./costCenter.service.interface";
 
 @injectable()
-export class CostCenterService extends BaseService<
-  CostCenterResponseDto,
-  CreateCostCenterDto,
-  UpdateCostCenterDto,
-  CostCenterRepository
-> {
+export class CostCenterService
+  extends BaseService<CostCenterResponseDto, CreateCostCenterDto, UpdateCostCenterDto, CostCenterRepositoryInterface>
+  implements CostCenterServiceInterface
+{
   constructor(
-    @inject(TYPES.CostCenterRepositoryInterface) repository: CostCenterRepository,
+    @inject(TYPES.CostCenterRepositoryInterface) repository: CostCenterRepositoryInterface,
   ) {
     super(repository, CreateCostCenterSchema, UpdateCostCenterSchema, "CostCenter");
   }

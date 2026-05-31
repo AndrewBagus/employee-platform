@@ -8,17 +8,16 @@ import {
   UpdateEMployeeLeaveAdvisorSchema,
   UpdateEMployeeLeaveAdvisorDto,
 } from "@dtos/employeeLeaveAdvisor.dto";
-import type { EmployeeLeaveAdvisorRepository } from "@repositories/employeeLeaveAdvisors/employeeLeaveAdvisors.repository";
+import type { EmployeeLeaveAdvisorRepositoryInterface } from "@repositories/employeeLeaveAdvisors/employeeLeaveAdvisors.repository.interface";
+import type { EmployeeLeaveAdvisorServiceInterface } from "./employeeLeaveAdvisors.service.interface";
 
 @injectable()
-export class EmployeeLeaveAdvisorService extends BaseService<
-  EMployeeLeaveAdvisorResponseDto,
-  CreateEMployeeLeaveAdvisorDto,
-  UpdateEMployeeLeaveAdvisorDto,
-  EmployeeLeaveAdvisorRepository
-> {
+export class EmployeeLeaveAdvisorService
+  extends BaseService<EMployeeLeaveAdvisorResponseDto, CreateEMployeeLeaveAdvisorDto, UpdateEMployeeLeaveAdvisorDto, EmployeeLeaveAdvisorRepositoryInterface>
+  implements EmployeeLeaveAdvisorServiceInterface
+{
   constructor(
-    @inject(TYPES.EmployeeLeaveAdvisorRepositoryInterface) repository: EmployeeLeaveAdvisorRepository,
+    @inject(TYPES.EmployeeLeaveAdvisorRepositoryInterface) repository: EmployeeLeaveAdvisorRepositoryInterface,
   ) {
     super(repository, CreateEMployeeLeaveAdvisorSchema, UpdateEMployeeLeaveAdvisorSchema, "EmployeeLeaveAdvisor");
   }
