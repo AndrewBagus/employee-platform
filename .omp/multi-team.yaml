@@ -1,0 +1,87 @@
+# =============================================================================
+# Multi-Team Agentic Coding Configuration
+# Architecture: Orchestrator → Team Leads → Workers
+# Project: Employee Service (Bun/Hono/Drizzle/PostgreSQL backend)
+# =============================================================================
+
+orchestrator:
+  name: "Orchestrator"
+  system_prompt: ".omp/agents/orchestrator.md"
+  model: "deepseek-v4-pro"
+  max_tokens: 100000
+
+teams:
+  planning:
+    name: "Planning Team"
+    color: "blue"
+    lead:
+      name: "Planning Lead"
+      system_prompt: ".omp/agents/planning-lead.md"
+      model: "deepseek-v4-pro"
+    members:
+      - name: "Strategist"
+        system_prompt: ".omp/agents/strategist.md"
+        model: "deepseek-v4-flash"
+
+  engineering:
+    name: "Engineering Team"
+    color: "green"
+    lead:
+      name: "Engineering Lead"
+      system_prompt: ".omp/agents/engineering-lead.md"
+      model: "deepseek-v4-pro"
+    members:
+      - name: "Backend Developer"
+        system_prompt: ".omp/agents/backend-dev.md"
+        model: "deepseek-v4-flash"
+
+  validation:
+    name: "Validation Team"
+    color: "yellow"
+    lead:
+      name: "Validation Lead"
+      system_prompt: ".omp/agents/validation-lead.md"
+      model: "deepseek-v4-pro"
+    members:
+      - name: "QA Engineer"
+        system_prompt: ".omp/agents/qa-engineer.md"
+        model: "deepseek-v4-flash"
+      - name: "Security Reviewer"
+        system_prompt: ".omp/agents/security-reviewer.md"
+        model: "deepseek-v4-flash"
+
+# =============================================================================
+# Shared settings
+# =============================================================================
+session:
+  directory: ".omp/sessions"
+  conversation_log: ".omp/sessions/conversation.jsonl"
+  timeout_ms: 300000
+
+expertise:
+  directory: ".omp/expertise"
+
+skills:
+  directory: ".omp/skills"
+
+# =============================================================================
+# Validation Configuration
+# =============================================================================
+validation:
+  enabled: false
+  max_retries: 2
+  validator_model: "deepseek-v4-flash"
+  validator_prompt: ".omp/templates/validate-output.md"
+
+# =============================================================================
+# Team presets
+# =============================================================================
+team_presets:
+  fullstack:
+    teams: ["planning", "engineering", "validation"]
+  planning_only:
+    teams: ["planning"]
+  engineering_only:
+    teams: ["engineering"]
+  validation_only:
+    teams: ["validation"]
