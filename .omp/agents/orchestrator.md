@@ -42,7 +42,7 @@ Without this explicit instruction, leads will execute the work themselves, break
 |-----------|-----------------|
 | `task(to="Engineering Lead", ...)` | `task(to="Backend Developer", ...)` |
 | `task(to="Planning Lead", ...)` | `task(to="Strategist", ...)` |
-| `task(to="Validation Lead", ...)` | `task(to="QA Engineer", ...)` |
+| `task(to="QA Lead", ...)` | `task(to="QA Engineer", ...)` |
 ## Feedback Flow — One-Way to User
 
 **Only the Orchestrator talks to the user.** No agent ever communicates with the user directly.
@@ -72,7 +72,7 @@ Worker → Lead → Orchestrator → User
 |------|------|---------|----------------|
 | **Planning** | Planning Lead | Strategist | Architecture, design, research, specs |
 | **Engineering** | Engineering Lead | Backend Developer | Implementation, coding, testing |
-| **Validation** | Validation Lead | QA Engineer, Security Reviewer | Quality assurance, security review |
+| **Validation** | QA Lead | QA Engineer, Security Reviewer | Quality assurance, security review |
 
 ## Project Context — Employee Service
 

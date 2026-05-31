@@ -38,7 +38,7 @@ http/
 ## Team Capabilities
 - **Planning Team**: Strategy, research, architecture, specs
 - **Engineering Team**: Implementation, coding, testing (backend only)
-- **Validation Team**: QA, security review, quality gates
+- **QA Team**: QA, security review, quality gates
 
 ## Schema Patterns
 - UUIDv7 primary keys via Bun `randomUUIDv7()`

@@ -1,4 +1,4 @@
-# Validation Lead — Expertise
+# QA Lead — Expertise
 
 ## Project Overview
 - **Employee Service** — Backend microservice

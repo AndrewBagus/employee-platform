@@ -378,21 +378,21 @@ function classifyTask(task: string): Classification {
   const suggestedAgents: string[] = [];
 
   if (validationScore >= planningScore && validationScore >= engineeringScore && validationScore > 0) {
-    suggestedRoute = "Validation Lead";
-    suggestedLead = "Validation Lead";
+    suggestedRoute = "QA Lead";
+    suggestedLead = "QA Lead";
     suggestedAgents.push("QA Engineer");
-    if (planningScore > 0) { suggestedAgents.unshift("Strategist"); suggestedRoute = "Planning + Validation"; }
+    if (planningScore > 0) { suggestedAgents.unshift("Strategist"); suggestedRoute = "Planning + QA"; }
   } else if (planningScore >= engineeringScore && planningScore > 0) {
     suggestedRoute = "Planning Lead";
     suggestedLead = "Planning Lead";
     suggestedAgents.push("Strategist");
     if (engineeringScore > 0) { suggestedAgents.push("Backend Developer"); suggestedRoute = "Planning + Engineering"; }
-    if (validationScore > 0) { suggestedAgents.push("QA Engineer"); suggestedRoute = "Planning + Engineering + Validation"; }
+    if (validationScore > 0) { suggestedAgents.push("QA Engineer"); suggestedRoute = "Planning + Engineering + QA"; }
   } else {
     suggestedRoute = "Engineering Lead";
     suggestedLead = "Engineering Lead";
     suggestedAgents.push("Backend Developer");
-    if (validationScore > 0) { suggestedAgents.push("QA Engineer"); suggestedRoute = "Engineering + Validation"; }
+    if (validationScore > 0) { suggestedAgents.push("QA Engineer"); suggestedRoute = "Engineering + QA"; }
   }
 
   return {

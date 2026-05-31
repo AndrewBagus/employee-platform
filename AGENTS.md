@@ -30,7 +30,7 @@
 | **Strategist** | `deepseek-v4-flash` | Research, analysis, detailed planning |
 | **Engineering Lead** | `deepseek-v4-pro` | Coordinates implementation, delegates to Backend Developer |
 | **Backend Developer** | `deepseek-v4-flash` | Writes code, creates files, implements features |
-| **Validation Lead** | `deepseek-v4-pro` | Coordinates review, delegates to QA/Security |
+| **QA Lead** | `deepseek-v4-pro` | Coordinates review, delegates to QA/Security |
 | **QA Engineer** | `deepseek-v4-flash` | Code review, bug detection, edge cases |
 | **Security Reviewer** | `deepseek-v4-flash` | Security audit, vulnerability check |
 

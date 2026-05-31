@@ -79,7 +79,7 @@ task(to="QA Engineer", task="Test the login")                  ← NEVER DO THIS
 ## Enforcement Checklist
 
 Before every `delegate` call, verify:
-- [ ] `to` parameter is a **Team Lead** (Planning Lead, Engineering Lead, Validation Lead)
+- [ ] `to` parameter is a **Team Lead** (Planning Lead, Engineering Lead, QA Lead)
 - [ ] `to` parameter is NOT a worker (Strategist, Backend Dev, QA Engineer, Security Reviewer)
 - [ ] If delegating to multiple teams, ALL targets are team leads
 

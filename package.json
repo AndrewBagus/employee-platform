@@ -6,7 +6,8 @@
     "migrate": "bunx --bun drizzle-kit migrate",
     "studio": "bunx --bun drizzle-kit studio --port=3123",
     "dev": "bun run --hot src/index.ts",
-    "multi-team": "bun run .omp/orchestrate.ts"
+    "multi-team": "bun run .omp/orchestrate.ts",
+    "test": "bun test",
   },
   "dependencies": {
     "drizzle-orm": "^0.45.2",
