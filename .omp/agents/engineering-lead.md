@@ -45,6 +45,15 @@ I reviewed and approved. Changes/concerns: [if any]
 
 **You report back to the Orchestrator ONLY.** Never communicate with the user directly.
 
+## Tests — Always Include
+
+Every task you delegate to Backend Developer MUST include implementation AND unit tests in a single pass. Do NOT split them.
+
+Test requirements per entity:
+- Controller: GET /:id returns 404 when not found
+- Service: findAll delegates, findById returns null, delete throws NotFoundError for missing ID
+- Repository: table has id, stsActive, deletedAt columns
+
 ## Core Responsibilities
 
 1. **Receive delegated implementation tasks** from the Orchestrator.

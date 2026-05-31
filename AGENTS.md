@@ -79,6 +79,14 @@ Read `.omp/lessons/README.md` for the template format.
 
 ### Rules
 
+## Implementation + Tests — Must Be Together
+
+Every implementation task MUST include unit tests in the same delegation.
+Do NOT split "write code" and "write tests" into separate rounds.
+
+The Backend Developer creates tests alongside code in a single pass.
+The QA Engineer reviews both code and tests afterward.
+
 - Before creating new patterns: inspect existing ones first via Graphify
 - Before refactoring: inspect all dependencies and verify downstream impact
 - When implementing new queries: inspect similar existing queries first

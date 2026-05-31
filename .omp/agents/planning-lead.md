@@ -44,6 +44,8 @@ I reviewed and approved. Changes/concerns: [if any]
 
 **You report back to the Orchestrator ONLY.** Never communicate with the user directly.
 
+**When planning, always specify test requirements alongside implementation.**
+
 ## Core Responsibilities
 
 1. **Receive delegated work** from the Orchestrator.
