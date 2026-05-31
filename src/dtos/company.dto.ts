@@ -14,22 +14,26 @@ export interface CompanyResponseDto {
   deletedAt: Date | null;
 }
 
-// ── Input DTOs ──
+import { z } from "zod";
 
-export interface CreateCompanyDto {
-  name: string;
-  type: "GROUP" | "CLIENT" | "SUBCON";
-  countryId: string;
-  nameShort?: string;
-  haveWorkerEmployee?: boolean;
-  isLdap?: boolean;
-}
+export const CreateCompanySchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  type: z.enum(["GROUP", "CLIENT", "SUBCON"], { message: "Type must be GROUP, CLIENT, or SUBCON" }),
+  countryId: z.string().min(1, "Country ID is required"),
+  nameShort: z.string().optional(),
+  haveWorkerEmployee: z.boolean().optional(),
+  isLdap: z.boolean().optional(),
+});
 
-export interface UpdateCompanyDto {
-  name?: string;
-  nameShort?: string;
-  type?: "GROUP" | "CLIENT" | "SUBCON";
-  countryId?: string;
-  haveWorkerEmployee?: boolean;
-  isLdap?: boolean;
-}
+export type CreateCompanyDto = z.infer<typeof CreateCompanySchema>;
+
+export const UpdateCompanySchema = z.object({
+  name: z.string().min(1).optional(),
+  nameShort: z.string().optional(),
+  type: z.enum(["GROUP", "CLIENT", "SUBCON"]).optional(),
+  countryId: z.string().min(1).optional(),
+  haveWorkerEmployee: z.boolean().optional(),
+  isLdap: z.boolean().optional(),
+});
+
+export type UpdateCompanyDto = z.infer<typeof UpdateCompanySchema>;
