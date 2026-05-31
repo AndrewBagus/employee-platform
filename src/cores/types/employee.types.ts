@@ -1,4 +1,7 @@
-export const GroupDTypes = {
+export const EmployeeTypes = {
+  // Employee + employee sub-tables
+  EmployeeRepositoryInterface: Symbol.for("EmployeeRepositoryInterface"),
+  EmployeeServiceInterface: Symbol.for("EmployeeServiceInterface"),
   EmployeeAddressRepositoryInterface: Symbol.for("EmployeeAddressRepositoryInterface"),
   EmployeeAddressServiceInterface: Symbol.for("EmployeeAddressServiceInterface"),
   EmployeeContractRepositoryInterface: Symbol.for("EmployeeContractRepositoryInterface"),

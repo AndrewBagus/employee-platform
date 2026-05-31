@@ -1,12 +1,8 @@
-import { GroupATypes } from "./types/group-a.types";
-import { GroupBTypes } from "./types/group-b.types";
-import { GroupCTypes } from "./types/group-c.types";
-import { GroupDTypes } from "./types/group-d.types";
+import { MasterTypes } from "./types/master.types";
+import { EmployeeTypes } from "./types/employee.types";
 
 export const TYPES = {
   Database: Symbol.for("Database"),
-  ...GroupATypes,
-  ...GroupBTypes,
-  ...GroupCTypes,
-  ...GroupDTypes,
+  ...MasterTypes,
+  ...EmployeeTypes,
 } as const;

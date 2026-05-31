@@ -1,5 +1,7 @@
 import { Container } from "inversify";
 import { TYPES } from "../types";
+import { EmployeeRepository } from "@repositories/employees/employees.repository";
+import { EmployeeService } from "@services/employees/employees.service";
 import { EmployeeAddressRepository } from "@repositories/employeeAddresses/employeeAddresses.repository";
 import { EmployeeAddressService } from "@services/employeeAddresses/employeeAddresses.service";
 import { EmployeeContractRepository } from "@repositories/employeeContracts/employeeContracts.repository";
@@ -19,7 +21,9 @@ import { EmployeeWarningService } from "@services/employeeWarnings/employeeWarni
 import { EmployeeWorkZoneRepository } from "@repositories/employeeWorkZones/employeeWorkZones.repository";
 import { EmployeeWorkZoneService } from "@services/employeeWorkZones/employeeWorkZones.service";
 
-export function registerGroupDBindings(container: Container) {
+export function registerEmployeeBindings(container: Container) {
+  container.bind(TYPES.EmployeeRepositoryInterface).to(EmployeeRepository);
+  container.bind(TYPES.EmployeeServiceInterface).to(EmployeeService);
   container.bind(TYPES.EmployeeAddressRepositoryInterface).to(EmployeeAddressRepository);
   container.bind(TYPES.EmployeeAddressServiceInterface).to(EmployeeAddressService);
   container.bind(TYPES.EmployeeContractRepositoryInterface).to(EmployeeContractRepository);
