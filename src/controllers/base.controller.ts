@@ -1,9 +1,17 @@
 import { Hono } from "hono";
 import { container } from "@cores/container";
-import { AppError } from "@cores/errors";
+import { AppError, ValidationError } from "@cores/errors";
+
+const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 function capitalize(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+function requireValidUUID(id: string, label: string): void {
+  if (!UUID_REGEX.test(id)) {
+    throw new ValidationError(`Invalid ${label} ID format: ${id}`);
+  }
 }
 
 type ServiceActions = {
@@ -34,6 +42,7 @@ export function createController(
   ctrl.get("/:id", async (c) => {
     try {
       const id = c.req.param("id");
+      requireValidUUID(id, entityLabel);
       const item = await getService().findById(id);
       if (!item) {
         return c.json(
@@ -79,6 +88,7 @@ export function createController(
   ctrl.put("/:id", async (c) => {
     try {
       const id = c.req.param("id");
+      requireValidUUID(id, entityLabel);
       const body = await c.req.json();
       const item = await getService().update(id, body);
       return c.json({
@@ -100,6 +110,7 @@ export function createController(
   ctrl.delete("/:id", async (c) => {
     try {
       const id = c.req.param("id");
+      requireValidUUID(id, entityLabel);
       await getService().delete(id);
       return c.json({
         success: true,

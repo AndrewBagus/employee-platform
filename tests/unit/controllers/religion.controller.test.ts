@@ -19,7 +19,7 @@ describe("ReligionController", () => {
     );
     const app = new Hono().route("/", ctrl);
 
-    const res = await app.request("/nonexistent");
+    const res = await app.request("/00000000-0000-0000-0000-000000000000");
 
     expect(res.status).toBe(404);
     const body = await res.json();
@@ -28,6 +28,6 @@ describe("ReligionController", () => {
       data: null,
       message: expect.stringContaining("not found"),
     });
-    expect(mockService.findById).toHaveBeenCalledWith("nonexistent");
+    expect(mockService.findById).toHaveBeenCalledWith("00000000-0000-0000-0000-000000000000");
   });
 });

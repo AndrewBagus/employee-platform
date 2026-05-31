@@ -95,7 +95,7 @@ describe("CompanyController", () => {
     });
     const { app } = await setup(mockService);
 
-    const res = await app.request("/abc-123");
+    const res = await app.request("/00000000-0000-0000-0000-000000000001");
 
     expect(res.status).toBe(200);
     const body = await res.json();
@@ -104,7 +104,7 @@ describe("CompanyController", () => {
       data: { id: "abc-123", name: "Found Corp" },
       message: "Company retrieved successfully",
     });
-    expect(mockService.findById).toHaveBeenCalledWith("abc-123");
+    expect(mockService.findById).toHaveBeenCalledWith("00000000-0000-0000-0000-000000000001");
   });
 
   test("GET /:id returns 404 when not found", async () => {
@@ -113,7 +113,7 @@ describe("CompanyController", () => {
     });
     const { app } = await setup(mockService);
 
-    const res = await app.request("/nonexistent");
+    const res = await app.request("/00000000-0000-0000-0000-000000000000");
 
     expect(res.status).toBe(404);
     const body = await res.json();
@@ -168,7 +168,7 @@ describe("CompanyController", () => {
     const mockService = makeMockService();
     const { app } = await setup(mockService);
 
-    const res = await app.request("/existing-id", {
+    const res = await app.request("/00000000-0000-0000-0000-000000000003", {
       method: "PUT",
       body: JSON.stringify({ name: "Updated" }),
       headers: { "content-type": "application/json" },
@@ -189,7 +189,7 @@ describe("CompanyController", () => {
     });
     const { app } = await setup(mockService);
 
-    const res = await app.request("/missing-id", {
+    const res = await app.request("/00000000-0000-0000-0000-000000000002", {
       method: "PUT",
       body: JSON.stringify({ name: "X" }),
       headers: { "content-type": "application/json" },
@@ -208,7 +208,7 @@ describe("CompanyController", () => {
     const mockService = makeMockService();
     const { app } = await setup(mockService);
 
-    const res = await app.request("/abc-123", { method: "DELETE" });
+    const res = await app.request("/00000000-0000-0000-0000-000000000001", { method: "DELETE" });
 
     expect(res.status).toBe(200);
     const body = await res.json();
@@ -225,7 +225,7 @@ describe("CompanyController", () => {
     });
     const { app } = await setup(mockService);
 
-    const res = await app.request("/missing-id", { method: "DELETE" });
+    const res = await app.request("/00000000-0000-0000-0000-000000000002", { method: "DELETE" });
 
     expect(res.status).toBe(404);
     const body = await res.json();
