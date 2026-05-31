@@ -7,6 +7,11 @@ description: Commit workflow — group changes by logical context, create separa
 
 When instructed to commit all changes, do NOT create one giant commit. Group by logical context.
 
+## Hard Rule: Never Commit Without Instruction
+
+**Do NOT commit unless the user explicitly says "commit" or "commit all changes."**
+No auto-commits. No premature commits. Wait for the instruction.
+
 ## How to Group
 
 Scan the diff and identify independent change sets:
