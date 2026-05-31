@@ -56,6 +56,9 @@ When delegating to Backend Developer, enforce this order:
 
 Do NOT allow implementation before tests. If Backend Developer writes code first, reject and ask them to follow TDD.
 
+5. Run TypeScript diagnostics — `bunx --bun tsc --noEmit 2>&1 | grep "^src/\|^tests/"` — must show zero errors
+6. Only commit when tests AND diagnostics pass
+
 ## Core Responsibilities
 
 1. **Receive delegated implementation tasks** from the Orchestrator.

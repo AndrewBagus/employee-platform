@@ -95,6 +95,21 @@ Order for each new feature/entity:
 
 **Tests drive the design, not the other way around.**
 
+## TypeScript Diagnostics — Required After Every Code Change
+
+After creating or modifying any code, run TypeScript diagnostics:
+
+```sh
+bunx --bun tsc --noEmit 2>&1 | grep "^src/\|^tests/"
+```
+
+Expected: **zero errors** from `src/` and `tests/`.
+If any exist, fix them before committing.
+
+Do NOT rely on node_modules errors to be zero — Drizzle ORM has
+pre-existing strict-mode type issues with unused drivers (gel,
+mysql2, singlestore). Only check `src/` and `tests/`.
+
 - Before creating new patterns: inspect existing ones first via Graphify
 - Before refactoring: inspect all dependencies and verify downstream impact
 - When implementing new queries: inspect similar existing queries first
