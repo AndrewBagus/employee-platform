@@ -20,8 +20,7 @@ export abstract class BaseRepository<
     const rows = await this.db
       .select()
       .from(this.table)
-      .where(eq(this.tableColumn("stsActive"), true))
-      .orderBy(this.tableColumn("name"));
+      .where(eq(this.tableColumn("stsActive"), true));
     return rows as TResponse[];
   }
 

@@ -3,6 +3,11 @@ import { Hono } from "hono";
 import { DateTime } from "luxon";
 import { log } from "@cores/logger";
 import companyController from "./controllers/company.controller";
+import countryController from "./controllers/country.controller";
+import religionController from "./controllers/religion.controller";
+import gradeController from "./controllers/grade.controller";
+import costCenterController from "./controllers/costCenter.controller";
+import projectController from "./controllers/project.controller";
 
 const app = new Hono();
 
@@ -25,8 +30,12 @@ app.get("/health", (c) => {
 app.get("/", (c) => {
   return c.text("Hello Hono!");
 });
-
 // Register domain routes
 app.route("/companies", companyController);
+app.route("/countries", countryController);
+app.route("/religions", religionController);
+app.route("/grades", gradeController);
+app.route("/cost-centers", costCenterController);
+app.route("/projects", projectController);
 
 export default app;
