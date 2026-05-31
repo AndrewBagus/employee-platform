@@ -3,7 +3,7 @@
 node_modules/
 
 # worktree
-.claude/worktree/*
+.omp/worktree/*
 
 # graphify generated artifacts
 graphify-out/
