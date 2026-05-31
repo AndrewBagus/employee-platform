@@ -157,4 +157,23 @@ Both agents share the same project context from `.commandcode/MEMORY.md`.
 - Always verify new/updated files exist inside the current git worktree directory before making changes
 - Always commit changes to the `.commandcode/taste/` folder alongside related work
 
+
+## Plan & Review File Convention
+
+All plans and reviews must be stored under the `.omp/` directory in the worktree root:
+
+- **Plans**: `.omp/plans/<context>/<running-number>.<plan-name>.md`
+- **Reviews**: `.omp/reviews/<context>/<running-number>.<review-name>.md`
+
+Context should be a short kebab-case name representing the feature or domain (e.g. `companies-endpoint`, `seed-architecture`).
+Running numbers are zero-padded (e.g. `01`, `02`).
+Plan and review filenames use kebab-case (e.g. `01.companies-di-plan.md`, `01.companies-di-review.md`).
+
+Example:
+```
+.omp/plans/companies-endpoint/01.companies-di-plan.md
+.omp/reviews/companies-endpoint/01.companies-di-review.md
+```
+
+All agents (Planning Lead, Engineering Lead, Validation Lead, and their workers) MUST follow this convention when producing plan or review documents.
 <!-- AGENTS.md = operational content (agents, workflow, git, rules). MEMORY.md = reference content (project context, schema, patterns, knowledge). -->
