@@ -1,14 +1,14 @@
 import { describe, test, expect, mock } from "bun:test";
 import { EmployeeMcuService } from "@services/employeeMcus/employeeMcus.service";
-import type { EMployeeMcuResponseDto, CreateEMployeeMcuDto, UpdateEMployeeMcuDto } from "@dtos/employeeMcu.dto";
+import type { EmployeeMcuResponseDto, CreateEmployeeMcuDto, UpdateEmployeeMcuDto } from "@dtos/employeeMcu.dto";
 import { NotFoundError } from "@cores/errors";
 
 describe("EmployeeMcuService", () => {
   const makeMockRepo = () => ({
-    findAll: mock(() => Promise.resolve<EMployeeMcuResponseDto[]>([])),
-    findById: mock(() => Promise.resolve<EMployeeMcuResponseDto | null>(null)),
-    create: mock((_data: CreateEMployeeMcuDto) =>
-      Promise.resolve<EMployeeMcuResponseDto>({
+    findAll: mock(() => Promise.resolve<EmployeeMcuResponseDto[]>([])),
+    findById: mock(() => Promise.resolve<EmployeeMcuResponseDto | null>(null)),
+    create: mock((_data: CreateEmployeeMcuDto) =>
+      Promise.resolve<EmployeeMcuResponseDto>({
         id: null,
         employeeId: "00000000-0000-4000-8000-000000000002",
         mcuDate: new Date(),
@@ -17,8 +17,8 @@ describe("EmployeeMcuService", () => {
         remark: null,
       }),
     ),
-    update: mock((_id: string, _data: UpdateEMployeeMcuDto) =>
-      Promise.resolve<EMployeeMcuResponseDto>({
+    update: mock((_id: string, _data: UpdateEmployeeMcuDto) =>
+      Promise.resolve<EmployeeMcuResponseDto>({
         id: null,
         employeeId: "00000000-0000-4000-8000-000000000002",
         mcuDate: new Date(),
@@ -48,7 +48,7 @@ describe("EmployeeMcuService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new EmployeeMcuService(repo as any);
-    const input: CreateEMployeeMcuDto = { employeeId: "00000000-0000-4000-8000-000000000002", mcuDate: new Date() };
+    const input: CreateEmployeeMcuDto = { employeeId: "00000000-0000-4000-8000-000000000002", mcuDate: new Date() };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

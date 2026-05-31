@@ -1,9 +1,9 @@
-import type { EMployeeWarningResponseDto, CreateEMployeeWarningDto, UpdateEMployeeWarningDto } from "@dtos/employeeWarning.dto";
+import type { EmployeeWarningResponseDto, CreateEmployeeWarningDto, UpdateEmployeeWarningDto } from "@dtos/employeeWarning.dto";
 
 export interface EmployeeWarningRepositoryInterface {
-  findAll(): Promise<EMployeeWarningResponseDto[]>;
-  findById(id: string): Promise<EMployeeWarningResponseDto | null>;
-  create(data: CreateEMployeeWarningDto): Promise<EMployeeWarningResponseDto>;
-  update(id: string, data: UpdateEMployeeWarningDto): Promise<EMployeeWarningResponseDto | null>;
+  findAll(): Promise<EmployeeWarningResponseDto[]>;
+  findById(id: string): Promise<EmployeeWarningResponseDto | null>;
+  create(data: CreateEmployeeWarningDto): Promise<EmployeeWarningResponseDto>;
+  update(id: string, data: UpdateEmployeeWarningDto): Promise<EmployeeWarningResponseDto | null>;
   softDelete(id: string): Promise<void>;
 }

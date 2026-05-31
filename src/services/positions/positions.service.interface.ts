@@ -1,9 +1,9 @@
-import type { POsitionResponseDto, CreatePOsitionDto, UpdatePOsitionDto } from "@dtos/position.dto";
+import type { PositionResponseDto, CreatePositionDto, UpdatePositionDto } from "@dtos/position.dto";
 
 export interface PositionServiceInterface {
-  findAll(): Promise<POsitionResponseDto[]>;
-  findById(id: string): Promise<POsitionResponseDto | null>;
-  create(data: unknown): Promise<POsitionResponseDto>;
-  update(id: string, data: unknown): Promise<POsitionResponseDto>;
+  findAll(): Promise<PositionResponseDto[]>;
+  findById(id: string): Promise<PositionResponseDto | null>;
+  create(data: unknown): Promise<PositionResponseDto>;
+  update(id: string, data: unknown): Promise<PositionResponseDto>;
   delete(id: string): Promise<void>;
 }

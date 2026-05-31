@@ -1,14 +1,14 @@
 import { describe, test, expect, mock } from "bun:test";
 import { EmployeeContractService } from "@services/employeeContracts/employeeContracts.service";
-import type { EMployeeContractResponseDto, CreateEMployeeContractDto, UpdateEMployeeContractDto } from "@dtos/employeeContract.dto";
+import type { EmployeeContractResponseDto, CreateEmployeeContractDto, UpdateEmployeeContractDto } from "@dtos/employeeContract.dto";
 import { NotFoundError } from "@cores/errors";
 
 describe("EmployeeContractService", () => {
   const makeMockRepo = () => ({
-    findAll: mock(() => Promise.resolve<EMployeeContractResponseDto[]>([])),
-    findById: mock(() => Promise.resolve<EMployeeContractResponseDto | null>(null)),
-    create: mock((_data: CreateEMployeeContractDto) =>
-      Promise.resolve<EMployeeContractResponseDto>({
+    findAll: mock(() => Promise.resolve<EmployeeContractResponseDto[]>([])),
+    findById: mock(() => Promise.resolve<EmployeeContractResponseDto | null>(null)),
+    create: mock((_data: CreateEmployeeContractDto) =>
+      Promise.resolve<EmployeeContractResponseDto>({
         id: null,
         employeeId: "00000000-0000-4000-8000-000000000002",
         startDate: new Date(),
@@ -17,8 +17,8 @@ describe("EmployeeContractService", () => {
         remark: null,
       }),
     ),
-    update: mock((_id: string, _data: UpdateEMployeeContractDto) =>
-      Promise.resolve<EMployeeContractResponseDto>({
+    update: mock((_id: string, _data: UpdateEmployeeContractDto) =>
+      Promise.resolve<EmployeeContractResponseDto>({
         id: null,
         employeeId: "00000000-0000-4000-8000-000000000002",
         startDate: new Date(),
@@ -48,7 +48,7 @@ describe("EmployeeContractService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new EmployeeContractService(repo as any);
-    const input: CreateEMployeeContractDto = { employeeId: "00000000-0000-4000-8000-000000000002", startDate: new Date(), endDate: new Date(), terminationDate: new Date() };
+    const input: CreateEmployeeContractDto = { employeeId: "00000000-0000-4000-8000-000000000002", startDate: new Date(), endDate: new Date(), terminationDate: new Date() };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

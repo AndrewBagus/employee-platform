@@ -1,14 +1,14 @@
 import { describe, test, expect, mock } from "bun:test";
 import { EmployeeService } from "@services/employees/employees.service";
-import type { EMployeeResponseDto, CreateEMployeeDto, UpdateEMployeeDto } from "@dtos/employee.dto";
+import type { EmployeeResponseDto, CreateEmployeeDto, UpdateEmployeeDto } from "@dtos/employee.dto";
 import { NotFoundError } from "@cores/errors";
 
 describe("EmployeeService", () => {
   const makeMockRepo = () => ({
-    findAll: mock(() => Promise.resolve<EMployeeResponseDto[]>([])),
-    findById: mock(() => Promise.resolve<EMployeeResponseDto | null>(null)),
-    create: mock((_data: CreateEMployeeDto) =>
-      Promise.resolve<EMployeeResponseDto>({
+    findAll: mock(() => Promise.resolve<EmployeeResponseDto[]>([])),
+    findById: mock(() => Promise.resolve<EmployeeResponseDto | null>(null)),
+    create: mock((_data: CreateEmployeeDto) =>
+      Promise.resolve<EmployeeResponseDto>({
         id: "1",
         companyId: "00000000-0000-4000-8000-000000000001",
         departmentId: "00000000-0000-4000-8000-000000000003",
@@ -30,8 +30,8 @@ describe("EmployeeService", () => {
         remark: null,
       }),
     ),
-    update: mock((_id: string, _data: UpdateEMployeeDto) =>
-      Promise.resolve<EMployeeResponseDto>({
+    update: mock((_id: string, _data: UpdateEmployeeDto) =>
+      Promise.resolve<EmployeeResponseDto>({
         id: "1",
         companyId: "00000000-0000-4000-8000-000000000001",
         departmentId: "00000000-0000-4000-8000-000000000003",
@@ -74,7 +74,7 @@ describe("EmployeeService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new EmployeeService(repo as any);
-    const input: CreateEMployeeDto = {
+    const input: CreateEmployeeDto = {
       companyId: "00000000-0000-4000-8000-000000000001",
       departmentId: "00000000-0000-4000-8000-000000000003",
       positionId: "00000000-0000-4000-8000-000000000004",

@@ -1,9 +1,9 @@
-import type { WArningResponseDto, CreateWArningDto, UpdateWArningDto } from "@dtos/warning.dto";
+import type { WarningResponseDto, CreateWarningDto, UpdateWarningDto } from "@dtos/warning.dto";
 
 export interface WarningServiceInterface {
-  findAll(): Promise<WArningResponseDto[]>;
-  findById(id: string): Promise<WArningResponseDto | null>;
-  create(data: unknown): Promise<WArningResponseDto>;
-  update(id: string, data: unknown): Promise<WArningResponseDto>;
+  findAll(): Promise<WarningResponseDto[]>;
+  findById(id: string): Promise<WarningResponseDto | null>;
+  create(data: unknown): Promise<WarningResponseDto>;
+  update(id: string, data: unknown): Promise<WarningResponseDto>;
   delete(id: string): Promise<void>;
 }

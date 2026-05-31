@@ -1,9 +1,9 @@
-import type { EMployeeProjectResponseDto, CreateEMployeeProjectDto, UpdateEMployeeProjectDto } from "@dtos/employeeProject.dto";
+import type { EmployeeProjectResponseDto, CreateEmployeeProjectDto, UpdateEmployeeProjectDto } from "@dtos/employeeProject.dto";
 
 export interface EmployeeProjectServiceInterface {
-  findAll(): Promise<EMployeeProjectResponseDto[]>;
-  findById(id: string): Promise<EMployeeProjectResponseDto | null>;
-  create(data: unknown): Promise<EMployeeProjectResponseDto>;
-  update(id: string, data: unknown): Promise<EMployeeProjectResponseDto>;
+  findAll(): Promise<EmployeeProjectResponseDto[]>;
+  findById(id: string): Promise<EmployeeProjectResponseDto | null>;
+  create(data: unknown): Promise<EmployeeProjectResponseDto>;
+  update(id: string, data: unknown): Promise<EmployeeProjectResponseDto>;
   delete(id: string): Promise<void>;
 }

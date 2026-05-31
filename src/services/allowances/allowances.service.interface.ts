@@ -1,9 +1,9 @@
-import type { ALlowanceResponseDto, CreateALlowanceDto, UpdateALlowanceDto } from "@dtos/allowance.dto";
+import type { AllowanceResponseDto, CreateAllowanceDto, UpdateAllowanceDto } from "@dtos/allowance.dto";
 
 export interface AllowanceServiceInterface {
-  findAll(): Promise<ALlowanceResponseDto[]>;
-  findById(id: string): Promise<ALlowanceResponseDto | null>;
-  create(data: unknown): Promise<ALlowanceResponseDto>;
-  update(id: string, data: unknown): Promise<ALlowanceResponseDto>;
+  findAll(): Promise<AllowanceResponseDto[]>;
+  findById(id: string): Promise<AllowanceResponseDto | null>;
+  create(data: unknown): Promise<AllowanceResponseDto>;
+  update(id: string, data: unknown): Promise<AllowanceResponseDto>;
   delete(id: string): Promise<void>;
 }

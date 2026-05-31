@@ -1,22 +1,22 @@
 import { describe, test, expect, mock } from "bun:test";
 import { EmployeeContractAdvisorService } from "@services/employeeContractAdvisors/employeeContractAdvisors.service";
-import type { EMployeeContractAdvisorResponseDto, CreateEMployeeContractAdvisorDto, UpdateEMployeeContractAdvisorDto } from "@dtos/employeeContractAdvisor.dto";
+import type { EmployeeContractAdvisorResponseDto, CreateEmployeeContractAdvisorDto, UpdateEmployeeContractAdvisorDto } from "@dtos/employeeContractAdvisor.dto";
 import { NotFoundError } from "@cores/errors";
 
 describe("EmployeeContractAdvisorService", () => {
   const makeMockRepo = () => ({
-    findAll: mock(() => Promise.resolve<EMployeeContractAdvisorResponseDto[]>([])),
-    findById: mock(() => Promise.resolve<EMployeeContractAdvisorResponseDto | null>(null)),
-    create: mock((_data: CreateEMployeeContractAdvisorDto) =>
-      Promise.resolve<EMployeeContractAdvisorResponseDto>({
+    findAll: mock(() => Promise.resolve<EmployeeContractAdvisorResponseDto[]>([])),
+    findById: mock(() => Promise.resolve<EmployeeContractAdvisorResponseDto | null>(null)),
+    create: mock((_data: CreateEmployeeContractAdvisorDto) =>
+      Promise.resolve<EmployeeContractAdvisorResponseDto>({
         id: null,
         employeeId: "00000000-0000-4000-8000-000000000002",
         order: 1,
         remark: null,
       }),
     ),
-    update: mock((_id: string, _data: UpdateEMployeeContractAdvisorDto) =>
-      Promise.resolve<EMployeeContractAdvisorResponseDto>({
+    update: mock((_id: string, _data: UpdateEmployeeContractAdvisorDto) =>
+      Promise.resolve<EmployeeContractAdvisorResponseDto>({
         id: null,
         employeeId: "00000000-0000-4000-8000-000000000002",
         order: 1,
@@ -44,7 +44,7 @@ describe("EmployeeContractAdvisorService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new EmployeeContractAdvisorService(repo as any);
-    const input: CreateEMployeeContractAdvisorDto = { employeeId: "00000000-0000-4000-8000-000000000002", order: 1 };
+    const input: CreateEmployeeContractAdvisorDto = { employeeId: "00000000-0000-4000-8000-000000000002", order: 1 };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

@@ -1,9 +1,9 @@
-import type { WOrkingZoneResponseDto, CreateWOrkingZoneDto, UpdateWOrkingZoneDto } from "@dtos/workingZone.dto";
+import type { WorkingZoneResponseDto, CreateWorkingZoneDto, UpdateWorkingZoneDto } from "@dtos/workingZone.dto";
 
 export interface WorkingZoneRepositoryInterface {
-  findAll(): Promise<WOrkingZoneResponseDto[]>;
-  findById(id: string): Promise<WOrkingZoneResponseDto | null>;
-  create(data: CreateWOrkingZoneDto): Promise<WOrkingZoneResponseDto>;
-  update(id: string, data: UpdateWOrkingZoneDto): Promise<WOrkingZoneResponseDto | null>;
+  findAll(): Promise<WorkingZoneResponseDto[]>;
+  findById(id: string): Promise<WorkingZoneResponseDto | null>;
+  create(data: CreateWorkingZoneDto): Promise<WorkingZoneResponseDto>;
+  update(id: string, data: UpdateWorkingZoneDto): Promise<WorkingZoneResponseDto | null>;
   softDelete(id: string): Promise<void>;
 }

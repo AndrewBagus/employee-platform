@@ -1,22 +1,22 @@
 import { describe, test, expect, mock } from "bun:test";
 import { PositionService } from "@services/positions/positions.service";
-import type { POsitionResponseDto, CreatePOsitionDto, UpdatePOsitionDto } from "@dtos/position.dto";
+import type { PositionResponseDto, CreatePositionDto, UpdatePositionDto } from "@dtos/position.dto";
 import { NotFoundError } from "@cores/errors";
 
 describe("PositionService", () => {
   const makeMockRepo = () => ({
-    findAll: mock(() => Promise.resolve<POsitionResponseDto[]>([])),
-    findById: mock(() => Promise.resolve<POsitionResponseDto | null>(null)),
-    create: mock((_data: CreatePOsitionDto) =>
-      Promise.resolve<POsitionResponseDto>({
+    findAll: mock(() => Promise.resolve<PositionResponseDto[]>([])),
+    findById: mock(() => Promise.resolve<PositionResponseDto | null>(null)),
+    create: mock((_data: CreatePositionDto) =>
+      Promise.resolve<PositionResponseDto>({
         id: null,
         departmentId: null,
         name: "Developer",
         isHod: null,
       }),
     ),
-    update: mock((_id: string, _data: UpdatePOsitionDto) =>
-      Promise.resolve<POsitionResponseDto>({
+    update: mock((_id: string, _data: UpdatePositionDto) =>
+      Promise.resolve<PositionResponseDto>({
         id: null,
         departmentId: null,
         name: "Developer",
@@ -44,7 +44,7 @@ describe("PositionService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new PositionService(repo as any);
-    const input: CreatePOsitionDto = { name: "Developer" };
+    const input: CreatePositionDto = { name: "Developer" };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

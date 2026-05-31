@@ -1,21 +1,21 @@
 import { describe, test, expect, mock } from "bun:test";
 import { DepartmentService } from "@services/departments/departments.service";
-import type { DEpartmentResponseDto, CreateDEpartmentDto, UpdateDEpartmentDto } from "@dtos/department.dto";
+import type { DepartmentResponseDto, CreateDepartmentDto, UpdateDepartmentDto } from "@dtos/department.dto";
 import { NotFoundError } from "@cores/errors";
 
 describe("DepartmentService", () => {
   const makeMockRepo = () => ({
-    findAll: mock(() => Promise.resolve<DEpartmentResponseDto[]>([])),
-    findById: mock(() => Promise.resolve<DEpartmentResponseDto | null>(null)),
-    create: mock((_data: CreateDEpartmentDto) =>
-      Promise.resolve<DEpartmentResponseDto>({
+    findAll: mock(() => Promise.resolve<DepartmentResponseDto[]>([])),
+    findById: mock(() => Promise.resolve<DepartmentResponseDto | null>(null)),
+    create: mock((_data: CreateDepartmentDto) =>
+      Promise.resolve<DepartmentResponseDto>({
         id: "1",
         companyId: "00000000-0000-4000-8000-000000000001",
         name: "Engineering",
       }),
     ),
-    update: mock((_id: string, _data: UpdateDEpartmentDto) =>
-      Promise.resolve<DEpartmentResponseDto>({
+    update: mock((_id: string, _data: UpdateDepartmentDto) =>
+      Promise.resolve<DepartmentResponseDto>({
         id: "1",
         companyId: "00000000-0000-4000-8000-000000000001",
         name: "Engineering",
@@ -42,7 +42,7 @@ describe("DepartmentService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new DepartmentService(repo as any);
-    const input: CreateDEpartmentDto = { companyId: "00000000-0000-4000-8000-000000000001", name: "Engineering" };
+    const input: CreateDepartmentDto = { companyId: "00000000-0000-4000-8000-000000000001", name: "Engineering" };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

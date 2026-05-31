@@ -1,14 +1,14 @@
 import { describe, test, expect, mock } from "bun:test";
 import { AllowanceService } from "@services/allowances/allowances.service";
-import type { ALlowanceResponseDto, CreateALlowanceDto, UpdateALlowanceDto } from "@dtos/allowance.dto";
+import type { AllowanceResponseDto, CreateAllowanceDto, UpdateAllowanceDto } from "@dtos/allowance.dto";
 import { NotFoundError } from "@cores/errors";
 
 describe("AllowanceService", () => {
   const makeMockRepo = () => ({
-    findAll: mock(() => Promise.resolve<ALlowanceResponseDto[]>([])),
-    findById: mock(() => Promise.resolve<ALlowanceResponseDto | null>(null)),
-    create: mock((_data: CreateALlowanceDto) =>
-      Promise.resolve<ALlowanceResponseDto>({
+    findAll: mock(() => Promise.resolve<AllowanceResponseDto[]>([])),
+    findById: mock(() => Promise.resolve<AllowanceResponseDto | null>(null)),
+    create: mock((_data: CreateAllowanceDto) =>
+      Promise.resolve<AllowanceResponseDto>({
         id: "1",
         companyId: "00000000-0000-4000-8000-000000000001",
         currencyId: "00000000-0000-4000-8000-000000000006",
@@ -17,8 +17,8 @@ describe("AllowanceService", () => {
         remark: null,
       }),
     ),
-    update: mock((_id: string, _data: UpdateALlowanceDto) =>
-      Promise.resolve<ALlowanceResponseDto>({
+    update: mock((_id: string, _data: UpdateAllowanceDto) =>
+      Promise.resolve<AllowanceResponseDto>({
         id: "1",
         companyId: "00000000-0000-4000-8000-000000000001",
         currencyId: "00000000-0000-4000-8000-000000000006",
@@ -48,7 +48,7 @@ describe("AllowanceService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new AllowanceService(repo as any);
-    const input: CreateALlowanceDto = { companyId: "00000000-0000-4000-8000-000000000001", currencyId: "00000000-0000-4000-8000-000000000006", name: "Transport", nominal: 100000 };
+    const input: CreateAllowanceDto = { companyId: "00000000-0000-4000-8000-000000000001", currencyId: "00000000-0000-4000-8000-000000000006", name: "Transport", nominal: 100000 };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

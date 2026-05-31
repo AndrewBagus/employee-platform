@@ -2,23 +2,23 @@ import { injectable, inject } from "inversify";
 import { TYPES } from "@cores/types";
 import { BaseService } from "@services/base.service";
 import {
-  CreateDEpartmentSchema,
-  UpdateDEpartmentSchema,
-  type DEpartmentResponseDto,
-  type CreateDEpartmentDto,
-  type UpdateDEpartmentDto,
+  CreateDepartmentSchema,
+  UpdateDepartmentSchema,
+  type DepartmentResponseDto,
+  type CreateDepartmentDto,
+  type UpdateDepartmentDto,
 } from "@dtos/department.dto";
 import type { DepartmentRepositoryInterface } from "@repositories/departments/departments.repository.interface";
 import type { DepartmentServiceInterface } from "./departments.service.interface";
 
 @injectable()
 export class DepartmentService
-  extends BaseService<DEpartmentResponseDto, CreateDEpartmentDto, UpdateDEpartmentDto, DepartmentRepositoryInterface>
+  extends BaseService<DepartmentResponseDto, CreateDepartmentDto, UpdateDepartmentDto, DepartmentRepositoryInterface>
   implements DepartmentServiceInterface
 {
   constructor(
     @inject(TYPES.DepartmentRepositoryInterface) repository: DepartmentRepositoryInterface,
   ) {
-    super(repository, CreateDEpartmentSchema, UpdateDEpartmentSchema, "Department");
+    super(repository, CreateDepartmentSchema, UpdateDepartmentSchema, "Department");
   }
 }

@@ -1,22 +1,22 @@
 import { describe, test, expect, mock } from "bun:test";
 import { EmployeeAddressService } from "@services/employeeAddresses/employeeAddresses.service";
-import type { EMployeeAddressResponseDto, CreateEMployeeAddressDto, UpdateEMployeeAddressDto } from "@dtos/employeeAddress.dto";
+import type { EmployeeAddressResponseDto, CreateEmployeeAddressDto, UpdateEmployeeAddressDto } from "@dtos/employeeAddress.dto";
 import { NotFoundError } from "@cores/errors";
 
 describe("EmployeeAddressService", () => {
   const makeMockRepo = () => ({
-    findAll: mock(() => Promise.resolve<EMployeeAddressResponseDto[]>([])),
-    findById: mock(() => Promise.resolve<EMployeeAddressResponseDto | null>(null)),
-    create: mock((_data: CreateEMployeeAddressDto) =>
-      Promise.resolve<EMployeeAddressResponseDto>({
+    findAll: mock(() => Promise.resolve<EmployeeAddressResponseDto[]>([])),
+    findById: mock(() => Promise.resolve<EmployeeAddressResponseDto | null>(null)),
+    create: mock((_data: CreateEmployeeAddressDto) =>
+      Promise.resolve<EmployeeAddressResponseDto>({
         id: "1",
         employeeId: "00000000-0000-4000-8000-000000000002",
         address: "Jl. Merdeka",
         remark: null,
       }),
     ),
-    update: mock((_id: string, _data: UpdateEMployeeAddressDto) =>
-      Promise.resolve<EMployeeAddressResponseDto>({
+    update: mock((_id: string, _data: UpdateEmployeeAddressDto) =>
+      Promise.resolve<EmployeeAddressResponseDto>({
         id: "1",
         employeeId: "00000000-0000-4000-8000-000000000002",
         address: "Jl. Merdeka",
@@ -44,7 +44,7 @@ describe("EmployeeAddressService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new EmployeeAddressService(repo as any);
-    const input: CreateEMployeeAddressDto = { employeeId: "00000000-0000-4000-8000-000000000002", address: "Jl. Merdeka" };
+    const input: CreateEmployeeAddressDto = { employeeId: "00000000-0000-4000-8000-000000000002", address: "Jl. Merdeka" };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

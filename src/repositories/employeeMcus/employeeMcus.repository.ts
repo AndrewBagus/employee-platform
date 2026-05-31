@@ -3,16 +3,16 @@ import { type NodePgDatabase } from "drizzle-orm/node-postgres";
 import { TYPES } from "@cores/types";
 import { BaseRepository } from "@repositories/base.repository";
 import { employeeMcus } from "@db/schema/employeeMcus";
-import type { EMployeeMcuResponseDto, CreateEMployeeMcuDto, UpdateEMployeeMcuDto } from "@dtos/employeeMcu.dto";
+import type { EmployeeMcuResponseDto, CreateEmployeeMcuDto, UpdateEmployeeMcuDto } from "@dtos/employeeMcu.dto";
 import type { EmployeeMcuRepositoryInterface } from "./employeeMcus.repository.interface";
 
 @injectable()
 export class EmployeeMcuRepository
   extends BaseRepository<
     typeof employeeMcus,
-    EMployeeMcuResponseDto,
-    CreateEMployeeMcuDto,
-    UpdateEMployeeMcuDto
+    EmployeeMcuResponseDto,
+    CreateEmployeeMcuDto,
+    UpdateEmployeeMcuDto
   >
   implements EmployeeMcuRepositoryInterface
 {

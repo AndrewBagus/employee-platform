@@ -1,22 +1,22 @@
 import { describe, test, expect, mock } from "bun:test";
 import { EmployeeWorkZoneService } from "@services/employeeWorkZones/employeeWorkZones.service";
-import type { EMployeeWorkZoneResponseDto, CreateEMployeeWorkZoneDto, UpdateEMployeeWorkZoneDto } from "@dtos/employeeWorkZone.dto";
+import type { EmployeeWorkZoneResponseDto, CreateEmployeeWorkZoneDto, UpdateEmployeeWorkZoneDto } from "@dtos/employeeWorkZone.dto";
 import { NotFoundError } from "@cores/errors";
 
 describe("EmployeeWorkZoneService", () => {
   const makeMockRepo = () => ({
-    findAll: mock(() => Promise.resolve<EMployeeWorkZoneResponseDto[]>([])),
-    findById: mock(() => Promise.resolve<EMployeeWorkZoneResponseDto | null>(null)),
-    create: mock((_data: CreateEMployeeWorkZoneDto) =>
-      Promise.resolve<EMployeeWorkZoneResponseDto>({
+    findAll: mock(() => Promise.resolve<EmployeeWorkZoneResponseDto[]>([])),
+    findById: mock(() => Promise.resolve<EmployeeWorkZoneResponseDto | null>(null)),
+    create: mock((_data: CreateEmployeeWorkZoneDto) =>
+      Promise.resolve<EmployeeWorkZoneResponseDto>({
         id: "1",
         employeeId: "00000000-0000-4000-8000-000000000002",
         workingZoneId: "00000000-0000-4000-8000-000000000009",
         remark: null,
       }),
     ),
-    update: mock((_id: string, _data: UpdateEMployeeWorkZoneDto) =>
-      Promise.resolve<EMployeeWorkZoneResponseDto>({
+    update: mock((_id: string, _data: UpdateEmployeeWorkZoneDto) =>
+      Promise.resolve<EmployeeWorkZoneResponseDto>({
         id: "1",
         employeeId: "00000000-0000-4000-8000-000000000002",
         workingZoneId: "00000000-0000-4000-8000-000000000009",
@@ -44,7 +44,7 @@ describe("EmployeeWorkZoneService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new EmployeeWorkZoneService(repo as any);
-    const input: CreateEMployeeWorkZoneDto = { employeeId: "00000000-0000-4000-8000-000000000002", workingZoneId: "00000000-0000-4000-8000-000000000009" };
+    const input: CreateEmployeeWorkZoneDto = { employeeId: "00000000-0000-4000-8000-000000000002", workingZoneId: "00000000-0000-4000-8000-000000000009" };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

@@ -1,9 +1,9 @@
-import type { EMployeeAddressResponseDto, CreateEMployeeAddressDto, UpdateEMployeeAddressDto } from "@dtos/employeeAddress.dto";
+import type { EmployeeAddressResponseDto, CreateEmployeeAddressDto, UpdateEmployeeAddressDto } from "@dtos/employeeAddress.dto";
 
 export interface EmployeeAddressRepositoryInterface {
-  findAll(): Promise<EMployeeAddressResponseDto[]>;
-  findById(id: string): Promise<EMployeeAddressResponseDto | null>;
-  create(data: CreateEMployeeAddressDto): Promise<EMployeeAddressResponseDto>;
-  update(id: string, data: UpdateEMployeeAddressDto): Promise<EMployeeAddressResponseDto | null>;
+  findAll(): Promise<EmployeeAddressResponseDto[]>;
+  findById(id: string): Promise<EmployeeAddressResponseDto | null>;
+  create(data: CreateEmployeeAddressDto): Promise<EmployeeAddressResponseDto>;
+  update(id: string, data: UpdateEmployeeAddressDto): Promise<EmployeeAddressResponseDto | null>;
   softDelete(id: string): Promise<void>;
 }

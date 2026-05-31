@@ -1,9 +1,9 @@
-import type { WOrkingZoneResponseDto, CreateWOrkingZoneDto, UpdateWOrkingZoneDto } from "@dtos/workingZone.dto";
+import type { WorkingZoneResponseDto, CreateWorkingZoneDto, UpdateWorkingZoneDto } from "@dtos/workingZone.dto";
 
 export interface WorkingZoneServiceInterface {
-  findAll(): Promise<WOrkingZoneResponseDto[]>;
-  findById(id: string): Promise<WOrkingZoneResponseDto | null>;
-  create(data: unknown): Promise<WOrkingZoneResponseDto>;
-  update(id: string, data: unknown): Promise<WOrkingZoneResponseDto>;
+  findAll(): Promise<WorkingZoneResponseDto[]>;
+  findById(id: string): Promise<WorkingZoneResponseDto | null>;
+  create(data: unknown): Promise<WorkingZoneResponseDto>;
+  update(id: string, data: unknown): Promise<WorkingZoneResponseDto>;
   delete(id: string): Promise<void>;
 }

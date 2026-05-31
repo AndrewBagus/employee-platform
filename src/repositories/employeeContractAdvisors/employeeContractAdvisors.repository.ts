@@ -3,16 +3,16 @@ import { type NodePgDatabase } from "drizzle-orm/node-postgres";
 import { TYPES } from "@cores/types";
 import { BaseRepository } from "@repositories/base.repository";
 import { employeeContractAdvisors } from "@db/schema/employeeContractAdvisors";
-import type { EMployeeContractAdvisorResponseDto, CreateEMployeeContractAdvisorDto, UpdateEMployeeContractAdvisorDto } from "@dtos/employeeContractAdvisor.dto";
+import type { EmployeeContractAdvisorResponseDto, CreateEmployeeContractAdvisorDto, UpdateEmployeeContractAdvisorDto } from "@dtos/employeeContractAdvisor.dto";
 import type { EmployeeContractAdvisorRepositoryInterface } from "./employeeContractAdvisors.repository.interface";
 
 @injectable()
 export class EmployeeContractAdvisorRepository
   extends BaseRepository<
     typeof employeeContractAdvisors,
-    EMployeeContractAdvisorResponseDto,
-    CreateEMployeeContractAdvisorDto,
-    UpdateEMployeeContractAdvisorDto
+    EmployeeContractAdvisorResponseDto,
+    CreateEmployeeContractAdvisorDto,
+    UpdateEmployeeContractAdvisorDto
   >
   implements EmployeeContractAdvisorRepositoryInterface
 {

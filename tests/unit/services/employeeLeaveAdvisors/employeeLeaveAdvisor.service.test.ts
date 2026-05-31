@@ -1,22 +1,22 @@
 import { describe, test, expect, mock } from "bun:test";
 import { EmployeeLeaveAdvisorService } from "@services/employeeLeaveAdvisors/employeeLeaveAdvisors.service";
-import type { EMployeeLeaveAdvisorResponseDto, CreateEMployeeLeaveAdvisorDto, UpdateEMployeeLeaveAdvisorDto } from "@dtos/employeeLeaveAdvisor.dto";
+import type { EmployeeLeaveAdvisorResponseDto, CreateEmployeeLeaveAdvisorDto, UpdateEmployeeLeaveAdvisorDto } from "@dtos/employeeLeaveAdvisor.dto";
 import { NotFoundError } from "@cores/errors";
 
 describe("EmployeeLeaveAdvisorService", () => {
   const makeMockRepo = () => ({
-    findAll: mock(() => Promise.resolve<EMployeeLeaveAdvisorResponseDto[]>([])),
-    findById: mock(() => Promise.resolve<EMployeeLeaveAdvisorResponseDto | null>(null)),
-    create: mock((_data: CreateEMployeeLeaveAdvisorDto) =>
-      Promise.resolve<EMployeeLeaveAdvisorResponseDto>({
+    findAll: mock(() => Promise.resolve<EmployeeLeaveAdvisorResponseDto[]>([])),
+    findById: mock(() => Promise.resolve<EmployeeLeaveAdvisorResponseDto | null>(null)),
+    create: mock((_data: CreateEmployeeLeaveAdvisorDto) =>
+      Promise.resolve<EmployeeLeaveAdvisorResponseDto>({
         id: null,
         employeeId: "00000000-0000-4000-8000-000000000002",
         order: 1,
         remark: null,
       }),
     ),
-    update: mock((_id: string, _data: UpdateEMployeeLeaveAdvisorDto) =>
-      Promise.resolve<EMployeeLeaveAdvisorResponseDto>({
+    update: mock((_id: string, _data: UpdateEmployeeLeaveAdvisorDto) =>
+      Promise.resolve<EmployeeLeaveAdvisorResponseDto>({
         id: null,
         employeeId: "00000000-0000-4000-8000-000000000002",
         order: 1,
@@ -44,7 +44,7 @@ describe("EmployeeLeaveAdvisorService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new EmployeeLeaveAdvisorService(repo as any);
-    const input: CreateEMployeeLeaveAdvisorDto = { employeeId: "00000000-0000-4000-8000-000000000002", order: 1 };
+    const input: CreateEmployeeLeaveAdvisorDto = { employeeId: "00000000-0000-4000-8000-000000000002", order: 1 };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

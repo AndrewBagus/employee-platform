@@ -1,22 +1,22 @@
 import { describe, test, expect, mock } from "bun:test";
 import { WarningGradeService } from "@services/warningGrades/warningGrades.service";
-import type { WArningGradeResponseDto, CreateWArningGradeDto, UpdateWArningGradeDto } from "@dtos/warningGrade.dto";
+import type { WarningGradeResponseDto, CreateWarningGradeDto, UpdateWarningGradeDto } from "@dtos/warningGrade.dto";
 import { NotFoundError } from "@cores/errors";
 
 describe("WarningGradeService", () => {
   const makeMockRepo = () => ({
-    findAll: mock(() => Promise.resolve<WArningGradeResponseDto[]>([])),
-    findById: mock(() => Promise.resolve<WArningGradeResponseDto | null>(null)),
-    create: mock((_data: CreateWArningGradeDto) =>
-      Promise.resolve<WArningGradeResponseDto>({
+    findAll: mock(() => Promise.resolve<WarningGradeResponseDto[]>([])),
+    findById: mock(() => Promise.resolve<WarningGradeResponseDto | null>(null)),
+    create: mock((_data: CreateWarningGradeDto) =>
+      Promise.resolve<WarningGradeResponseDto>({
         id: null,
         companyId: "00000000-0000-4000-8000-000000000001",
         name: "Grade A",
         remark: null,
       }),
     ),
-    update: mock((_id: string, _data: UpdateWArningGradeDto) =>
-      Promise.resolve<WArningGradeResponseDto>({
+    update: mock((_id: string, _data: UpdateWarningGradeDto) =>
+      Promise.resolve<WarningGradeResponseDto>({
         id: null,
         companyId: "00000000-0000-4000-8000-000000000001",
         name: "Grade A",
@@ -44,7 +44,7 @@ describe("WarningGradeService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new WarningGradeService(repo as any);
-    const input: CreateWArningGradeDto = { companyId: "00000000-0000-4000-8000-000000000001", name: "Grade A" };
+    const input: CreateWarningGradeDto = { companyId: "00000000-0000-4000-8000-000000000001", name: "Grade A" };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

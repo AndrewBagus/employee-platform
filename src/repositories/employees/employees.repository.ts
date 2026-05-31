@@ -13,12 +13,12 @@ import { employeeProjects } from "@db/schema/employeeProjects";
 import { employeeTrainings } from "@db/schema/employeeTrainings";
 import { employeeWarnings } from "@db/schema/employeeWarnings";
 import { employeeWorkZones } from "@db/schema/employeeWorkZones";
-import type { EMployeeResponseDto, CreateEMployeeDto, UpdateEMployeeDto } from "@dtos/employee.dto";
+import type { EmployeeResponseDto, CreateEmployeeDto, UpdateEmployeeDto } from "@dtos/employee.dto";
 import type { EmployeeRepositoryInterface } from "./employees.repository.interface";
 
 @injectable()
 export class EmployeeRepository
-  extends BaseRepository<typeof employees, EMployeeResponseDto, CreateEMployeeDto, UpdateEMployeeDto>
+  extends BaseRepository<typeof employees, EmployeeResponseDto, CreateEmployeeDto, UpdateEmployeeDto>
   implements EmployeeRepositoryInterface
 {
   constructor(

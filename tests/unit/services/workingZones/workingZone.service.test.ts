@@ -1,22 +1,22 @@
 import { describe, test, expect, mock } from "bun:test";
 import { WorkingZoneService } from "@services/workingZones/workingZones.service";
-import type { WOrkingZoneResponseDto, CreateWOrkingZoneDto, UpdateWOrkingZoneDto } from "@dtos/workingZone.dto";
+import type { WorkingZoneResponseDto, CreateWorkingZoneDto, UpdateWorkingZoneDto } from "@dtos/workingZone.dto";
 import { NotFoundError } from "@cores/errors";
 
 describe("WorkingZoneService", () => {
   const makeMockRepo = () => ({
-    findAll: mock(() => Promise.resolve<WOrkingZoneResponseDto[]>([])),
-    findById: mock(() => Promise.resolve<WOrkingZoneResponseDto | null>(null)),
-    create: mock((_data: CreateWOrkingZoneDto) =>
-      Promise.resolve<WOrkingZoneResponseDto>({
+    findAll: mock(() => Promise.resolve<WorkingZoneResponseDto[]>([])),
+    findById: mock(() => Promise.resolve<WorkingZoneResponseDto | null>(null)),
+    create: mock((_data: CreateWorkingZoneDto) =>
+      Promise.resolve<WorkingZoneResponseDto>({
         id: "1",
         companyId: "00000000-0000-4000-8000-000000000001",
         name: "Zone A",
         remark: null,
       }),
     ),
-    update: mock((_id: string, _data: UpdateWOrkingZoneDto) =>
-      Promise.resolve<WOrkingZoneResponseDto>({
+    update: mock((_id: string, _data: UpdateWorkingZoneDto) =>
+      Promise.resolve<WorkingZoneResponseDto>({
         id: "1",
         companyId: "00000000-0000-4000-8000-000000000001",
         name: "Zone A",
@@ -44,7 +44,7 @@ describe("WorkingZoneService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new WorkingZoneService(repo as any);
-    const input: CreateWOrkingZoneDto = { companyId: "00000000-0000-4000-8000-000000000001", name: "Zone A" };
+    const input: CreateWorkingZoneDto = { companyId: "00000000-0000-4000-8000-000000000001", name: "Zone A" };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

@@ -1,9 +1,9 @@
-import type { EMployeeLeaveAdvisorResponseDto, CreateEMployeeLeaveAdvisorDto, UpdateEMployeeLeaveAdvisorDto } from "@dtos/employeeLeaveAdvisor.dto";
+import type { EmployeeLeaveAdvisorResponseDto, CreateEmployeeLeaveAdvisorDto, UpdateEmployeeLeaveAdvisorDto } from "@dtos/employeeLeaveAdvisor.dto";
 
 export interface EmployeeLeaveAdvisorServiceInterface {
-  findAll(): Promise<EMployeeLeaveAdvisorResponseDto[]>;
-  findById(id: string): Promise<EMployeeLeaveAdvisorResponseDto | null>;
-  create(data: unknown): Promise<EMployeeLeaveAdvisorResponseDto>;
-  update(id: string, data: unknown): Promise<EMployeeLeaveAdvisorResponseDto>;
+  findAll(): Promise<EmployeeLeaveAdvisorResponseDto[]>;
+  findById(id: string): Promise<EmployeeLeaveAdvisorResponseDto | null>;
+  create(data: unknown): Promise<EmployeeLeaveAdvisorResponseDto>;
+  update(id: string, data: unknown): Promise<EmployeeLeaveAdvisorResponseDto>;
   delete(id: string): Promise<void>;
 }

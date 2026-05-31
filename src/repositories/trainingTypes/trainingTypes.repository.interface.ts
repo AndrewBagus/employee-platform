@@ -1,9 +1,9 @@
-import type { TRainingTypeResponseDto, CreateTRainingTypeDto, UpdateTRainingTypeDto } from "@dtos/trainingType.dto";
+import type { TrainingTypeResponseDto, CreateTrainingTypeDto, UpdateTrainingTypeDto } from "@dtos/trainingType.dto";
 
 export interface TrainingTypeRepositoryInterface {
-  findAll(): Promise<TRainingTypeResponseDto[]>;
-  findById(id: string): Promise<TRainingTypeResponseDto | null>;
-  create(data: CreateTRainingTypeDto): Promise<TRainingTypeResponseDto>;
-  update(id: string, data: UpdateTRainingTypeDto): Promise<TRainingTypeResponseDto | null>;
+  findAll(): Promise<TrainingTypeResponseDto[]>;
+  findById(id: string): Promise<TrainingTypeResponseDto | null>;
+  create(data: CreateTrainingTypeDto): Promise<TrainingTypeResponseDto>;
+  update(id: string, data: UpdateTrainingTypeDto): Promise<TrainingTypeResponseDto | null>;
   softDelete(id: string): Promise<void>;
 }

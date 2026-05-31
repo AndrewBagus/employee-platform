@@ -1,22 +1,22 @@
 import { describe, test, expect, mock } from "bun:test";
 import { TrainingTypeService } from "@services/trainingTypes/trainingTypes.service";
-import type { TRainingTypeResponseDto, CreateTRainingTypeDto, UpdateTRainingTypeDto } from "@dtos/trainingType.dto";
+import type { TrainingTypeResponseDto, CreateTrainingTypeDto, UpdateTrainingTypeDto } from "@dtos/trainingType.dto";
 import { NotFoundError } from "@cores/errors";
 
 describe("TrainingTypeService", () => {
   const makeMockRepo = () => ({
-    findAll: mock(() => Promise.resolve<TRainingTypeResponseDto[]>([])),
-    findById: mock(() => Promise.resolve<TRainingTypeResponseDto | null>(null)),
-    create: mock((_data: CreateTRainingTypeDto) =>
-      Promise.resolve<TRainingTypeResponseDto>({
+    findAll: mock(() => Promise.resolve<TrainingTypeResponseDto[]>([])),
+    findById: mock(() => Promise.resolve<TrainingTypeResponseDto | null>(null)),
+    create: mock((_data: CreateTrainingTypeDto) =>
+      Promise.resolve<TrainingTypeResponseDto>({
         id: "1",
         companyId: "00000000-0000-4000-8000-000000000001",
         name: "Technical",
         remark: null,
       }),
     ),
-    update: mock((_id: string, _data: UpdateTRainingTypeDto) =>
-      Promise.resolve<TRainingTypeResponseDto>({
+    update: mock((_id: string, _data: UpdateTrainingTypeDto) =>
+      Promise.resolve<TrainingTypeResponseDto>({
         id: "1",
         companyId: "00000000-0000-4000-8000-000000000001",
         name: "Technical",
@@ -44,7 +44,7 @@ describe("TrainingTypeService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new TrainingTypeService(repo as any);
-    const input: CreateTRainingTypeDto = { companyId: "00000000-0000-4000-8000-000000000001", name: "Technical" };
+    const input: CreateTrainingTypeDto = { companyId: "00000000-0000-4000-8000-000000000001", name: "Technical" };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

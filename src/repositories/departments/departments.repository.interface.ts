@@ -1,9 +1,9 @@
-import type { DEpartmentResponseDto, CreateDEpartmentDto, UpdateDEpartmentDto } from "@dtos/department.dto";
+import type { DepartmentResponseDto, CreateDepartmentDto, UpdateDepartmentDto } from "@dtos/department.dto";
 
 export interface DepartmentRepositoryInterface {
-  findAll(): Promise<DEpartmentResponseDto[]>;
-  findById(id: string): Promise<DEpartmentResponseDto | null>;
-  create(data: CreateDEpartmentDto): Promise<DEpartmentResponseDto>;
-  update(id: string, data: UpdateDEpartmentDto): Promise<DEpartmentResponseDto | null>;
+  findAll(): Promise<DepartmentResponseDto[]>;
+  findById(id: string): Promise<DepartmentResponseDto | null>;
+  create(data: CreateDepartmentDto): Promise<DepartmentResponseDto>;
+  update(id: string, data: UpdateDepartmentDto): Promise<DepartmentResponseDto | null>;
   softDelete(id: string): Promise<void>;
 }

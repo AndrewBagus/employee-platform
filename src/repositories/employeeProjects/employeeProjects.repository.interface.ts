@@ -1,9 +1,9 @@
-import type { EMployeeProjectResponseDto, CreateEMployeeProjectDto, UpdateEMployeeProjectDto } from "@dtos/employeeProject.dto";
+import type { EmployeeProjectResponseDto, CreateEmployeeProjectDto, UpdateEmployeeProjectDto } from "@dtos/employeeProject.dto";
 
 export interface EmployeeProjectRepositoryInterface {
-  findAll(): Promise<EMployeeProjectResponseDto[]>;
-  findById(id: string): Promise<EMployeeProjectResponseDto | null>;
-  create(data: CreateEMployeeProjectDto): Promise<EMployeeProjectResponseDto>;
-  update(id: string, data: UpdateEMployeeProjectDto): Promise<EMployeeProjectResponseDto | null>;
+  findAll(): Promise<EmployeeProjectResponseDto[]>;
+  findById(id: string): Promise<EmployeeProjectResponseDto | null>;
+  create(data: CreateEmployeeProjectDto): Promise<EmployeeProjectResponseDto>;
+  update(id: string, data: UpdateEmployeeProjectDto): Promise<EmployeeProjectResponseDto | null>;
   softDelete(id: string): Promise<void>;
 }

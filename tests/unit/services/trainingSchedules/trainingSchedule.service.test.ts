@@ -1,14 +1,14 @@
 import { describe, test, expect, mock } from "bun:test";
 import { TrainingScheduleService } from "@services/trainingSchedules/trainingSchedules.service";
-import type { TRainingScheduleResponseDto, CreateTRainingScheduleDto, UpdateTRainingScheduleDto } from "@dtos/trainingSchedule.dto";
+import type { TrainingScheduleResponseDto, CreateTrainingScheduleDto, UpdateTrainingScheduleDto } from "@dtos/trainingSchedule.dto";
 import { NotFoundError } from "@cores/errors";
 
 describe("TrainingScheduleService", () => {
   const makeMockRepo = () => ({
-    findAll: mock(() => Promise.resolve<TRainingScheduleResponseDto[]>([])),
-    findById: mock(() => Promise.resolve<TRainingScheduleResponseDto | null>(null)),
-    create: mock((_data: CreateTRainingScheduleDto) =>
-      Promise.resolve<TRainingScheduleResponseDto>({
+    findAll: mock(() => Promise.resolve<TrainingScheduleResponseDto[]>([])),
+    findById: mock(() => Promise.resolve<TrainingScheduleResponseDto | null>(null)),
+    create: mock((_data: CreateTrainingScheduleDto) =>
+      Promise.resolve<TrainingScheduleResponseDto>({
         id: null,
         companyId: "00000000-0000-4000-8000-000000000001",
         trainingDate: null,
@@ -16,8 +16,8 @@ describe("TrainingScheduleService", () => {
         remark: null,
       }),
     ),
-    update: mock((_id: string, _data: UpdateTRainingScheduleDto) =>
-      Promise.resolve<TRainingScheduleResponseDto>({
+    update: mock((_id: string, _data: UpdateTrainingScheduleDto) =>
+      Promise.resolve<TrainingScheduleResponseDto>({
         id: null,
         companyId: "00000000-0000-4000-8000-000000000001",
         trainingDate: null,
@@ -46,7 +46,7 @@ describe("TrainingScheduleService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new TrainingScheduleService(repo as any);
-    const input: CreateTRainingScheduleDto = { companyId: "00000000-0000-4000-8000-000000000001" };
+    const input: CreateTrainingScheduleDto = { companyId: "00000000-0000-4000-8000-000000000001" };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

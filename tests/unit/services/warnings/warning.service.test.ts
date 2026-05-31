@@ -1,14 +1,14 @@
 import { describe, test, expect, mock } from "bun:test";
 import { WarningService } from "@services/warnings/warnings.service";
-import type { WArningResponseDto, CreateWArningDto, UpdateWArningDto } from "@dtos/warning.dto";
+import type { WarningResponseDto, CreateWarningDto, UpdateWarningDto } from "@dtos/warning.dto";
 import { NotFoundError } from "@cores/errors";
 
 describe("WarningService", () => {
   const makeMockRepo = () => ({
-    findAll: mock(() => Promise.resolve<WArningResponseDto[]>([])),
-    findById: mock(() => Promise.resolve<WArningResponseDto | null>(null)),
-    create: mock((_data: CreateWArningDto) =>
-      Promise.resolve<WArningResponseDto>({
+    findAll: mock(() => Promise.resolve<WarningResponseDto[]>([])),
+    findById: mock(() => Promise.resolve<WarningResponseDto | null>(null)),
+    create: mock((_data: CreateWarningDto) =>
+      Promise.resolve<WarningResponseDto>({
         id: "1",
         companyId: "00000000-0000-4000-8000-000000000001",
         warningGradeId: "00000000-0000-4000-8000-000000000008",
@@ -16,8 +16,8 @@ describe("WarningService", () => {
         remark: null,
       }),
     ),
-    update: mock((_id: string, _data: UpdateWArningDto) =>
-      Promise.resolve<WArningResponseDto>({
+    update: mock((_id: string, _data: UpdateWarningDto) =>
+      Promise.resolve<WarningResponseDto>({
         id: "1",
         companyId: "00000000-0000-4000-8000-000000000001",
         warningGradeId: "00000000-0000-4000-8000-000000000008",
@@ -46,7 +46,7 @@ describe("WarningService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new WarningService(repo as any);
-    const input: CreateWArningDto = { companyId: "00000000-0000-4000-8000-000000000001", warningGradeId: "00000000-0000-4000-8000-000000000008", name: "Warning Type A" };
+    const input: CreateWarningDto = { companyId: "00000000-0000-4000-8000-000000000001", warningGradeId: "00000000-0000-4000-8000-000000000008", name: "Warning Type A" };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

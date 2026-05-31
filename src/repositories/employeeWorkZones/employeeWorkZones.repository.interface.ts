@@ -1,9 +1,9 @@
-import type { EMployeeWorkZoneResponseDto, CreateEMployeeWorkZoneDto, UpdateEMployeeWorkZoneDto } from "@dtos/employeeWorkZone.dto";
+import type { EmployeeWorkZoneResponseDto, CreateEmployeeWorkZoneDto, UpdateEmployeeWorkZoneDto } from "@dtos/employeeWorkZone.dto";
 
 export interface EmployeeWorkZoneRepositoryInterface {
-  findAll(): Promise<EMployeeWorkZoneResponseDto[]>;
-  findById(id: string): Promise<EMployeeWorkZoneResponseDto | null>;
-  create(data: CreateEMployeeWorkZoneDto): Promise<EMployeeWorkZoneResponseDto>;
-  update(id: string, data: UpdateEMployeeWorkZoneDto): Promise<EMployeeWorkZoneResponseDto | null>;
+  findAll(): Promise<EmployeeWorkZoneResponseDto[]>;
+  findById(id: string): Promise<EmployeeWorkZoneResponseDto | null>;
+  create(data: CreateEmployeeWorkZoneDto): Promise<EmployeeWorkZoneResponseDto>;
+  update(id: string, data: UpdateEmployeeWorkZoneDto): Promise<EmployeeWorkZoneResponseDto | null>;
   softDelete(id: string): Promise<void>;
 }

@@ -1,9 +1,9 @@
-import type { EMployeeResponseDto, CreateEMployeeDto, UpdateEMployeeDto } from "@dtos/employee.dto";
+import type { EmployeeResponseDto, CreateEmployeeDto, UpdateEmployeeDto } from "@dtos/employee.dto";
 
 export interface EmployeeServiceInterface {
-  findAll(): Promise<EMployeeResponseDto[]>;
-  findById(id: string): Promise<EMployeeResponseDto | null>;
-  create(data: unknown): Promise<EMployeeResponseDto>;
-  update(id: string, data: unknown): Promise<EMployeeResponseDto>;
+  findAll(): Promise<EmployeeResponseDto[]>;
+  findById(id: string): Promise<EmployeeResponseDto | null>;
+  create(data: unknown): Promise<EmployeeResponseDto>;
+  update(id: string, data: unknown): Promise<EmployeeResponseDto>;
   delete(id: string): Promise<void>;
 }

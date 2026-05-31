@@ -1,14 +1,14 @@
 import { describe, test, expect, mock } from "bun:test";
 import { EmployeeWarningService } from "@services/employeeWarnings/employeeWarnings.service";
-import type { EMployeeWarningResponseDto, CreateEMployeeWarningDto, UpdateEMployeeWarningDto } from "@dtos/employeeWarning.dto";
+import type { EmployeeWarningResponseDto, CreateEmployeeWarningDto, UpdateEmployeeWarningDto } from "@dtos/employeeWarning.dto";
 import { NotFoundError } from "@cores/errors";
 
 describe("EmployeeWarningService", () => {
   const makeMockRepo = () => ({
-    findAll: mock(() => Promise.resolve<EMployeeWarningResponseDto[]>([])),
-    findById: mock(() => Promise.resolve<EMployeeWarningResponseDto | null>(null)),
-    create: mock((_data: CreateEMployeeWarningDto) =>
-      Promise.resolve<EMployeeWarningResponseDto>({
+    findAll: mock(() => Promise.resolve<EmployeeWarningResponseDto[]>([])),
+    findById: mock(() => Promise.resolve<EmployeeWarningResponseDto | null>(null)),
+    create: mock((_data: CreateEmployeeWarningDto) =>
+      Promise.resolve<EmployeeWarningResponseDto>({
         id: null,
         employeeId: "00000000-0000-4000-8000-000000000002",
         warningStartDate: new Date(),
@@ -17,8 +17,8 @@ describe("EmployeeWarningService", () => {
         remark: null,
       }),
     ),
-    update: mock((_id: string, _data: UpdateEMployeeWarningDto) =>
-      Promise.resolve<EMployeeWarningResponseDto>({
+    update: mock((_id: string, _data: UpdateEmployeeWarningDto) =>
+      Promise.resolve<EmployeeWarningResponseDto>({
         id: null,
         employeeId: "00000000-0000-4000-8000-000000000002",
         warningStartDate: new Date(),
@@ -48,7 +48,7 @@ describe("EmployeeWarningService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new EmployeeWarningService(repo as any);
-    const input: CreateEMployeeWarningDto = { employeeId: "00000000-0000-4000-8000-000000000002", warningStartDate: new Date() };
+    const input: CreateEmployeeWarningDto = { employeeId: "00000000-0000-4000-8000-000000000002", warningStartDate: new Date() };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

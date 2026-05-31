@@ -1,9 +1,9 @@
-import type { EMployeeMcuResponseDto, CreateEMployeeMcuDto, UpdateEMployeeMcuDto } from "@dtos/employeeMcu.dto";
+import type { EmployeeMcuResponseDto, CreateEmployeeMcuDto, UpdateEmployeeMcuDto } from "@dtos/employeeMcu.dto";
 
 export interface EmployeeMcuServiceInterface {
-  findAll(): Promise<EMployeeMcuResponseDto[]>;
-  findById(id: string): Promise<EMployeeMcuResponseDto | null>;
-  create(data: unknown): Promise<EMployeeMcuResponseDto>;
-  update(id: string, data: unknown): Promise<EMployeeMcuResponseDto>;
+  findAll(): Promise<EmployeeMcuResponseDto[]>;
+  findById(id: string): Promise<EmployeeMcuResponseDto | null>;
+  create(data: unknown): Promise<EmployeeMcuResponseDto>;
+  update(id: string, data: unknown): Promise<EmployeeMcuResponseDto>;
   delete(id: string): Promise<void>;
 }

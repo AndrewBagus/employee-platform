@@ -1,9 +1,9 @@
-import type { WArningResponseDto, CreateWArningDto, UpdateWArningDto } from "@dtos/warning.dto";
+import type { WarningResponseDto, CreateWarningDto, UpdateWarningDto } from "@dtos/warning.dto";
 
 export interface WarningRepositoryInterface {
-  findAll(): Promise<WArningResponseDto[]>;
-  findById(id: string): Promise<WArningResponseDto | null>;
-  create(data: CreateWArningDto): Promise<WArningResponseDto>;
-  update(id: string, data: UpdateWArningDto): Promise<WArningResponseDto | null>;
+  findAll(): Promise<WarningResponseDto[]>;
+  findById(id: string): Promise<WarningResponseDto | null>;
+  create(data: CreateWarningDto): Promise<WarningResponseDto>;
+  update(id: string, data: UpdateWarningDto): Promise<WarningResponseDto | null>;
   softDelete(id: string): Promise<void>;
 }
