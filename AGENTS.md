@@ -1,26 +1,125 @@
-# Memory
+# Agent System
 
-> **Read [.commandcode/MEMORY.md](./.commandcode/MEMORY.md) first** — it contains the full architecture, schema details, patterns, and workflows for this project.
-> **Update [.commandcode/MEMORY.md](./.commandcode/MEMORY.md)** as the codebase grows or whenever discover something worth documenting.
+> **Read [.omp/MEMORY.md](./.omp/MEMORY.md) first** — it contains the full architecture, schema details, patterns, and workflows for this project.
+> **Update [.omp/MEMORY.md](./.omp/MEMORY.md)** as the codebase grows or whenever you discover something worth documenting.
 > **Use MCP Context7** to fetch latest documentation for Drizzle ORM, Hono, Bun, and PostgreSQL when working with unfamiliar APIs or resolving issues.
 
 ## Project Overview
 
 See @README.md for project overview and @package.json for available bun/bunx commands for this project.
 
-## Code Style Guidelines
+## Architecture — Multi-Team Agent System
 
-- Use descriptive variable names
-- Follow existing patterns in the codebase
-- Extract complex conditions into meaningful boolean variables
+This project uses a **3-team agent system** with strict chain of command:
 
-## Architecture Notes
+```
+                      ┌── User ──┐
+                      └────┬─────┘
+                           │
+                     Orchestrator
+                    /       |       \
+              Planning   Engineering  Validation
+                 │           │           │
+             Strategist  Backend Dev  QA + Security
+```
 
-See [.commandcode/MEMORY.md](./.commandcode/MEMORY.md) for all architectural decisions and patterns.
+### Roles & Models
 
-## Common Workflows
+| Role | Model | Responsibility |
+|------|-------|----------------|
+| **Orchestrator** | `deepseek-v4-pro` | Sole interface to user, delegates to leads, synthesizes results |
+| **Planning Lead** | `deepseek-v4-pro` | Architecture planning, delegates to Strategist |
+| **Strategist** | `deepseek-v4-flash` | Research, analysis, detailed planning |
+| **Engineering Lead** | `deepseek-v4-pro` | Coordinates implementation, delegates to Backend Developer |
+| **Backend Developer** | `deepseek-v4-flash` | Writes code, creates files, implements features |
+| **Validation Lead** | `deepseek-v4-pro` | Coordinates review, delegates to QA/Security |
+| **QA Engineer** | `deepseek-v4-flash` | Code review, bug detection, edge cases |
+| **Security Reviewer** | `deepseek-v4-flash` | Security audit, vulnerability check |
 
-See [.commandcode/MEMORY.md](./.commandcode/MEMORY.md) for documented workflows and commands.
+### Chain of Command (Strict)
+
+```
+Orchestrator → Team Lead → Worker
+```
+
+- Orchestrator **never** delegates directly to workers
+- Leads **must** delegate execution to their workers via `task`
+- Leads review worker output and report back to Orchestrator
+- Only Orchestrator delivers results to the user
+
+### Feedback Flow
+
+```
+Worker → Lead → Orchestrator → User
+```
+
+No agent communicates with the user except the Orchestrator.
+
+### Execution Order (Single Feature)
+
+```
+Planning ──> Engineering ──> Validation  (sequential)
+           (parallel across teams where possible)
+```
+
+- Planning must finish before Engineering starts (needs the spec)
+- Engineering must finish before Validation starts (needs code to review)
+- Engineering Lead and Validation Lead can overlap after Planning completes
+
+## Project Structure
+
+```
+src/
+├── index.ts                      # App entry, route registration via app.route()
+├── controllers/                  # Flat Hono sub-app controllers
+│   └── company.controller.ts
+├── services/                     # Domain subdirectories
+│   └── company/
+│       ├── company.service.ts
+│       └── company.service.interface.ts
+├── repositories/                 # Domain subdirectories
+│   └── company/
+│       ├── company.repository.ts
+│       └── company.repository.interface.ts
+├── cores/                        # DI infrastructure
+│   ├── container.ts              # Inversify Container
+│   └── types.ts                  # TYPES symbols
+├── dtos/                         # Data transfer objects (flat)
+│   └── company.dto.ts
+└── db/
+    ├── index.ts                  # DB init
+    ├── schema/                   # 25 table definitions
+    ├── migrations/               # 7 migration files
+    ├── seed/                     # Seed system (10 files)
+    └── utils/
+        └── default-columns.ts
+```
+
+## Project Context — Employee Service
+
+- **Runtime**: Bun (hot reload via `--hot`)
+- **Framework**: Hono v4 (TypeScript, strict mode)
+- **Database**: PostgreSQL
+- **ORM**: Drizzle ORM (`node-postgres` driver, snake_case casing)
+- **DI**: Inversify (decorators, container in `cores/`)
+- **Migrations**: drizzle-kit (generate → migrate workflow)
+- **Date lib**: Luxon (Asia/Jakarta timezone)
+- **No frontend**: Backend microservice only
+
+## Plan & Review File Convention
+
+All plans and reviews are stored under `.omp/`:
+
+- **Plans**: `.omp/plans/<context>/<running-number>.<plan-name>.md`
+- **Reviews**: `.omp/reviews/<context>/<running-number>.<review-name>.md`
+
+Context is kebab-case (e.g. `companies-endpoint`, `seed-architecture`).
+Running numbers zero-padded (e.g. `01`, `02`).
+
+```
+.omp/plans/companies-endpoint/01.companies-di-plan.md
+.omp/reviews/companies-endpoint/01.companies-di-review.md
+```
 
 ## Graphify Workflow
 
@@ -90,90 +189,31 @@ Use:
 - Graphify for code relationships and implementation patterns
 - taste-1 for coding style consistency
 
-## Plan Mode
+## Coding Style
 
-- Always use plan mode when the prompt includes "create plan" or involves multiple steps.
-- If something goes sideways, STOP and re-plan immediately. Don't keep pushing.
-- Use plan mode for verification steps, not just building.
-- Always ask questions to get more clarity.
-- Make high level instruction, just create the step by step, dont put the code
-- Write detailed specs upfront to reduce ambiguity.
-- Always break down tasks with their dependencies.
-- Always create plan task files in `./<worktree-directory>/.commandcode/tasks/<context>/<running-number>.<task-title>.md`
-
-## Agent System
-
-This project uses a multi-agent setup where different AI models handle planning, implementation, and review. Configuration is in `.commandcode/settings.local.json`.
-
-### Senior Engineer (`senior-engineer`)
-
-- **Model**: DeepSeek V4 Pro
-- **Activates**: Automatically in plan mode (`Shift+Tab` or `/plan`)
-- **Handles**: Architecture reviews, schema design, route planning, database decisions, migration planning
-- **Config**: `.commandcode/agents/senior-engineer/AGENT.md`
-- Has full knowledge of the project schema, patterns (UUIDv7, soft-delete, audit columns), and tech stack
-
-### Junior Engineer (`junior-engineer`)
-
-- **Model**: Kimi K2.6
-- **Activates**: Automatically during implementation (after plan approval)
-- **Handles**: Writing code, creating schema files, generating migrations, adding routes, testing
-- **Config**: `.commandcode/agents/junior-engineer/AGENT.md`
-- Follows the plan exactly as designed by the senior engineer — no deviation
-
-### Code Reviewer (`code-reviewer`)
-
-- **Model**: null (inherits active model)
-- **Activates**: When reviewing implemented code against the plan (`/review` or manual)
-- **Handles**: Code review against plan, pattern enforcement, migration verification, style checks
-- **Config**: `.commandcode/agents/code-reviewer/AGENT.md`
-- Flags deviations, bugs, style violations, and pattern breaks with location/problem/fix format
-
-### Workflow
-
-1. Developer enters plan mode → senior engineer creates plan
-2. Plan gets reviewed and approved
-3. Junior engineer implements the plan
-
-Both agents share the same project context from `.commandcode/MEMORY.md`.
-**Agents read MEMORY.md first** before starting any work to get full project context.
-
-### Review & Re-plan Loop
-
-1. **Senior Engineer** creates plan in `./<worktree-directory>/.commandcode/tasks/<context>/<running-number>.<task-title>.md`
-2. **Junior Engineer** implements the tasks from the plan file
-3. **Code Reviewer** reviews the implemented code against the plan — if issues found, writes review to `./<worktree-directory>/.commandcode/review-code/<context>/<running-number>.<review-code-title>.md`
-4. **Senior Engineer** reads the review file, loops back to step 1 (re-plan based on feedback)
-5. Maximum **3 loops** — if still unresolved after 3 cycles, stop and ask for instruction
-
-**How to tell which agent is active:** There's no direct agent indicator — the current mode tells you: plan mode means `senior-engineer`, auto-accept/default mode means `junior-engineer`. Check the mode label displayed in the UI.
+- Use descriptive variable names
+- Follow existing patterns in the codebase
+- Extract complex conditions into meaningful boolean variables
+- Interface naming: `<domain>.<layer>.interface.ts` (e.g. `company.service.interface.ts`)
+- No `I` prefix on interfaces — suffix `.interface.ts` on filename
 
 ## Git Workflow
 
-- When creating a git worktree, always branch from `develop` (or `dev`)
-- Always create git worktrees inside `./.commandcode/worktree/<worktree-name>`
-- When a git worktree is created, always create a new branch with the same name as `<worktree-name>`
-- Don't commit anything before being instructed to
-- Always verify new/updated files exist inside the current git worktree directory before making changes
-- Always commit changes to the `.commandcode/taste/` folder alongside related work
+- Branch from `develop` (or `dev`)
+- Create git worktrees inside `.omp/worktree/<worktree-name>`
+- Worktree name matches branch name
+- Don't commit without instruction
+- Verify new/updated files exist inside the current worktree directory
+- Commit using `commit-context` skill with conventional commits (subject ≤50 chars)
 
+## Commands
 
-## Plan & Review File Convention
+| Command | Purpose |
+|---------|---------|
+| `bun run dev` | Start dev server with hot reload (port 3000) |
+| `bun run seed` | Seed database (truncate + insert) |
+| `bun run generate` | Generate migrations from schema changes |
+| `bun run migrate` | Apply pending migrations |
+| `bun run studio` | Open Drizzle Studio (port 3123) |
 
-All plans and reviews must be stored under the `.omp/` directory in the worktree root:
-
-- **Plans**: `.omp/plans/<context>/<running-number>.<plan-name>.md`
-- **Reviews**: `.omp/reviews/<context>/<running-number>.<review-name>.md`
-
-Context should be a short kebab-case name representing the feature or domain (e.g. `companies-endpoint`, `seed-architecture`).
-Running numbers are zero-padded (e.g. `01`, `02`).
-Plan and review filenames use kebab-case (e.g. `01.companies-di-plan.md`, `01.companies-di-review.md`).
-
-Example:
-```
-.omp/plans/companies-endpoint/01.companies-di-plan.md
-.omp/reviews/companies-endpoint/01.companies-di-review.md
-```
-
-All agents (Planning Lead, Engineering Lead, Validation Lead, and their workers) MUST follow this convention when producing plan or review documents.
 <!-- AGENTS.md = operational content (agents, workflow, git, rules). MEMORY.md = reference content (project context, schema, patterns, knowledge). -->
