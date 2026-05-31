@@ -254,6 +254,7 @@ function singularize(name: string): string {
   if (name.endsWith("ses")) return name.slice(0, -2);
   if (name.endsWith("es") && !name.endsWith("ss")) return name.slice(0, -1);
   if (name.endsWith("s") && !name.endsWith("ss")) return name.slice(0, -1);
+  return name;
 }
 
 function toPascalCase(s: string): string {
@@ -261,10 +262,12 @@ function toPascalCase(s: string): string {
   const words = s.split(/[-_]/).map((w) => w.charAt(0).toUpperCase() + w.slice(1));
   // Also split camelCase by re-processing the joined result
   const joined = words.join("");
-  return (
-    joined.charAt(0).toUpperCase() +
-    joined.slice(1).replace(/([A-Z])/g, (m) => ` ${m}`).split(" ").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join("")
-  );
+  return joined
+    .replace(/([A-Z])/g, " $1")
+    .split(" ")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join("")
+    .replace(/^\s+/, "");
 }
 
 // ---------------------------------------------------------------------------
