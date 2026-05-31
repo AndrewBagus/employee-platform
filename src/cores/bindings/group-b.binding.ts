@@ -1,0 +1,45 @@
+import { Container } from "inversify";
+import { TYPES } from "../types";
+import { CompanyRepository } from "@repositories/company/company.repository";
+import { CompanyService } from "@services/company/company.service";
+import { DepartmentRepository } from "@repositories/departments/departments.repository";
+import { DepartmentService } from "@services/departments/departments.service";
+import { PositionRepository } from "@repositories/positions/positions.repository";
+import { PositionService } from "@services/positions/positions.service";
+import { AllowanceRepository } from "@repositories/allowances/allowances.repository";
+import { AllowanceService } from "@services/allowances/allowances.service";
+import { WarningGradeRepository } from "@repositories/warningGrades/warningGrades.repository";
+import { WarningGradeService } from "@services/warningGrades/warningGrades.service";
+import { WarningRepository } from "@repositories/warnings/warnings.repository";
+import { WarningService } from "@services/warnings/warnings.service";
+import { TrainingTypeRepository } from "@repositories/trainingTypes/trainingTypes.repository";
+import { TrainingTypeService } from "@services/trainingTypes/trainingTypes.service";
+import { TrainingRepository } from "@repositories/trainings/trainings.repository";
+import { TrainingService } from "@services/trainings/trainings.service";
+import { TrainingScheduleRepository } from "@repositories/trainingSchedules/trainingSchedules.repository";
+import { TrainingScheduleService } from "@services/trainingSchedules/trainingSchedules.service";
+import { WorkingZoneRepository } from "@repositories/workingZones/workingZones.repository";
+import { WorkingZoneService } from "@services/workingZones/workingZones.service";
+
+export function registerGroupBBindings(container: Container) {
+  container.bind(TYPES.CompanyRepositoryInterface).to(CompanyRepository);
+  container.bind(TYPES.CompanyServiceInterface).to(CompanyService);
+  container.bind(TYPES.DepartmentRepositoryInterface).to(DepartmentRepository);
+  container.bind(TYPES.DepartmentServiceInterface).to(DepartmentService);
+  container.bind(TYPES.PositionRepositoryInterface).to(PositionRepository);
+  container.bind(TYPES.PositionServiceInterface).to(PositionService);
+  container.bind(TYPES.AllowanceRepositoryInterface).to(AllowanceRepository);
+  container.bind(TYPES.AllowanceServiceInterface).to(AllowanceService);
+  container.bind(TYPES.WarningGradeRepositoryInterface).to(WarningGradeRepository);
+  container.bind(TYPES.WarningGradeServiceInterface).to(WarningGradeService);
+  container.bind(TYPES.WarningRepositoryInterface).to(WarningRepository);
+  container.bind(TYPES.WarningServiceInterface).to(WarningService);
+  container.bind(TYPES.TrainingTypeRepositoryInterface).to(TrainingTypeRepository);
+  container.bind(TYPES.TrainingTypeServiceInterface).to(TrainingTypeService);
+  container.bind(TYPES.TrainingRepositoryInterface).to(TrainingRepository);
+  container.bind(TYPES.TrainingServiceInterface).to(TrainingService);
+  container.bind(TYPES.TrainingScheduleRepositoryInterface).to(TrainingScheduleRepository);
+  container.bind(TYPES.TrainingScheduleServiceInterface).to(TrainingScheduleService);
+  container.bind(TYPES.WorkingZoneRepositoryInterface).to(WorkingZoneRepository);
+  container.bind(TYPES.WorkingZoneServiceInterface).to(WorkingZoneService);
+}
