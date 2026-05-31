@@ -1,7 +1,7 @@
 import { Hono } from "hono";
-import { container } from "../cores/container";
-import { TYPES } from "../cores/types";
-import type { CompanyServiceInterface } from "../services/company/company.service.interface";
+import { container } from "@cores/container";
+import { TYPES } from "@cores/types";
+import type { CompanyServiceInterface } from "@services/company/company.service.interface";
 
 const companyController = new Hono();
 

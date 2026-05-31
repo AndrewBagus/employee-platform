@@ -1,9 +1,9 @@
 import type { NodePgDatabase } from "drizzle-orm/node-postgres";
-import { countries } from "../schema/countries";
-import { religion } from "../schema/religion";
-import { grades } from "../schema/grades";
-import { costCenters } from "../schema/costCenters";
-import { projects } from "../schema/projects";
+import { countries } from "@db/schema/countries";
+import { religion } from "@db/schema/religion";
+import { grades } from "@db/schema/grades";
+import { costCenters } from "@db/schema/costCenters";
+import { projects } from "@db/schema/projects";
 import { defaultColumns } from "./utils";
 
 // ── Countries ──────────────────────────────────────────────

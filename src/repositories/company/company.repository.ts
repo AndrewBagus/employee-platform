@@ -1,10 +1,10 @@
 import { injectable, inject } from "inversify";
 import type { NodePgDatabase } from "drizzle-orm/node-postgres";
 import { eq } from "drizzle-orm";
-import { TYPES } from "../../cores/types";
+import { TYPES } from "@cores/types";
 import type { CompanyRepositoryInterface } from "./company.repository.interface";
-import { companies } from "../../db/schema/companies";
-import type { CompanyResponseDto } from "../../dtos/company.dto";
+import { companies } from "@db/schema/companies";
+import type { CompanyResponseDto } from "@dtos/company.dto";
 
 @injectable()
 export class CompanyRepository implements CompanyRepositoryInterface {

@@ -1,5 +1,5 @@
 import { randomUUIDv7 } from "bun";
-import { initDatabase } from "../index";
+import { initDatabase } from "@db/index";
 
 export const db = initDatabase;
 

@@ -1,9 +1,9 @@
 import { describe, test, expect } from "bun:test";
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/node-postgres";
-import { CompanyRepository } from "../../../../src/repositories/company/company.repository";
-import type { CompanyRepositoryInterface } from "../../../../src/repositories/company/company.repository.interface";
-import { companies } from "../../../../src/db/schema/companies";
+import { CompanyRepository } from "@repositories/company/company.repository";
+import type { CompanyRepositoryInterface } from "@repositories/company/company.repository.interface";
+import { companies } from "@db/schema/companies";
 
 const testDb = drizzle({
   connection: "postgresql://test:test@localhost:5432/test",

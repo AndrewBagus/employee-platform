@@ -1,4 +1,4 @@
-import { initDatabase } from "../index";
+import { initDatabase } from "@db/index";
 import { truncateAll } from "./truncate";
 import { seedRootMaster } from "./00-root-master";
 import { seedCompanies } from "./01-companies";

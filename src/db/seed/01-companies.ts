@@ -1,5 +1,5 @@
 import type { NodePgDatabase } from "drizzle-orm/node-postgres";
-import { companies } from "../schema/companies";
+import { companies } from "@db/schema/companies";
 import { defaultColumns } from "./utils";
 import { COUNTRY_IDS } from "./00-root-master";
 

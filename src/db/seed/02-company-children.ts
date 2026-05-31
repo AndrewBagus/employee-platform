@@ -1,10 +1,10 @@
 import type { NodePgDatabase } from "drizzle-orm/node-postgres";
-import { departments } from "../schema/departments";
-import { workingZones } from "../schema/workingZones";
-import { trainingTypes } from "../schema/trainingTypes";
-import { trainings } from "../schema/trainings";
-import { trainingSchedules } from "../schema/trainingSchedules";
-import { warningGrades } from "../schema/warningGrades";
+import { departments } from "@db/schema/departments";
+import { workingZones } from "@db/schema/workingZones";
+import { trainingTypes } from "@db/schema/trainingTypes";
+import { trainings } from "@db/schema/trainings";
+import { trainingSchedules } from "@db/schema/trainingSchedules";
+import { warningGrades } from "@db/schema/warningGrades";
 import { defaultColumns } from "./utils";
 import { COMPANY_IDS } from "./01-companies";
 

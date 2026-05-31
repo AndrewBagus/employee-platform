@@ -1,5 +1,5 @@
 import type { NodePgDatabase } from "drizzle-orm/node-postgres";
-import { positions } from "../schema/positions";
+import { positions } from "@db/schema/positions";
 import { defaultColumns } from "./utils";
 import { DEPT_IDS } from "./02-company-children";
 

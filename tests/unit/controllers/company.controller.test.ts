@@ -1,9 +1,9 @@
 import { describe, test, expect, mock } from "bun:test";
 import { Hono } from "hono";
-import { container } from "../../../src/cores/container";
-import { TYPES } from "../../../src/cores/types";
-import type { CompanyServiceInterface } from "../../../src/services/company/company.service.interface";
-import type { CompanyResponseDto } from "../../../src/dtos/company.dto";
+import { container } from "@cores/container";
+import { TYPES } from "@cores/types";
+import type { CompanyServiceInterface } from "@services/company/company.service.interface";
+import type { CompanyResponseDto } from "@dtos/company.dto";
 
 describe("CompanyController", () => {
   test("GET / returns companies successfully", async () => {

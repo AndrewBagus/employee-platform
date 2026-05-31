@@ -2,8 +2,8 @@ import "reflect-metadata";
 import { Container } from "inversify";
 import { drizzle, NodePgDatabase } from "drizzle-orm/node-postgres";
 import { TYPES } from "./types";
-import { CompanyRepository } from "../repositories/company/company.repository";
-import { CompanyService } from "../services/company/company.service";
+import { CompanyRepository } from "@repositories/company/company.repository";
+import { CompanyService } from "@services/company/company.service";
 
 const container = new Container();
 

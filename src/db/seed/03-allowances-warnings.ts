@@ -1,6 +1,6 @@
 import type { NodePgDatabase } from "drizzle-orm/node-postgres";
-import { allowances } from "../schema/allowances";
-import { warnings } from "../schema/warnings";
+import { allowances } from "@db/schema/allowances";
+import { warnings } from "@db/schema/warnings";
 import { defaultColumns } from "./utils";
 import { COUNTRY_IDS } from "./00-root-master";
 import { COMPANY_IDS } from "./01-companies";
