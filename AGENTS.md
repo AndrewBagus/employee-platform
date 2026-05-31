@@ -126,13 +126,19 @@ mysql2, singlestore). Only check `src/` and `tests/`.
 
 ---
 
-## Git Workflow
+## Git Workflow — Never Auto-Commit
 
+**Do NOT commit unless the user explicitly says "commit" or "commit all changes."**
+No auto-commits, no premature commits. Wait for the instruction.
+
+Even if a task is "complete" — tests pass, diagnostics clean — do NOT commit
+without being told to.
+
+When instructed, use `commit-context` skill:
 - Branch from `develop` / `dev`
 - Worktrees inside `.omp/worktree/<worktree-name>`
-- Don't commit without instruction
 - Verify files exist in the current worktree before making changes
-- Commit with `commit-context` skill, conventional commits (subject ≤50 chars)
+- Conventional commits (subject ≤50 chars)
 
 ---
 
