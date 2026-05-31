@@ -1,13 +1,13 @@
 import { injectable, inject } from "inversify";
 import type { NodePgDatabase } from "drizzle-orm/node-postgres";
 import { eq } from "drizzle-orm";
-import { TYPES } from "../../di/identifiers";
-import type { ICompanyRepository } from "./interfaces/ICompanyRepository";
+import { TYPES } from "../../cores/types";
+import type { CompanyRepositoryInterface } from "./company.repository.interface";
 import { companies } from "../../db/schema/companies";
-import type { CompanyResponseDto } from "./dtos/company.dto";
+import type { CompanyResponseDto } from "../../dtos/company.dto";
 
 @injectable()
-export class CompanyRepository implements ICompanyRepository {
+export class CompanyRepository implements CompanyRepositoryInterface {
   constructor(
     @inject(TYPES.Database) private readonly db: NodePgDatabase,
   ) {}

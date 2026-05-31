@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { Hono } from "hono";
 import { DateTime } from "luxon";
-import { registerCompanyRoutes } from "./modules/companies/company.routes";
+import companyController from "./controllers/company.controller";
 
 const app = new Hono();
 
@@ -18,6 +18,6 @@ app.get("/", (c) => {
 });
 
 // Register domain routes
-registerCompanyRoutes(app);
+app.route("/companies", companyController);
 
 export default app;
