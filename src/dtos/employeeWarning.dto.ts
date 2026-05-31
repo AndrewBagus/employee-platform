@@ -12,7 +12,7 @@ export interface EMployeeWarningResponseDto {
 import { z } from "zod";
 
 export const CreateEMployeeWarningSchema = z.object({
-  employeeId: z.string().min(1, "EMployeeId is required"),
+  employeeId: z.string().uuid("EMployeeId is required must be a valid UUID"),
   warningStartDate: z.coerce.date(),
   warningEndDate: z.coerce.date().optional(),
   warningStatus: z.enum(["PERMANENT", "TEMPORARY"]).optional(),
@@ -21,7 +21,7 @@ export const CreateEMployeeWarningSchema = z.object({
 export type CreateEMployeeWarningDto = z.infer<typeof CreateEMployeeWarningSchema>;
 
 export const UpdateEMployeeWarningSchema = z.object({
-  employeeId: z.string().min(1).optional(),
+  employeeId: z.string().uuid().optional(),
   warningStartDate: z.coerce.date().optional(),
   warningEndDate: z.coerce.date().optional(),
   warningStatus: z.enum(["PERMANENT", "TEMPORARY"]).optional(),

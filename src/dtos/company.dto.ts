@@ -21,7 +21,7 @@ import { z } from "zod";
 export const CreateCompanySchema = z.object({
   name: z.string().min(1, "Name is required"),
   type: z.enum(["GROUP", "CLIENT", "SUBCON"], { message: "Type must be GROUP, CLIENT, or SUBCON" }),
-  countryId: z.string().min(1, "Country ID is required"),
+  countryId: z.string().uuid("Country ID is required must be a valid UUID"),
   nameShort: z.string().optional(),
   haveWorkerEmployee: z.boolean().optional(),
   isLdap: z.boolean().optional(),
@@ -33,7 +33,7 @@ export const UpdateCompanySchema = z.object({
   name: z.string().min(1).optional(),
   nameShort: z.string().optional(),
   type: z.enum(["GROUP", "CLIENT", "SUBCON"]).optional(),
-  countryId: z.string().min(1).optional(),
+  countryId: z.string().uuid().optional(),
   haveWorkerEmployee: z.boolean().optional(),
   isLdap: z.boolean().optional(),
 });

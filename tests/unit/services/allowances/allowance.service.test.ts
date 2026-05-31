@@ -10,8 +10,8 @@ describe("AllowanceService", () => {
     create: mock((_data: CreateALlowanceDto) =>
       Promise.resolve<ALlowanceResponseDto>({
         id: "1",
-        companyId: "c-1",
-        currencyId: "cur-1",
+        companyId: "00000000-0000-4000-8000-000000000001",
+        currencyId: "00000000-0000-4000-8000-000000000006",
         name: "Transport",
         nominal: 100000,
         remark: null,
@@ -20,8 +20,8 @@ describe("AllowanceService", () => {
     update: mock((_id: string, _data: UpdateALlowanceDto) =>
       Promise.resolve<ALlowanceResponseDto>({
         id: "1",
-        companyId: "c-1",
-        currencyId: "cur-1",
+        companyId: "00000000-0000-4000-8000-000000000001",
+        currencyId: "00000000-0000-4000-8000-000000000006",
         name: "Transport",
         nominal: 100000,
         remark: null,
@@ -48,7 +48,7 @@ describe("AllowanceService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new AllowanceService(repo);
-    const input: CreateALlowanceDto = { companyId: "c-1", currencyId: "cur-1", name: "Transport", nominal: 100000 };
+    const input: CreateALlowanceDto = { companyId: "00000000-0000-4000-8000-000000000001", currencyId: "00000000-0000-4000-8000-000000000006", name: "Transport", nominal: 100000 };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

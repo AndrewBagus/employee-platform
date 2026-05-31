@@ -12,7 +12,7 @@ describe("CompanyService", () => {
     create: mock((_data: CreateCompanyDto) =>
       Promise.resolve<CompanyResponseDto>({
         id: "mock-id",
-        countryId: "country-1",
+        countryId: "00000000-0000-4000-8000-000000000005",
         name: "Mock Corp",
         nameShort: "MC",
         type: "CLIENT",
@@ -29,7 +29,7 @@ describe("CompanyService", () => {
     update: mock((_id: string, _data: UpdateCompanyDto) =>
       Promise.resolve<CompanyResponseDto>({
         id: "mock-id",
-        countryId: "country-1",
+        countryId: "00000000-0000-4000-8000-000000000005",
         name: "Mock Corp",
         nameShort: "MC",
         type: "CLIENT",
@@ -84,7 +84,7 @@ describe("CompanyService", () => {
     const mockRepository = makeMockRepo();
     const service = new CompanyService(mockRepository);
 
-    const input: CreateCompanyDto = { name: "Valid Corp", type: "CLIENT", countryId: "country-1" };
+    const input: CreateCompanyDto = { name: "Valid Corp", type: "CLIENT", countryId: "00000000-0000-4000-8000-000000000005" };
     await service.create(input);
 
     expect(mockRepository.create).toHaveBeenCalledWith(input);
@@ -109,7 +109,7 @@ describe("CompanyService", () => {
     const mockRepository = makeMockRepo();
     const existing: CompanyResponseDto = {
       id: "existing-id",
-      countryId: "c-1",
+      countryId: "00000000-0000-4000-8000-000000000001",
       name: "Old Name",
       nameShort: null,
       type: "CLIENT",
@@ -144,7 +144,7 @@ describe("CompanyService", () => {
     const mockRepository = makeMockRepo();
     const existing: CompanyResponseDto = {
       id: "existing-id",
-      countryId: "c-1",
+      countryId: "00000000-0000-4000-8000-000000000001",
       name: "To Delete",
       nameShort: null,
       type: "SUBCON",

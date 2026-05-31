@@ -25,11 +25,11 @@ export interface EMployeeResponseDto {
 import { z } from "zod";
 
 export const CreateEMployeeSchema = z.object({
-  companyId: z.string().min(1, "COmpanyId is required"),
-  departmentId: z.string().min(1, "DEpartmentId is required"),
-  positionId: z.string().min(1, "POsitionId is required"),
+  companyId: z.string().uuid("COmpanyId is required must be a valid UUID"),
+  departmentId: z.string().uuid("DEpartmentId is required must be a valid UUID"),
+  positionId: z.string().uuid("POsitionId is required must be a valid UUID"),
   supervisorId: z.string().optional(),
-  fingerId: z.string().min(1, "FIngerId is required"),
+  fingerId: z.string().min(1, "FingerId is required"),
   firstName: z.string().min(1, "FIrstName is required"),
   middleName: z.string().optional(),
   lastName: z.string().optional(),
@@ -47,9 +47,9 @@ export const CreateEMployeeSchema = z.object({
 export type CreateEMployeeDto = z.infer<typeof CreateEMployeeSchema>;
 
 export const UpdateEMployeeSchema = z.object({
-  companyId: z.string().min(1).optional(),
-  departmentId: z.string().min(1).optional(),
-  positionId: z.string().min(1).optional(),
+  companyId: z.string().uuid().optional(),
+  departmentId: z.string().uuid().optional(),
+  positionId: z.string().uuid().optional(),
   supervisorId: z.string().optional(),
   fingerId: z.string().min(1).optional(),
   firstName: z.string().min(1).optional(),

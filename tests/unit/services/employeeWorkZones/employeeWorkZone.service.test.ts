@@ -10,8 +10,8 @@ describe("EmployeeWorkZoneService", () => {
     create: mock((_data: CreateEMployeeWorkZoneDto) =>
       Promise.resolve<EMployeeWorkZoneResponseDto>({
         id: "1",
-        employeeId: "emp-1",
-        workingZoneId: "wz-1",
+        employeeId: "00000000-0000-4000-8000-000000000002",
+        workingZoneId: "00000000-0000-4000-8000-000000000009",
         createdAt: new Date(),
         createdBy: null,
         updatedAt: null,
@@ -22,8 +22,8 @@ describe("EmployeeWorkZoneService", () => {
     update: mock((_id: string, _data: UpdateEMployeeWorkZoneDto) =>
       Promise.resolve<EMployeeWorkZoneResponseDto>({
         id: "1",
-        employeeId: "emp-1",
-        workingZoneId: "wz-1",
+        employeeId: "00000000-0000-4000-8000-000000000002",
+        workingZoneId: "00000000-0000-4000-8000-000000000009",
         createdAt: new Date(),
         createdBy: null,
         updatedAt: null,
@@ -52,7 +52,7 @@ describe("EmployeeWorkZoneService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new EmployeeWorkZoneService(repo);
-    const input: CreateEMployeeWorkZoneDto = { employeeId: "emp-1", workingZoneId: "wz-1" };
+    const input: CreateEMployeeWorkZoneDto = { employeeId: "00000000-0000-4000-8000-000000000002", workingZoneId: "00000000-0000-4000-8000-000000000009" };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

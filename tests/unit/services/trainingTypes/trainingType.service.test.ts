@@ -10,7 +10,7 @@ describe("TrainingTypeService", () => {
     create: mock((_data: CreateTRainingTypeDto) =>
       Promise.resolve<TRainingTypeResponseDto>({
         id: "1",
-        companyId: "c-1",
+        companyId: "00000000-0000-4000-8000-000000000001",
         name: "Technical",
         remark: null,
         createdAt: new Date(),
@@ -23,7 +23,7 @@ describe("TrainingTypeService", () => {
     update: mock((_id: string, _data: UpdateTRainingTypeDto) =>
       Promise.resolve<TRainingTypeResponseDto>({
         id: "1",
-        companyId: "c-1",
+        companyId: "00000000-0000-4000-8000-000000000001",
         name: "Technical",
         remark: null,
         createdAt: new Date(),
@@ -54,7 +54,7 @@ describe("TrainingTypeService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new TrainingTypeService(repo);
-    const input: CreateTRainingTypeDto = { companyId: "c-1", name: "Technical" };
+    const input: CreateTRainingTypeDto = { companyId: "00000000-0000-4000-8000-000000000001", name: "Technical" };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

@@ -10,8 +10,8 @@ describe("EmployeeProjectService", () => {
     create: mock((_data: CreateEMployeeProjectDto) =>
       Promise.resolve<EMployeeProjectResponseDto>({
         id: "1",
-        employeeId: "emp-1",
-        projectId: "proj-1",
+        employeeId: "00000000-0000-4000-8000-000000000002",
+        projectId: "00000000-0000-4000-8000-000000000007",
         createdAt: new Date(),
         createdBy: null,
         updatedAt: null,
@@ -22,8 +22,8 @@ describe("EmployeeProjectService", () => {
     update: mock((_id: string, _data: UpdateEMployeeProjectDto) =>
       Promise.resolve<EMployeeProjectResponseDto>({
         id: "1",
-        employeeId: "emp-1",
-        projectId: "proj-1",
+        employeeId: "00000000-0000-4000-8000-000000000002",
+        projectId: "00000000-0000-4000-8000-000000000007",
         createdAt: new Date(),
         createdBy: null,
         updatedAt: null,
@@ -52,7 +52,7 @@ describe("EmployeeProjectService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new EmployeeProjectService(repo);
-    const input: CreateEMployeeProjectDto = { employeeId: "emp-1", projectId: "proj-1" };
+    const input: CreateEMployeeProjectDto = { employeeId: "00000000-0000-4000-8000-000000000002", projectId: "00000000-0000-4000-8000-000000000007" };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

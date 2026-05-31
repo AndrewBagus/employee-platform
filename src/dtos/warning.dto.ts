@@ -11,16 +11,16 @@ export interface WArningResponseDto {
 import { z } from "zod";
 
 export const CreateWArningSchema = z.object({
-  companyId: z.string().min(1, "COmpanyId is required"),
-  warningGradeId: z.string().min(1, "WArningGradeId is required"),
+  companyId: z.string().uuid("COmpanyId is required must be a valid UUID"),
+  warningGradeId: z.string().uuid("WArningGradeId is required must be a valid UUID"),
   name: z.string().min(1, "NAme is required"),
   remark: z.string().optional(),
 });
 export type CreateWArningDto = z.infer<typeof CreateWArningSchema>;
 
 export const UpdateWArningSchema = z.object({
-  companyId: z.string().min(1).optional(),
-  warningGradeId: z.string().min(1).optional(),
+  companyId: z.string().uuid().optional(),
+  warningGradeId: z.string().uuid().optional(),
   name: z.string().min(1).optional(),
   remark: z.string().optional(),
 });

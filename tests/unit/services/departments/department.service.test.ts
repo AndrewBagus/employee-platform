@@ -10,14 +10,14 @@ describe("DepartmentService", () => {
     create: mock((_data: CreateDEpartmentDto) =>
       Promise.resolve<DEpartmentResponseDto>({
         id: "1",
-        companyId: "c-1",
+        companyId: "00000000-0000-4000-8000-000000000001",
         name: "Engineering",
       }),
     ),
     update: mock((_id: string, _data: UpdateDEpartmentDto) =>
       Promise.resolve<DEpartmentResponseDto>({
         id: "1",
-        companyId: "c-1",
+        companyId: "00000000-0000-4000-8000-000000000001",
         name: "Engineering",
       }),
     ),
@@ -42,7 +42,7 @@ describe("DepartmentService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new DepartmentService(repo);
-    const input: CreateDEpartmentDto = { companyId: "c-1", name: "Engineering" };
+    const input: CreateDEpartmentDto = { companyId: "00000000-0000-4000-8000-000000000001", name: "Engineering" };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

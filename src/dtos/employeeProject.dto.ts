@@ -9,15 +9,15 @@ export interface EMployeeProjectResponseDto {
 import { z } from "zod";
 
 export const CreateEMployeeProjectSchema = z.object({
-  employeeId: z.string().min(1, "EMployeeId is required"),
-  projectId: z.string().min(1, "PRojectId is required"),
+  employeeId: z.string().uuid("EMployeeId is required must be a valid UUID"),
+  projectId: z.string().uuid("PRojectId is required must be a valid UUID"),
   remark: z.string().optional(),
 });
 export type CreateEMployeeProjectDto = z.infer<typeof CreateEMployeeProjectSchema>;
 
 export const UpdateEMployeeProjectSchema = z.object({
-  employeeId: z.string().min(1).optional(),
-  projectId: z.string().min(1).optional(),
+  employeeId: z.string().uuid().optional(),
+  projectId: z.string().uuid().optional(),
   remark: z.string().optional(),
 });
 export type UpdateEMployeeProjectDto = z.infer<typeof UpdateEMployeeProjectSchema>;

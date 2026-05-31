@@ -10,14 +10,14 @@ export interface EMployeeAddressResponseDto {
 import { z } from "zod";
 
 export const CreateEMployeeAddressSchema = z.object({
-  employeeId: z.string().min(1, "EMployeeId is required"),
+  employeeId: z.string().uuid("EMployeeId is required must be a valid UUID"),
   address: z.string().min(1, "ADdress is required"),
   remark: z.string().optional(),
 });
 export type CreateEMployeeAddressDto = z.infer<typeof CreateEMployeeAddressSchema>;
 
 export const UpdateEMployeeAddressSchema = z.object({
-  employeeId: z.string().min(1).optional(),
+  employeeId: z.string().uuid().optional(),
   address: z.string().min(1).optional(),
   remark: z.string().optional(),
 });

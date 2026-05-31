@@ -10,14 +10,14 @@ export interface WOrkingZoneResponseDto {
 import { z } from "zod";
 
 export const CreateWOrkingZoneSchema = z.object({
-  companyId: z.string().min(1, "COmpanyId is required"),
+  companyId: z.string().uuid("COmpanyId is required must be a valid UUID"),
   name: z.string().min(1, "NAme is required"),
   remark: z.string().optional(),
 });
 export type CreateWOrkingZoneDto = z.infer<typeof CreateWOrkingZoneSchema>;
 
 export const UpdateWOrkingZoneSchema = z.object({
-  companyId: z.string().min(1).optional(),
+  companyId: z.string().uuid().optional(),
   name: z.string().min(1).optional(),
   remark: z.string().optional(),
 });

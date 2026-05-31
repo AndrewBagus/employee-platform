@@ -12,7 +12,7 @@ export interface EMployeeMcuResponseDto {
 import { z } from "zod";
 
 export const CreateEMployeeMcuSchema = z.object({
-  employeeId: z.string().min(1, "EMployeeId is required"),
+  employeeId: z.string().uuid("EMployeeId is required must be a valid UUID"),
   mcuDate: z.coerce.date(),
   mcuEndDate: z.coerce.date().optional(),
   mcuStatus: z.enum(["PASS", "FAILED"]).optional(),
@@ -21,7 +21,7 @@ export const CreateEMployeeMcuSchema = z.object({
 export type CreateEMployeeMcuDto = z.infer<typeof CreateEMployeeMcuSchema>;
 
 export const UpdateEMployeeMcuSchema = z.object({
-  employeeId: z.string().min(1).optional(),
+  employeeId: z.string().uuid().optional(),
   mcuDate: z.coerce.date().optional(),
   mcuEndDate: z.coerce.date().optional(),
   mcuStatus: z.enum(["PASS", "FAILED"]).optional(),

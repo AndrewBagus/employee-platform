@@ -10,15 +10,15 @@ export interface EMployeeWorkZoneResponseDto {
 import { z } from "zod";
 
 export const CreateEMployeeWorkZoneSchema = z.object({
-  employeeId: z.string().min(1, "EMployeeId is required"),
-  workingZoneId: z.string().min(1, "WOrkingZoneId is required"),
+  employeeId: z.string().uuid("EMployeeId is required must be a valid UUID"),
+  workingZoneId: z.string().uuid("WOrkingZoneId is required must be a valid UUID"),
   remark: z.string().optional(),
 });
 export type CreateEMployeeWorkZoneDto = z.infer<typeof CreateEMployeeWorkZoneSchema>;
 
 export const UpdateEMployeeWorkZoneSchema = z.object({
-  employeeId: z.string().min(1).optional(),
-  workingZoneId: z.string().min(1).optional(),
+  employeeId: z.string().uuid().optional(),
+  workingZoneId: z.string().uuid().optional(),
   remark: z.string().optional(),
 });
 export type UpdateEMployeeWorkZoneDto = z.infer<typeof UpdateEMployeeWorkZoneSchema>;

@@ -11,7 +11,7 @@ export interface TRainingScheduleResponseDto {
 import { z } from "zod";
 
 export const CreateTRainingScheduleSchema = z.object({
-  companyId: z.string().min(1, "COmpanyId is required"),
+  companyId: z.string().uuid("COmpanyId is required must be a valid UUID"),
   trainingDate: z.coerce.date().optional(),
   trainingTime: z.string().optional(),
   remark: z.string().optional(),
@@ -19,7 +19,7 @@ export const CreateTRainingScheduleSchema = z.object({
 export type CreateTRainingScheduleDto = z.infer<typeof CreateTRainingScheduleSchema>;
 
 export const UpdateTRainingScheduleSchema = z.object({
-  companyId: z.string().min(1).optional(),
+  companyId: z.string().uuid().optional(),
   trainingDate: z.coerce.date().optional(),
   trainingTime: z.string().optional(),
   remark: z.string().optional(),

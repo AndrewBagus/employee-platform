@@ -10,7 +10,7 @@ describe("EmployeeAddressService", () => {
     create: mock((_data: CreateEMployeeAddressDto) =>
       Promise.resolve<EMployeeAddressResponseDto>({
         id: "1",
-        employeeId: "emp-1",
+        employeeId: "00000000-0000-4000-8000-000000000002",
         address: "Jl. Merdeka",
         rtRw: null,
         village: null,
@@ -28,7 +28,7 @@ describe("EmployeeAddressService", () => {
     update: mock((_id: string, _data: UpdateEMployeeAddressDto) =>
       Promise.resolve<EMployeeAddressResponseDto>({
         id: "1",
-        employeeId: "emp-1",
+        employeeId: "00000000-0000-4000-8000-000000000002",
         address: "Jl. Merdeka",
         rtRw: null,
         village: null,
@@ -64,7 +64,7 @@ describe("EmployeeAddressService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new EmployeeAddressService(repo);
-    const input: CreateEMployeeAddressDto = { employeeId: "emp-1", address: "Jl. Merdeka" };
+    const input: CreateEMployeeAddressDto = { employeeId: "00000000-0000-4000-8000-000000000002", address: "Jl. Merdeka" };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

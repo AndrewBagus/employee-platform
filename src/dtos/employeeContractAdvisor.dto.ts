@@ -10,14 +10,14 @@ export interface EMployeeContractAdvisorResponseDto {
 import { z } from "zod";
 
 export const CreateEMployeeContractAdvisorSchema = z.object({
-  employeeId: z.string().min(1, "EMployeeId is required"),
+  employeeId: z.string().uuid("EMployeeId is required must be a valid UUID"),
   order: z.number().int(),
   remark: z.string().optional(),
 });
 export type CreateEMployeeContractAdvisorDto = z.infer<typeof CreateEMployeeContractAdvisorSchema>;
 
 export const UpdateEMployeeContractAdvisorSchema = z.object({
-  employeeId: z.string().min(1).optional(),
+  employeeId: z.string().uuid().optional(),
   order: z.number().int().optional(),
   remark: z.string().optional(),
 });

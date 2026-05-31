@@ -10,14 +10,14 @@ export interface EMployeeLeaveAdvisorResponseDto {
 import { z } from "zod";
 
 export const CreateEMployeeLeaveAdvisorSchema = z.object({
-  employeeId: z.string().min(1, "EMployeeId is required"),
+  employeeId: z.string().uuid("EMployeeId is required must be a valid UUID"),
   order: z.number().int(),
   remark: z.string().optional(),
 });
 export type CreateEMployeeLeaveAdvisorDto = z.infer<typeof CreateEMployeeLeaveAdvisorSchema>;
 
 export const UpdateEMployeeLeaveAdvisorSchema = z.object({
-  employeeId: z.string().min(1).optional(),
+  employeeId: z.string().uuid().optional(),
   order: z.number().int().optional(),
   remark: z.string().optional(),
 });

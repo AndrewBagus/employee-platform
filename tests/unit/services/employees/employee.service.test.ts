@@ -10,9 +10,9 @@ describe("EmployeeService", () => {
     create: mock((_data: CreateEMployeeDto) =>
       Promise.resolve<EMployeeResponseDto>({
         id: "1",
-        companyId: "c-1",
-        departmentId: "dept-1",
-        positionId: "pos-1",
+        companyId: "00000000-0000-4000-8000-000000000001",
+        departmentId: "00000000-0000-4000-8000-000000000003",
+        positionId: "00000000-0000-4000-8000-000000000004",
         supervisorId: null,
         fingerId: "F001",
         firstName: "John",
@@ -33,9 +33,9 @@ describe("EmployeeService", () => {
     update: mock((_id: string, _data: UpdateEMployeeDto) =>
       Promise.resolve<EMployeeResponseDto>({
         id: "1",
-        companyId: "c-1",
-        departmentId: "dept-1",
-        positionId: "pos-1",
+        companyId: "00000000-0000-4000-8000-000000000001",
+        departmentId: "00000000-0000-4000-8000-000000000003",
+        positionId: "00000000-0000-4000-8000-000000000004",
         supervisorId: null,
         fingerId: "F001",
         firstName: "John",
@@ -75,9 +75,9 @@ describe("EmployeeService", () => {
     const repo = makeMockRepo();
     const svc = new EmployeeService(repo);
     const input: CreateEMployeeDto = {
-      companyId: "c-1",
-      departmentId: "dept-1",
-      positionId: "pos-1",
+      companyId: "00000000-0000-4000-8000-000000000001",
+      departmentId: "00000000-0000-4000-8000-000000000003",
+      positionId: "00000000-0000-4000-8000-000000000004",
       fingerId: "F001",
       firstName: "John",
       email: "john@example.com",

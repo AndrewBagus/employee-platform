@@ -10,7 +10,7 @@ describe("EmployeeLeaveAdvisorService", () => {
     create: mock((_data: CreateEMployeeLeaveAdvisorDto) =>
       Promise.resolve<EMployeeLeaveAdvisorResponseDto>({
         id: null,
-        employeeId: "emp-1",
+        employeeId: "00000000-0000-4000-8000-000000000002",
         order: 1,
         remark: null,
       }),
@@ -18,7 +18,7 @@ describe("EmployeeLeaveAdvisorService", () => {
     update: mock((_id: string, _data: UpdateEMployeeLeaveAdvisorDto) =>
       Promise.resolve<EMployeeLeaveAdvisorResponseDto>({
         id: null,
-        employeeId: "emp-1",
+        employeeId: "00000000-0000-4000-8000-000000000002",
         order: 1,
         remark: null,
       }),
@@ -44,7 +44,7 @@ describe("EmployeeLeaveAdvisorService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new EmployeeLeaveAdvisorService(repo);
-    const input: CreateEMployeeLeaveAdvisorDto = { employeeId: "emp-1", order: 1 };
+    const input: CreateEMployeeLeaveAdvisorDto = { employeeId: "00000000-0000-4000-8000-000000000002", order: 1 };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

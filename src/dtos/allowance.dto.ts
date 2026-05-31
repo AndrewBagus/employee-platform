@@ -12,8 +12,8 @@ export interface ALlowanceResponseDto {
 import { z } from "zod";
 
 export const CreateALlowanceSchema = z.object({
-  companyId: z.string().min(1, "COmpanyId is required"),
-  currencyId: z.string().min(1, "CUrrencyId is required"),
+  companyId: z.string().uuid("COmpanyId is required must be a valid UUID"),
+  currencyId: z.string().uuid("CUrrencyId is required must be a valid UUID"),
   name: z.string().min(1, "NAme is required"),
   nominal: z.coerce.number(),
   remark: z.string().optional(),
@@ -21,8 +21,8 @@ export const CreateALlowanceSchema = z.object({
 export type CreateALlowanceDto = z.infer<typeof CreateALlowanceSchema>;
 
 export const UpdateALlowanceSchema = z.object({
-  companyId: z.string().min(1).optional(),
-  currencyId: z.string().min(1).optional(),
+  companyId: z.string().uuid().optional(),
+  currencyId: z.string().uuid().optional(),
   name: z.string().min(1).optional(),
   nominal: z.coerce.number().optional(),
   remark: z.string().optional(),

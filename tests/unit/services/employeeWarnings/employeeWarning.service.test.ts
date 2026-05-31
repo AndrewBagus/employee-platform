@@ -10,7 +10,7 @@ describe("EmployeeWarningService", () => {
     create: mock((_data: CreateEMployeeWarningDto) =>
       Promise.resolve<EMployeeWarningResponseDto>({
         id: null,
-        employeeId: "emp-1",
+        employeeId: "00000000-0000-4000-8000-000000000002",
         warningStartDate: new Date(),
         warningEndDate: null,
         warningStatus: null,
@@ -20,7 +20,7 @@ describe("EmployeeWarningService", () => {
     update: mock((_id: string, _data: UpdateEMployeeWarningDto) =>
       Promise.resolve<EMployeeWarningResponseDto>({
         id: null,
-        employeeId: "emp-1",
+        employeeId: "00000000-0000-4000-8000-000000000002",
         warningStartDate: new Date(),
         warningEndDate: null,
         warningStatus: null,
@@ -48,7 +48,7 @@ describe("EmployeeWarningService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new EmployeeWarningService(repo);
-    const input: CreateEMployeeWarningDto = { employeeId: "emp-1", warningStartDate: new Date() };
+    const input: CreateEMployeeWarningDto = { employeeId: "00000000-0000-4000-8000-000000000002", warningStartDate: new Date() };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });

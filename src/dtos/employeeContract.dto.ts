@@ -12,7 +12,7 @@ export interface EMployeeContractResponseDto {
 import { z } from "zod";
 
 export const CreateEMployeeContractSchema = z.object({
-  employeeId: z.string().min(1, "EMployeeId is required"),
+  employeeId: z.string().uuid("EMployeeId is required must be a valid UUID"),
   startDate: z.coerce.date(),
   endDate: z.coerce.date(),
   terminationDate: z.coerce.date(),
@@ -21,7 +21,7 @@ export const CreateEMployeeContractSchema = z.object({
 export type CreateEMployeeContractDto = z.infer<typeof CreateEMployeeContractSchema>;
 
 export const UpdateEMployeeContractSchema = z.object({
-  employeeId: z.string().min(1).optional(),
+  employeeId: z.string().uuid().optional(),
   startDate: z.coerce.date().optional(),
   endDate: z.coerce.date().optional(),
   terminationDate: z.coerce.date().optional(),

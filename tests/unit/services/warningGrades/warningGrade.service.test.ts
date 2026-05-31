@@ -10,7 +10,7 @@ describe("WarningGradeService", () => {
     create: mock((_data: CreateWArningGradeDto) =>
       Promise.resolve<WArningGradeResponseDto>({
         id: null,
-        companyId: "c-1",
+        companyId: "00000000-0000-4000-8000-000000000001",
         name: "Grade A",
         remark: null,
       }),
@@ -18,7 +18,7 @@ describe("WarningGradeService", () => {
     update: mock((_id: string, _data: UpdateWArningGradeDto) =>
       Promise.resolve<WArningGradeResponseDto>({
         id: null,
-        companyId: "c-1",
+        companyId: "00000000-0000-4000-8000-000000000001",
         name: "Grade A",
         remark: null,
       }),
@@ -44,7 +44,7 @@ describe("WarningGradeService", () => {
   test("create delegates on valid input", async () => {
     const repo = makeMockRepo();
     const svc = new WarningGradeService(repo);
-    const input: CreateWArningGradeDto = { companyId: "c-1", name: "Grade A" };
+    const input: CreateWArningGradeDto = { companyId: "00000000-0000-4000-8000-000000000001", name: "Grade A" };
     await svc.create(input);
     expect(repo.create).toHaveBeenCalledWith(input);
   });
