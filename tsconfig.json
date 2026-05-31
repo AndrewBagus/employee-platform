@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "strict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
     "types": ["bun"]

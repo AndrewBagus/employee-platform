@@ -1,8 +1,7 @@
+import "reflect-metadata";
 import { Hono } from "hono";
 import { DateTime } from "luxon";
-import { drizzle } from "drizzle-orm/node-postgres";
-
-const db = drizzle(process.env.DATABASE_URL!);
+import { registerCompanyRoutes } from "./modules/companies/company.routes";
 
 const app = new Hono();
 
@@ -17,5 +16,8 @@ app.get("/health", (c) => {
 app.get("/", (c) => {
   return c.text("Hello Hono!");
 });
+
+// Register domain routes
+registerCompanyRoutes(app);
 
 export default app;
