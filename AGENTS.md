@@ -70,6 +70,13 @@ Use Graphify before implementation, refactoring, or architectural decisions.
 - inspect naming conventions, pagination/filter conventions
 - identify reusable utilities, affected modules
 
+## Lessons Learned Registry
+
+After fixing a bug or hitting a non-trivial gotcha, write a lesson to `.omp/lessons/`.
+Read `.omp/lessons/README.md` for the template format.
+
+**Always check existing lessons before debugging** — the fix may already be documented.
+
 ### Rules
 
 - Before creating new patterns: inspect existing ones first via Graphify
