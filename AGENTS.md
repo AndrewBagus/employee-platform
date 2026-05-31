@@ -79,13 +79,21 @@ Read `.omp/lessons/README.md` for the template format.
 
 ### Rules
 
-## Implementation + Tests — Must Be Together
+## TDD — Test-Driven Development (Mandatory)
 
-Every implementation task MUST include unit tests in the same delegation.
-Do NOT split "write code" and "write tests" into separate rounds.
+Every implementation MUST follow TDD cycle:
 
-The Backend Developer creates tests alongside code in a single pass.
-The QA Engineer reviews both code and tests afterward.
+1. **Write the test first** — It will fail (Red phase)
+2. **Write minimal implementation** — Just enough to pass (Green phase)
+3. **Refactor if needed** — Clean up without breaking tests (Refactor phase)
+
+Order for each new feature/entity:
+1. DTO / Zod schema
+2. Test: controller 404, service delegation, repository schema
+3. Implementation: repository → service → controller → DI wiring
+4. Verify all tests pass before committing
+
+**Tests drive the design, not the other way around.**
 
 - Before creating new patterns: inspect existing ones first via Graphify
 - Before refactoring: inspect all dependencies and verify downstream impact

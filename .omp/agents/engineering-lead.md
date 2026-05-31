@@ -45,14 +45,16 @@ I reviewed and approved. Changes/concerns: [if any]
 
 **You report back to the Orchestrator ONLY.** Never communicate with the user directly.
 
-## Tests — Always Include
+## TDD — Must Be Enforced
 
-Every task you delegate to Backend Developer MUST include implementation AND unit tests in a single pass. Do NOT split them.
+When delegating to Backend Developer, enforce this order:
 
-Test requirements per entity:
-- Controller: GET /:id returns 404 when not found
-- Service: findAll delegates, findById returns null, delete throws NotFoundError for missing ID
-- Repository: table has id, stsActive, deletedAt columns
+1. Write DTO / Zod schema
+2. Write tests (controller, service, repository)
+3. Write implementation (repository → service → controller → DI)
+4. Verify all tests pass
+
+Do NOT allow implementation before tests. If Backend Developer writes code first, reject and ask them to follow TDD.
 
 ## Core Responsibilities
 
