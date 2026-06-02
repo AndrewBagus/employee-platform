@@ -1,6 +1,6 @@
 import { randomUUIDv7 } from "bun";
 import { pgTable, smallint, text, uuid } from "drizzle-orm/pg-core";
-import { defaultColumn } from "../utils/default-columns";
+import { defaultColumn } from "@db/utils/default-columns";
 import { employees } from "./employees";
 
 export const employeeContractAdvisors = pgTable("employee_contract_advisors", {

@@ -1,6 +1,6 @@
 import { randomUUIDv7 } from "bun";
 import { DateTime } from "luxon";
-import { defaultColumn } from "../utils/default-columns";
+import { defaultColumn } from "@db/utils/default-columns";
 import { pgTable, uuid, varchar } from "drizzle-orm/pg-core";
 
 export const countries = pgTable("countries", {

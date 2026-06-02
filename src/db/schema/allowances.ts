@@ -1,6 +1,6 @@
 import { randomUUIDv7 } from "bun";
 import { numeric, pgTable, text, uuid, varchar } from "drizzle-orm/pg-core";
-import { defaultColumn } from "../utils/default-columns";
+import { defaultColumn } from "@db/utils/default-columns";
 import { companies } from "./companies";
 import { countries } from "./countries";
 

@@ -1,160 +1,145 @@
-# Memory
+# Agent System — Global Rules
 
-> **Read [.commandcode/MEMORY.md](./.commandcode/MEMORY.md) first** — it contains the full architecture, schema details, patterns, and workflows for this project.
-> **Update [.commandcode/MEMORY.md](./.commandcode/MEMORY.md)** as the codebase grows or whenever discover something worth documenting.
-> **Use MCP Context7** to fetch latest documentation for Drizzle ORM, Hono, Bun, and PostgreSQL when working with unfamiliar APIs or resolving issues.
+> **Read [.omp/MEMORY.md](./.omp/MEMORY.md) first** for project-specific knowledge (tech stack, schema, decisions, commands).
+> **Update [.omp/MEMORY.md](./.omp/MEMORY.md)** when you discover something worth documenting.
+> **Use MCP Context7** for library docs (Drizzle ORM, Hono, Bun, PostgreSQL).
 
-## Project Overview
+---
 
-See @README.md for project overview and @package.json for available bun/bunx commands for this project.
+## Architecture — Multi-Team Agent System
 
-## Code Style Guidelines
+3-team system with strict chain of command:
 
-- Use descriptive variable names
-- Follow existing patterns in the codebase
-- Extract complex conditions into meaningful boolean variables
+```
+                      ┌── User ──┐
+                      └────┬─────┘
+                           │
+                     Orchestrator
+                    /       |       \
+              Planning   Engineering  Validation
+                 │           │           │
+             Strategist  Backend Dev  QA + Security
+```
 
-## Architecture Notes
+### Roles & Models
 
-See [.commandcode/MEMORY.md](./.commandcode/MEMORY.md) for all architectural decisions and patterns.
+| Role | Model | Responsibility |
+|---|---|---|
+| **Orchestrator** | `deepseek-v4-pro` | Sole interface to user, delegates to leads, synthesizes results |
+| **Planning Lead** | `deepseek-v4-pro` | Architecture planning, delegates to Strategist |
+| **Strategist** | `deepseek-v4-flash` | Research, analysis, detailed planning |
+| **Engineering Lead** | `deepseek-v4-pro` | Coordinates implementation, delegates to Backend Developer |
+| **Backend Developer** | `deepseek-v4-flash` | Writes code, creates files, implements features |
+| **QA Lead** | `deepseek-v4-pro` | Coordinates review, delegates to QA/Security |
+| **QA Engineer** | `deepseek-v4-flash` | Code review, bug detection, edge cases |
+| **Security Reviewer** | `deepseek-v4-flash` | Security audit, vulnerability check |
 
-## Common Workflows
+### Chain of Command
 
-See [.commandcode/MEMORY.md](./.commandcode/MEMORY.md) for documented workflows and commands.
+```
+Orchestrator → Team Lead → Worker
+Worker → Lead → Orchestrator → User
+```
+
+- Orchestrator **never** delegates directly to workers
+- Leads **must** delegate execution to their workers via `task`
+- Only Orchestrator delivers results to the user
+
+### Execution Order
+
+Single feature: `Planning → Engineering → Validation` (sequential).
+Multiple independent features: parallel chains.
+
+---
+
+## Plan & Review Convention
+
+- **Plans**: `.omp/plans/<context>/<running-number>.<plan-name>.md`
+- **Reviews**: `.omp/reviews/<context>/<running-number>.<review-name>.md`
+
+---
 
 ## Graphify Workflow
 
-Use Graphify before implementation, refactoring, or architectural decisions to inspect the existing codebase structure and patterns.
+Use Graphify before implementation, refactoring, or architectural decisions.
 
 ### Before Coding
 
-Always use Graphify to:
+- inspect related modules, schema patterns, repository/service/controller patterns
+- inspect foreign key, defaultColumn, index declaration patterns
+- inspect naming conventions, pagination/filter conventions
+- identify reusable utilities, affected modules
 
-- inspect related modules and dependencies
-- inspect schema structure patterns
-- inspect repository/service/controller patterns
-- inspect foreign key declaration patterns
-- inspect defaultColumn usage
-- inspect index declaration patterns
-- inspect pagination/filter/query conventions
-- inspect naming conventions (singular/plural, DTOs, services, routes)
-- identify reusable utilities before creating new abstractions
-- identify affected modules before refactor
+## Lessons Learned Registry
 
-### Graphify Goals
+After fixing a bug or hitting a non-trivial gotcha, write a lesson to `.omp/lessons/`.
+Read `.omp/lessons/README.md` for the template format.
 
-Graphify should help to:
+**Always check existing lessons before debugging** — the fix may already be documented.
 
-- reduce unnecessary context loading
-- reuse existing project patterns
-- avoid duplicate abstractions
-- maintain architectural consistency
-- understand module relationships before implementation
-- minimize hallucinated implementations
+### Rules
 
-### Implementation Rules
+## TDD — Test-Driven Development (Mandatory)
 
-Before creating new patterns:
+Every implementation MUST follow TDD cycle:
 
-1. inspect existing implementation with Graphify
-2. reuse existing conventions whenever possible
-3. only introduce new abstractions if no suitable pattern exists
-4. follow current architecture and naming consistency
+1. **Write the test first** — It will fail (Red phase)
+2. **Write minimal implementation** — Just enough to pass (Green phase)
+3. **Refactor if needed** — Clean up without breaking tests (Refactor phase)
 
-### Refactor Rules
+Order for each new feature/entity:
+1. DTO / Zod schema
+2. Test: controller 404, service delegation, repository schema
+3. Implementation: repository → service → controller → DI wiring
+4. Verify all tests pass before committing
 
-Before refactoring:
+**Tests drive the design, not the other way around.**
 
-- inspect all related dependencies
-- identify affected services/routes/schema
-- inspect shared utilities usage
-- verify downstream impact before modification
+## TypeScript Diagnostics — Required After Every Code Change
 
-### Query Investigation
+After creating or modifying any code, run TypeScript diagnostics:
 
-When implementing new queries:
+```sh
+bunx --bun tsc --noEmit 2>&1 | grep "^src/\|^tests/"
+```
 
-- inspect similar existing queries first
-- inspect pagination/filter patterns
-- inspect response DTO patterns
-- inspect repository query structure
-- inspect indexing and relation patterns
+Expected: **zero errors** from `src/` and `tests/`.
+If any exist, fix them before committing.
 
-### Notes
+Do NOT rely on node_modules errors to be zero — Drizzle ORM has
+pre-existing strict-mode type issues with unused drivers (gel,
+mysql2, singlestore). Only check `src/` and `tests/`.
 
-Graphify provides structural understanding of the codebase.
+- Before creating new patterns: inspect existing ones first via Graphify
+- Before refactoring: inspect all dependencies and verify downstream impact
+- When implementing new queries: inspect similar existing queries first
+- Only introduce new abstractions if no suitable pattern exists
 
-Use:
+---
 
-- MEMORY.md for business rules and architecture decisions
-- Graphify for code relationships and implementation patterns
-- taste-1 for coding style consistency
+## Coding Style
 
-## Plan Mode
+- Descriptive variable names
+- Follow existing patterns in the codebase
+- Extract complex conditions into meaningful boolean variables
+- Interface naming: `<domain>.<layer>.interface.ts` (no `I` prefix)
 
-- Always use plan mode when the prompt includes "create plan" or involves multiple steps.
-- If something goes sideways, STOP and re-plan immediately. Don't keep pushing.
-- Use plan mode for verification steps, not just building.
-- Always ask questions to get more clarity.
-- Make high level instruction, just create the step by step, dont put the code
-- Write detailed specs upfront to reduce ambiguity.
-- Always break down tasks with their dependencies.
-- Always create plan task files in `./<worktree-directory>/.commandcode/tasks/<context>/<running-number>.<task-title>.md`
+---
 
-## Agent System
+## Git Workflow — Never Auto-Commit
 
-This project uses a multi-agent setup where different AI models handle planning, implementation, and review. Configuration is in `.commandcode/settings.local.json`.
+**Do NOT commit unless the user explicitly says "commit" or "commit all changes."**
+No auto-commits, no premature commits. Wait for the instruction.
 
-### Senior Engineer (`senior-engineer`)
+Even if a task is "complete" — tests pass, diagnostics clean — do NOT commit
+without being told to.
 
-- **Model**: DeepSeek V4 Pro
-- **Activates**: Automatically in plan mode (`Shift+Tab` or `/plan`)
-- **Handles**: Architecture reviews, schema design, route planning, database decisions, migration planning
-- **Config**: `.commandcode/agents/senior-engineer/AGENT.md`
-- Has full knowledge of the project schema, patterns (UUIDv7, soft-delete, audit columns), and tech stack
+When instructed, use `commit-context` skill:
+- Branch from `develop` / `dev`
+- Worktrees inside `.omp/worktree/<worktree-name>`
+- Verify files exist in the current worktree before making changes
+- Conventional commits (subject ≤50 chars)
 
-### Junior Engineer (`junior-engineer`)
+---
 
-- **Model**: Kimi K2.6
-- **Activates**: Automatically during implementation (after plan approval)
-- **Handles**: Writing code, creating schema files, generating migrations, adding routes, testing
-- **Config**: `.commandcode/agents/junior-engineer/AGENT.md`
-- Follows the plan exactly as designed by the senior engineer — no deviation
-
-### Code Reviewer (`code-reviewer`)
-
-- **Model**: null (inherits active model)
-- **Activates**: When reviewing implemented code against the plan (`/review` or manual)
-- **Handles**: Code review against plan, pattern enforcement, migration verification, style checks
-- **Config**: `.commandcode/agents/code-reviewer/AGENT.md`
-- Flags deviations, bugs, style violations, and pattern breaks with location/problem/fix format
-
-### Workflow
-
-1. Developer enters plan mode → senior engineer creates plan
-2. Plan gets reviewed and approved
-3. Junior engineer implements the plan
-
-Both agents share the same project context from `.commandcode/MEMORY.md`.
-**Agents read MEMORY.md first** before starting any work to get full project context.
-
-### Review & Re-plan Loop
-
-1. **Senior Engineer** creates plan in `./<worktree-directory>/.commandcode/tasks/<context>/<running-number>.<task-title>.md`
-2. **Junior Engineer** implements the tasks from the plan file
-3. **Code Reviewer** reviews the implemented code against the plan — if issues found, writes review to `./<worktree-directory>/.commandcode/review-code/<context>/<running-number>.<review-code-title>.md`
-4. **Senior Engineer** reads the review file, loops back to step 1 (re-plan based on feedback)
-5. Maximum **3 loops** — if still unresolved after 3 cycles, stop and ask for instruction
-
-**How to tell which agent is active:** There's no direct agent indicator — the current mode tells you: plan mode means `senior-engineer`, auto-accept/default mode means `junior-engineer`. Check the mode label displayed in the UI.
-
-## Git Workflow
-
-- When creating a git worktree, always branch from `develop` (or `dev`)
-- Always create git worktrees inside `./.commandcode/worktree/<worktree-name>`
-- When a git worktree is created, always create a new branch with the same name as `<worktree-name>`
-- Don't commit anything before being instructed to
-- Always verify new/updated files exist inside the current git worktree directory before making changes
-- Always commit changes to the `.commandcode/taste/` folder alongside related work
-
-<!-- AGENTS.md = operational content (agents, workflow, git, rules). MEMORY.md = reference content (project context, schema, patterns, knowledge). -->
+<!-- AGENTS.md = global operational rules only. Project knowledge (schema, decisions, commands) goes in .omp/MEMORY.md -->

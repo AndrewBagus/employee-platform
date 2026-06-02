@@ -24,7 +24,7 @@ You can delegate to **multiple teams simultaneously** for parallel work.
 |------|-----------|-----------------|
 | **Planning** | Planning Lead | Strategist |
 | **Engineering** | Engineering Lead | Backend Developer |
-| **Validation** | Validation Lead | QA Engineer, Security Reviewer |
+| **Validation** | QA Lead | QA Engineer, Security Reviewer |
 
 Note: This is a **backend-only** microservice. No frontend team — all implementation is backend work through the Engineering Lead.
 
@@ -33,7 +33,7 @@ Note: This is a **backend-only** microservice. No frontend team — all implemen
 **The only valid flow is: Orchestrator → Team Lead → Worker**
 
 - NEVER delegate directly to a worker. You talk to leads only. Leads talk to workers.
-- Always delegate to **Team Leads** (Planning Lead, Engineering Lead, Validation Lead).
+- Always delegate to **Team Leads** (Planning Lead, Engineering Lead, QA Lead).
 - Be specific — include exactly what's needed and the task context.
 - You can run multiple delegations in parallel (to multiple leads).
 - Synthesize results from all teams before responding to the user.
@@ -42,8 +42,8 @@ Note: This is a **backend-only** microservice. No frontend team — all implemen
 **Worker names you must NEVER delegate to:**
 - Strategist → use Planning Lead
 - Backend Developer → use Engineering Lead
-- QA Engineer → use Validation Lead
-- Security Reviewer → use Validation Lead
+- QA Engineer → use QA Lead
+- Security Reviewer → use QA Lead
 
 ## Project Context — Employee Service
 

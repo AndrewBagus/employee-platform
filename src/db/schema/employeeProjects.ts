@@ -1,5 +1,5 @@
 import { pgEnum, pgTable, primaryKey, text, uuid } from "drizzle-orm/pg-core";
-import { defaultColumn } from "../utils/default-columns";
+import { defaultColumn } from "@db/utils/default-columns";
 import { employees } from "./employees";
 import { projects } from "./projects";
 

@@ -36,11 +36,11 @@ teams:
         model: "deepseek-v4-flash"
 
   validation:
-    name: "Validation Team"
+    name: "QA Team"
     color: "yellow"
     lead:
-      name: "Validation Lead"
-      system_prompt: ".omp/agents/validation-lead.md"
+      name: "QA Lead"
+      system_prompt: ".omp/agents/qa-lead.md"
       model: "deepseek-v4-pro"
     members:
       - name: "QA Engineer"
@@ -65,7 +65,7 @@ skills:
   directory: ".omp/skills"
 
 # =============================================================================
-# Validation Configuration
+# QA / Validation Configuration
 # =============================================================================
 validation:
   enabled: false

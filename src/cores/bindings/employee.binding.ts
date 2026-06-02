@@ -1,0 +1,45 @@
+import { Container } from "inversify";
+import { TYPES } from "../types";
+import { EmployeeRepository } from "@repositories/employees/employees.repository";
+import { EmployeeService } from "@services/employees/employees.service";
+import { EmployeeAddressRepository } from "@repositories/employeeAddresses/employeeAddresses.repository";
+import { EmployeeAddressService } from "@services/employeeAddresses/employeeAddresses.service";
+import { EmployeeContractRepository } from "@repositories/employeeContracts/employeeContracts.repository";
+import { EmployeeContractService } from "@services/employeeContracts/employeeContracts.service";
+import { EmployeeContractAdvisorRepository } from "@repositories/employeeContractAdvisors/employeeContractAdvisors.repository";
+import { EmployeeContractAdvisorService } from "@services/employeeContractAdvisors/employeeContractAdvisors.service";
+import { EmployeeLeaveAdvisorRepository } from "@repositories/employeeLeaveAdvisors/employeeLeaveAdvisors.repository";
+import { EmployeeLeaveAdvisorService } from "@services/employeeLeaveAdvisors/employeeLeaveAdvisors.service";
+import { EmployeeMcuRepository } from "@repositories/employeeMcus/employeeMcus.repository";
+import { EmployeeMcuService } from "@services/employeeMcus/employeeMcus.service";
+import { EmployeeProjectRepository } from "@repositories/employeeProjects/employeeProjects.repository";
+import { EmployeeProjectService } from "@services/employeeProjects/employeeProjects.service";
+import { EmployeeTrainingRepository } from "@repositories/employeeTrainings/employeeTrainings.repository";
+import { EmployeeTrainingService } from "@services/employeeTrainings/employeeTrainings.service";
+import { EmployeeWarningRepository } from "@repositories/employeeWarnings/employeeWarnings.repository";
+import { EmployeeWarningService } from "@services/employeeWarnings/employeeWarnings.service";
+import { EmployeeWorkZoneRepository } from "@repositories/employeeWorkZones/employeeWorkZones.repository";
+import { EmployeeWorkZoneService } from "@services/employeeWorkZones/employeeWorkZones.service";
+
+export function registerEmployeeBindings(container: Container) {
+  container.bind(TYPES.EmployeeRepositoryInterface).to(EmployeeRepository);
+  container.bind(TYPES.EmployeeServiceInterface).to(EmployeeService);
+  container.bind(TYPES.EmployeeAddressRepositoryInterface).to(EmployeeAddressRepository);
+  container.bind(TYPES.EmployeeAddressServiceInterface).to(EmployeeAddressService);
+  container.bind(TYPES.EmployeeContractRepositoryInterface).to(EmployeeContractRepository);
+  container.bind(TYPES.EmployeeContractServiceInterface).to(EmployeeContractService);
+  container.bind(TYPES.EmployeeContractAdvisorRepositoryInterface).to(EmployeeContractAdvisorRepository);
+  container.bind(TYPES.EmployeeContractAdvisorServiceInterface).to(EmployeeContractAdvisorService);
+  container.bind(TYPES.EmployeeLeaveAdvisorRepositoryInterface).to(EmployeeLeaveAdvisorRepository);
+  container.bind(TYPES.EmployeeLeaveAdvisorServiceInterface).to(EmployeeLeaveAdvisorService);
+  container.bind(TYPES.EmployeeMcuRepositoryInterface).to(EmployeeMcuRepository);
+  container.bind(TYPES.EmployeeMcuServiceInterface).to(EmployeeMcuService);
+  container.bind(TYPES.EmployeeProjectRepositoryInterface).to(EmployeeProjectRepository);
+  container.bind(TYPES.EmployeeProjectServiceInterface).to(EmployeeProjectService);
+  container.bind(TYPES.EmployeeTrainingRepositoryInterface).to(EmployeeTrainingRepository);
+  container.bind(TYPES.EmployeeTrainingServiceInterface).to(EmployeeTrainingService);
+  container.bind(TYPES.EmployeeWarningRepositoryInterface).to(EmployeeWarningRepository);
+  container.bind(TYPES.EmployeeWarningServiceInterface).to(EmployeeWarningService);
+  container.bind(TYPES.EmployeeWorkZoneRepositoryInterface).to(EmployeeWorkZoneRepository);
+  container.bind(TYPES.EmployeeWorkZoneServiceInterface).to(EmployeeWorkZoneService);
+}
